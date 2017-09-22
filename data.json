@@ -1,0 +1,290 @@
+{
+    "msg": "数据查询成功",
+    "code": "0",
+    "data": [
+        {
+            "ReceptionServe": {
+                "ReceptionTotal": {
+                    "Total": {
+                        "Income": 10000
+                    }
+                },
+                "Experience": {
+                    "UnFromInsurance": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 3,
+                        "Ratio": 15
+                    },
+                    "Total": {
+                        "ReceptionCount": 3,
+                        "PersonCount": 20
+                    },
+                    "FromInsurance": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 12,
+                        "Ratio": 60
+                    },
+                    "VIPReception": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 5,
+                        "Ratio": 25
+                    }
+                },
+                "EntityReception": {
+                    "UnFromInsurance": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 3,
+                        "Ratio": 15
+                    },
+                    "Total": {
+                        "ReceptionCount": 3,
+                        "PersonCount": 20
+                    },
+                    "FromInsurance": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 12,
+                        "Ratio": 60
+                    },
+                    "VIPReception": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 5,
+                        "Ratio": 25
+                    }
+                },
+                "VIPDetails": {
+                    "BlocLeader": { //集团
+                        "PersonCount": 4
+                    },
+                    "CountryLeader": { //国家领导
+                        "PersonCount": 0
+                    },
+                    "Total": {
+                        "VIPReceptionTotalPerson": 4
+                    },
+                    "ZhiJiaLeader": {
+                        "PersonCount": 6
+                    },
+                    "EscortCount": { //陪同
+                        "VIPLeaderEscortCount": 4
+                    },
+                    "OtherGroupLeader": { //waibu
+                        "PersonCount": 0
+                    },
+                    "ProvinceLeader": { //省市
+                        "PersonCount": 0
+                    }
+                },
+                "VIPEntityDetails": {
+                    "CountryLeaderEscort": {
+                        "EntityVIPCountryEscortCount": 4
+                    },
+                    "BlocLeader": {
+                        "PersonCount": 2
+                    },
+                    "CountryLeader": {
+                        "PersonCount": 0
+                    },
+                    "OutLeaderEscort": {
+                        "EntityVIPOutEscortCount": ""
+                    },
+                    "ZhiJiaLeader": {
+                        "PersonCount": 3
+                    },
+                    "ProvincesLeaderEscort": {
+                        "EntityVIPProvincesEscortCount": ""
+                    },
+                    "OtherGroupLeader": {
+                        "PersonCount": 0
+                    },
+                    "MaisonLeaderEscort": {
+                        "EntityVIPMaisonEscortCount": ""
+                    },
+                    "GroupLeaderEscort": {
+                        "EntityVIPGroupEscortCount": ""
+                    },
+                    "ProvinceLeader": {
+                        "PersonCount": 0
+                    }
+                },
+                "VIPExperienceDet": {
+                    "CountryLeaderEscort": {
+                        "ExperienceVIPCountryEscortCount": ""
+                    },
+                    "BlocLeader": {
+                        "PersonCount": 2
+                    },
+                    "CountryLeader": {
+                        "PersonCount": 0
+                    },
+                    "OutLeaderEscort": {
+                        "ExperienceVIPOutEscortCount": ""
+                    },
+                    "ZhiJiaLeader": {
+                        "PersonCount": 3
+                    },
+                    "ProvincesLeaderEscort": {
+                        "ExperienceVIPProvincesEscortCount": ""
+                    },
+                    "OtherGroupLeader": {
+                        "PersonCount": 0
+                    },
+                    "MaisonLeaderEscort": {
+                        "ExperienceVIPMaisonEscortCount": ""
+                    },
+                    "GroupLeaderEscort": {
+                        "ExperienceVIPGroupEscortCount": ""
+                    },
+                    "ProvinceLeader": {
+                        "PersonCount": 0
+                    }
+                }
+            },
+            "org": "BJYY",
+            "status": "1"
+        },
+        {
+            "BookAndDebook": {
+                "ReceptionTotal": {
+                    "Total": {
+                        "Income": 10000
+                    }
+                },
+                "Experience": {
+                    "UnFromInsurance": {
+                        "ReceptionCount": 8,
+                        "PersonCount": 3,
+                        "Ratio": 15
+                    },
+                    "Total": {
+                        "ReceptionCount": 3,
+                        "PersonCount": 20
+                    },
+                    "FromInsurance": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 12,
+                        "Ratio": 60
+                    },
+                    "VIPReception": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 5,
+                        "Ratio": 25
+                    }
+                },
+                "EntityReception": {
+                    "UnFromInsurance": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 3,
+                        "Ratio": 15
+                    },
+                    "Total": {
+                        "ReceptionCount": 3,
+                        "PersonCount": 20
+                    },
+                    "FromInsurance": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 12,
+                        "Ratio": 60
+                    },
+                    "VIPReception": {
+                        "ReceptionCount": 1,
+                        "PersonCount": 5,
+                        "Ratio": 25
+                    }
+                },
+                "VIPDetails": {
+                    "BlocLeader": { //集团
+                        "PersonCount": 4
+                    },
+                    "CountryLeader": { //国家领导
+                        "PersonCount": 0
+                    },
+                    "Total": {
+                        "VIPReceptionTotalPerson": ""
+                    },
+                    "ZhiJiaLeader": {
+                        "PersonCount": 6
+                    },
+                    "EscortCount": { //陪同
+                        "VIPLeaderEscortCount": ""
+                    },
+                    "OtherGroupLeader": { //waibu
+                        "PersonCount": 0
+                    },
+                    "ProvinceLeader": { //省市
+                        "PersonCount": 0
+                    }
+                },
+                "VIPEntityDetails": {
+                    "CountryLeaderEscort": {
+                        "EntityVIPCountryEscortCount": ""
+                    },
+                    "BlocLeader": {
+                        "PersonCount": 2
+                    },
+                    "CountryLeader": {
+                        "PersonCount": 0
+                    },
+                    "OutLeaderEscort": {
+                        "EntityVIPOutEscortCount": ""
+                    },
+                    "ZhiJiaLeader": {
+                        "PersonCount": 3
+                    },
+                    "ProvincesLeaderEscort": {
+                        "EntityVIPProvincesEscortCount": ""
+                    },
+                    "OtherGroupLeader": {
+                        "PersonCount": 0
+                    },
+                    "MaisonLeaderEscort": {
+                        "EntityVIPMaisonEscortCount": ""
+                    },
+                    "GroupLeaderEscort": {
+                        "EntityVIPGroupEscortCount": ""
+                    },
+                    "ProvinceLeader": {
+                        "PersonCount": 0
+                    }
+                },
+                "VIPExperienceDet": {
+                    "CountryLeaderEscort": {
+                        "ExperienceVIPCountryEscortCount": ""
+                    },
+                    "BlocLeader": {
+                        "PersonCount": 2
+                    },
+                    "CountryLeader": {
+                        "PersonCount": 0
+                    },
+                    "OutLeaderEscort": {
+                        "ExperienceVIPOutEscortCount": ""
+                    },
+                    "ZhiJiaLeader": {
+                        "PersonCount": 3
+                    },
+                    "ProvincesLeaderEscort": {
+                        "ExperienceVIPProvincesEscortCount": ""
+                    },
+                    "OtherGroupLeader": {
+                        "PersonCount": 0
+                    },
+                    "MaisonLeaderEscort": {
+                        "ExperienceVIPMaisonEscortCount": ""
+                    },
+                    "GroupLeaderEscort": {
+                        "ExperienceVIPGroupEscortCount": ""
+                    },
+                    "ProvinceLeader": {
+                        "PersonCount": 0
+                    }
+                }
+            },
+            "org": "BJYY",
+            "status": "1"
+        }
+    ],
+    "menu": [
+        "0602",
+        "0601"
+    ]
+}
