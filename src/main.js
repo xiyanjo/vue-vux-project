@@ -11,7 +11,8 @@ import App from './App'
 // import Home from './components/alert'
 // import Home from './components/Confirm'
 // import Home from './components/checkList'
-import Home from './components/checkIcon.vue'
+// import Home from './components/checkIcon.vue'
+import Home from './components/Parent.vue'
 
 
 import { AlertPlugin, ToastPlugin } from 'vux'
