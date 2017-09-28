@@ -1,11 +1,11 @@
 <template>
     <ul>
         <li>
-            <input type="text" :value ="enTotal">
+            <!--<input type="text" :value ="enTotal">-->
         </li>
         <li v-for="item in list" @click="change(item.val)">
             <!--<p> {{item.cla}}</p>-->
-            <input :class="item.cla" v-model=item.cla>
+            <input :class="item.cla" v-model="item.cla">
         </li>
     </ul>
 </template>
