@@ -4,45 +4,81 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
-// import Home from './components/HelloFromVux'
-// import Home from './components/Auditing'
-// import Home from './components/toast'
-// import Home from './components/actionsheet'
-// import Home from './components/alert'
-// import Home from './components/Confirm'
-// import Home from './components/checkList'
-// import Home from './components/checkIcon.vue'
-// import Home from './components/Parent.vue'
-import Home from './components/vueData.vue'
-// import Home from './components/input.vue'
+import Home from './components/Home'
+import Confirm from './components/Confirm'
+
+import HelloFromVux from './components/HelloFromVux'
+import Auditing from './components/Auditing'
+import toast from './components/toast'
+import actionsheet from './components/actionsheet'
+import alert from './components/alert'
+import checkList from './components/checkList'
+import checkIcon from './components/checkIcon.vue'
+import Parent from './components/Parent.vue'
+import vueData from './components/vueData.vue'
+import input from './components/input.vue'
 
 
 import {AlertPlugin, ToastPlugin} from 'vux'
 
-Vue.use(AlertPlugin)
-Vue.use(ToastPlugin)
+Vue.use(AlertPlugin);
+Vue.use(ToastPlugin);
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 // Vue.use(vuexI18n.plugin, store)
 const routes = [{
     path: '/',
     component: Home
-}]
+},{
+    path: '/confirm',
+    component: Confirm
+},{
+    path: '/HelloFromVux',
+    component: HelloFromVux
+},{
+    path: '/Auditing',
+    component: Auditing
+},{
+    path: '/toast',
+    component: toast
+},{
+    path: '/actionsheet',
+    component: actionsheet
+},{
+    path: '/alert',
+    component: alert
+},{
+    path: '/checkList',
+    component: checkList
+},{
+    path: '/checkIcon',
+    component: checkIcon
+},{
+    path: '/Parent',
+    component: Parent
+},{
+    path: '/vueData',
+    component: vueData
+},{
+    path: '/input',
+    component: input
+}];
+
 
 const router = new VueRouter({
     routes
-})
+});
 
-FastClick.attach(document.body)
+FastClick.attach(document.body);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 // 每个 Vue.js 应用都是通过构造函数 Vue 创建一个 Vue 的根实例来启动的：
 new Vue({
     router,
     render: h => h(App)
-}).$mount('#app-box')
+}).$mount('#app-box');
 
 // 每个 Vue.js 应用都是通过构造函数 Vue 创建一个 Vue 的根实例来启动的：
 /*var data = { a: 1 }
