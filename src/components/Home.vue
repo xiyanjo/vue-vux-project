@@ -11,6 +11,8 @@
         <router-link class="link" to="/Parent"> Parent</router-link>
         <router-link class="link" to="/vueData"> vueData</router-link>
         <router-link class="link" to="/input"> input</router-link>
+        <router-link class="link" to="/vueEvent"> vueEvent</router-link>
+        <router-link class="link" to="/vueForm"> vueForm</router-link>
     </div>
 </template>
 

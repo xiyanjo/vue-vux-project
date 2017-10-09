@@ -68,7 +68,7 @@
         <!--一个指定以特殊方式绑定 .prevent-->
         <div class="aa">
             <!--event.preventDefault()-->
-            <a @submit.prevent="onSubmit"></a>
+            <a @submit.prevent="onSubmit">指定的绑定方式</a>
         </div>
         <!--过滤器-->
         <div class="aa">
@@ -151,6 +151,9 @@
                     { name: 'Taobao' }
                 ]
             }
+        },
+        mounted(){
+            document.title='vue全'
         },
         components: {Children},
         computed: {
