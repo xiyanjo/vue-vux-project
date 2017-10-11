@@ -19,6 +19,7 @@ import vueData from './components/vueData.vue'
 import input from './components/input.vue'
 import vueEvent from './components/vueEvent.vue'
 import vueForm from './components/vueForm.vue'
+import vuxForm from './components/vuxForm.vue'
 
 
 import {AlertPlugin, ToastPlugin} from 'vux'
@@ -70,6 +71,9 @@ const routes = [{
 },{
     path: '/vueForm',
     component: vueForm
+},{
+    path: '/vuxForm',
+    component: vuxForm
 }];
 
 
