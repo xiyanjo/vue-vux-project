@@ -50,6 +50,7 @@
         <router-link class="link" to="/vueEvent"> vueEvent</router-link>
         <router-link class="link" to="/vueForm"> vueForm</router-link>
         <router-link class="link" to="/vuxForm"> vuxForm</router-link>
+        <router-link class="link" to="/xdailog"> xdailog</router-link>
     </div>
 </template>
 

@@ -20,6 +20,7 @@ import input from './components/input.vue'
 import vueEvent from './components/vueEvent.vue'
 import vueForm from './components/vueForm.vue'
 import vuxForm from './components/vuxForm.vue'
+import xdailog from './components/xDailog.vue'
 
 
 import {AlertPlugin, ToastPlugin} from 'vux'
@@ -74,6 +75,9 @@ const routes = [{
 },{
     path: '/vuxForm',
     component: vuxForm
+},{
+    path: '/xdailog',
+    component: xdailog
 }];
 
 
