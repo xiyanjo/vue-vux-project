@@ -60,6 +60,16 @@
             <br><br>
             <div :class="{'class1': class1}">动态添加类名</div>
         </div>
+
+        <!--参数特性 lazy  number debounce-->
+        <!-- 在 "change" 而不是 "input" 事件中更新 -->
+        <input v-model="message1" lazy>
+        <!--如果想自动将用户的输入保持为数字，可以添加一个特性 number：-->
+        <input v-model="message1" number>
+        <!--debounce 设置一个最小的延时，在每次敲击之后延时同步输入框的值与数据。如果每次更新都要进行高耗操作（例如在输入提示中 Ajax 请求），它较为有用。-->
+        <input v-model="message1" debounce="500">
+        <!--注意 debounce 参数不会延迟 input 事件：它延迟“写入”底层数据。因此在使用 debounce时应当用 vm.$watch() 响应数据的变化。若想延迟 DOM 事件，应当使用 debounce 过滤器。-->
+
         <!--js表达式支持-->
         <div class="aa">
             <div>{{ 'ooo' ? 'YES' : 'NO' }}</div>
@@ -118,6 +128,52 @@
             </ul>
         </div>
 
+
+        <div>
+            输入框1
+            <input type="text" v-for="(item,index) in cou"
+                   v-model='cou[index]'>
+            <p>
+                .$nextTick更新dom后执行的方法
+            </p>
+            <!-- 输入框2
+             <input type="text" v-for="(item,index) in cou"
+                    v-if="countData[index][1]"
+                    v-model = 'countData[index][1]'>-->
+        </div>
+        <div>
+            <p>
+                过滤不符合条件的属性，通过数组变异属性 filter
+            </p>
+            <ul id="example-1">
+                <li v-for="item in items" @click="exam1">
+                    {{ item.message }}
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p>显示过滤和排序结果</p>
+            <li v-for="n in evenNumbers">{{ n }}</li>
+
+            <p>
+                ***有报错***  在计算属性不适用的情况下 (例如，在嵌套 v-for 循环中) 你可以使用一个 method 方法：
+            </p>
+            <!--<li v-for="n in even(numbers2)">{{ n }}</li>-->
+        </div>
+        <div id="todo-list-example">
+            <input
+                    v-model="newTodoText"
+                    @keyup.enter="addNewTodo"
+                    placeholder="Add a todo"
+            >
+            <ul>
+                <input
+                        v-for="(todo, index) in todos"
+                        v-model="todos[index]"
+                >
+            </ul>
+        </div>
+
     </div>
 </template>
 
@@ -142,18 +198,77 @@
                     ['in1', 'in2', 'in3', 'in4', 'in5']
                 ],
                 message: 'RUNOOB',
+                message1: '',
                 id: 1,
                 class1: false,
-                type:'d',
+                type: 'd',
                 sites: [
-                    { name: 'Runoob' },
-                    { name: 'Google' },
-                    { name: 'Taobao' }
-                ]
+                    {name: 'Runoob'},
+                    {name: 'Google'},
+                    {name: 'Taobao'}
+                ],
+                cou: ['', '', ''],//循环数组
+//                循环显示数据
+                countData: [
+                    ['0', '1'],
+                    ['2', '3'],
+                    ['4']
+                ],
+                items: [
+                    {message: 'Foo'},
+                    {message: 'Bar'}
+                ],
+                numbers: [ 1, 2, 3, 4, 5 ],
+                numbers2: [ 1, 2, 3, 4, 5 ],
+                todos: [
+                    {
+                        id: 1,
+                        title: 'Do the dishes',
+                    },
+                    {
+                        id: 2,
+                        title: 'Take out the trash',
+                    },
+                    {
+                        id: 3,
+                        title: 'Mow the lawn'
+                    }
+                ],
+                newTodoText: '',
             }
         },
         mounted(){
-            document.title='vue全'
+            document.title = 'vue全'
+        },
+        watch: {
+//            校验
+            cou(){
+//                当为countData 或者cou中为对象时，无法绑定到view层
+                /*for (var i=0;i<this.countData.length;i++){
+                 this.$set(this.countData[i],0,this.countData[i][0].replace(/[^\d\.]/g, ''));
+                 if( this.countData[i][1]){
+                 this.$set(countData[i],1,this.countData[i][1].replace(/[^\d\.]/g, ''));
+                 }
+                 }*/
+                for (var i = 0; i < this.cou.length; i++) {
+//                    this.$set(this.cou,i,this.cou[i].replace(/[^\d\.]/g, ''));
+                    this.cou[i] = this.cou[i].replace(/[^\d\.]/g, '');
+                    this.$nextTick(function () {
+                        console.log(this.$el.textContent) // => '更新完成'
+                    })
+                }
+                console.log(77777, this.cou)
+            },
+            todos(){
+                for (var i = 0; i < this.todos.length; i++) {
+//                    this.$set(this.cou,i,this.cou[i].replace(/[^\d\.]/g, ''));
+//                    console.log(this.todos[i].id);
+                    console.log({id:(this.todos[i].id+'').replace(/[^\d\.]/g, '')});
+                    this.todos[i] = {id:(this.todos[i].id+'').replace(/[^\d\.]/g, '')};
+                }
+                console.log(this.todos)
+            }
+
         },
         components: {Children},
         computed: {
@@ -177,6 +292,16 @@
                 },
                 set: function () {
                 }
+            },
+            evenNumbers: function () {
+                return this.numbers.filter(function (number) {
+                    return number % 2 === 0
+                })
+            },
+            even: function (numbers) {
+               /* return numbers.filter(function (number) {
+                    return number % 2 === 0
+                })*/
             }
         },
         methods: {
@@ -216,6 +341,18 @@
             },
             arg2(){
             },
+            exam1(){
+                this.items = this.items.filter(function (item) {
+                    return item.message.match(/Foo/)
+                })
+            },
+            addNewTodo: function () {
+                this.todos.push({
+                    id: this.nextTodoId++,
+                    title: this.newTodoText
+                })
+                this.newTodoText = ''
+            }
         },
 //        过滤器
         filters: {
