@@ -1,28 +1,43 @@
 <template>
     <div class="hello">
-        <h1>hahahha</h1>
         <!--<h1>{{ msg }}</h1>-->
-        <input type="text" v-model="myMsg">
-        <input type="text" v-model="name">
+        <!-- <input type="text" v-model="myMsg"> -->
+        <!-- <input type="text" v-model="name"> -->
         <!--需要转换为aa-bb-->
-        <Children :my-msg.sync="myMsg" :name="name" @up="change"></Children>
+        <!-- <Children :my-msg.sync="myMsg" :name="name" :size='size' @up="change"></Children> -->
+
+
+        <!-- 只传一个数组 -->
+        <Children v-bind="todo" @up="change"></Children>
+        <div>{{todo.size}}</div>
+        <!-- <child :foo.sync="bar"></child> -->
+        <child ></child>
 
     </div>
 </template>
 
 <script>
     import Children from '@/components/Children.vue'
+    import child from '@/components/child1.vue'
     export default {
         name: 'hello',
         data () {
             return {
                 msg: '6666',
-                myMsg:'',
+                myMsg:'第一个',
                 name:'xiyanjo',
                 childData:'',
+                size:'size',
+                todo: {
+                  name: 'Learn Vue',
+                  size: 'FALSE',
+                  myMsg:'第二个'
+
+                },
+                bar:'child1---66666'
             }
         },
-        components:{Children},
+        components:{Children,child},
         methods:{
             change(data) {
                 this.childData = data;

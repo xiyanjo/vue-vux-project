@@ -35,6 +35,25 @@
             <input type="text" :value="scale">
         </div>
         <button @click="ajax()">提交</button>
+
+
+        <template v-for="(item,index) in list">
+            <div v-for="(val,key,ind) in item">
+                <label for="input" v-if="ind==0">{{val}}</label>
+                <input type="text" 
+                    v-if="ind==1"
+                    v-model="list[index][key]"
+                    @textIput="preventNaN"
+                    @focus ="inputFocus"
+                    @blur = "inputBlur"
+                >
+            </div>
+        </template>
+
+
+        <div>
+            <input v-model="something">
+        </div>
     </div>
 </template>
 
@@ -58,10 +77,20 @@
                 data: ['aa', 'bb', 'cc'],
                 aa: false,
                 bb: true,
-                cc: true
+                cc: true,
+                list:[{title:'一',day:''},{title:'二',day:''},{title:'三',day:''}]
             }
         },
         methods: {
+            preventNaN(){
+                if(e.data.match(/[^\d]/g)) e.preventDefault();
+            },
+            inputFocus(){
+
+            },
+            inputBlur(){
+
+            },
             change(val){
                 console.log(val);
             },

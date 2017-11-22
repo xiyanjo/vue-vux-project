@@ -44,6 +44,14 @@ let util ={
         var url = location.pathname.substring(1),
             leaveTime = new Date(),
             stayTime = leaveTime.getTime() - this.visitTime.getTime();
+    },
+    // 将时间戳转为日期
+    timestampToDate(time){
+         var date = new Date(time),
+         y =date.getFullYear(),
+         m = date.getMonth() +1,
+         d = date.getDate();
+         return y+'-'+m+'-'+d
     }
 };
 export default util

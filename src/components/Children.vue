@@ -1,13 +1,22 @@
 <template>
     <div class="hello">
-        <p >我是{{myMsg}}</p>
-        <ul>
-            <!--props 时子组件中值改变后不会改变父组件的值-->
+        <p >我是父组件中传递的myMsg ： {{myMsg}}</p>
+
+        <div>
+             <!-- props 时 子组件中值改变后不会改变父组件的值 -->
+             <label for="">父组件中传递  子组件可改变的值</label>
             <input type="text" :value="myMsg">
+        </div>
+        <ul>
             <li>{{name}}</li>
-            <li>{{ }}</li>
-            <li @click="up">发给父组件</li>
+            <li>
+                <input type="text" v-model='size'>
+            </li>
+            <button @click="up">发给父组件</button>
         </ul>
+        <div>
+            {{normalizedSize}}
+        </div>
     </div>
 </template>
 
@@ -24,7 +33,13 @@
 
             }
         },
-        props:['size','myMsg','name'],
+        props:['size','myMsg','name','todo'],
+        computed: {
+            normalizedSize: function () {
+                 console.log(8888)
+                return this.size.trim().toLowerCase()
+            }
+        },
         methods:{
             up() {
                 console.log(666);

@@ -47,14 +47,17 @@
     <div v-transfer-dom>
       <x-dialog v-model="showHideOnBlur" class="dialog-demo" hide-on-blur>
         <div class="img-box">
-            <div>3333333</div>
+            <div>3333333看见覅睡觉地方睡觉地方祭祀的风景四点就覅上的飞机上的飞机上飞机圣诞节覅危机覅时间覅说手机发了睡觉地方历史的减肥了世界的覅类似的经历覅精神多了覅就是地方就是的立法精神低价覅说的减肥了四点就覅来说十分理解的是立法精神动力飞机上了对方就算了地方就是两地分居历史地减肥就算了覅就是地方就是领导发就算了地方就是独立飞机上的风景上帝就分手地方就是地方的时间覅说的减肥手机里的覅就是的立法精神多了附近水立方集散地时间地方的健身房里就是的立法精神地理附近及司法的降低首付是地方技术的几时放假代理商及法律上的就发生地理放假了啥地方几时来的时间fie睡觉了福建省地方集散地家斯蒂芬放假了说的附近设立的风景</div>
           <!-- <img src="../assets/demo/dialog/01.jpg" style="max-width:100%"> -->
         </div>
-        <div @click="showHideOnBlur=false">
+        
+      </x-dialog>
+
+    </div>
+    <div @click="showHideOnBlur=false">
           <span class="vux-close"></span>
         </div>
-      </x-dialog>
-    </div>
+
 
     <div v-transfer-dom>
       <x-dialog v-model="showDialogStyle" hide-on-blur :dialog-style="{'max-width': '100%', width: '100%', height: '50%', 'background-color': 'transparent'}">
