@@ -118,6 +118,7 @@
            <x-button @click.native="iconType = ''" type="primary"> set empty</x-button>
        </div>-->
 
+
     </div>
 </template>
 
@@ -149,9 +150,11 @@
                 debounceValue: '',
                 maxValue: '',
                 maskValue: '13545678910',
-                maskValue2: ''
+                maskValue2: '',
+
             }
         },
+
         methods: {
             getValid1 () {
                 this.valid1 = this.$refs.input01.valid
