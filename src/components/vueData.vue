@@ -128,11 +128,7 @@
             </ul>
         </div>
 
-<<<<<<< HEAD
-        <button v-on:click="warn('Form cannot be submitted yet.', $event)">
-             Submit
-        </button>
-=======
+
 
         <div>
             输入框1
@@ -178,7 +174,6 @@
                 >
             </ul>
         </div>
->>>>>>> 01f1bce5b86d36785aab34c84c68eba721031fbe
 
     </div>
 </template>
