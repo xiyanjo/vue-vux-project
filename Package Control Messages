@@ -1,0 +1,19 @@
+Package Control Messages
+========================
+
+EsFormatter
+-----------
+
+  ## Esformatter
+  
+  Thanks.
+  
+  This plugin requires a global version of esformatter.
+  
+  -------
+  
+    npm install -g esformatter
+  
+  -------
+  
+  Enjoy

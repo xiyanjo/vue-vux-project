@@ -21,6 +21,8 @@ import vueEvent from './components/vueEvent.vue'
 import vueForm from './components/vueForm.vue'
 import vuxForm from './components/vuxForm.vue'
 import xdailog from './components/xDailog.vue'
+import props from './view/props.vue'
+
 
 
 import {AlertPlugin, ToastPlugin} from 'vux'
@@ -78,6 +80,9 @@ const routes = [{
 },{
     path: '/xdailog',
     component: xdailog
+},{
+    path: '/props',
+    component: props
 }];
 
 
