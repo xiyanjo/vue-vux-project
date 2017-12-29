@@ -1,34 +1,43 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-      <keep-alive><router-view >66666</router-view></keep-alive>
-    </ul>
+      {{ propMsg}}
+      <div>888888</div>
+    
   </div>
 </template>
 
 <script>
+    import vm from 'Vue'
+    var bus = new vm();
+
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      propMsg:''
     }
+  },
+  mounted(){
+     this.onBus();
+  },
+  watch:{
+      watchbus(){
+          this.onBus();
+      }
+  },
+  methods:{
+      onBus(){
+        console.log(5555)
+          // 在组件 B 创建的钩子中监听事件
+        bus.$on('id-selected', function (id) {
+             console.log(id,77777);
+            propMsg = id;
+          
+        })
+      }
   }
+
 }
 </script>
 

@@ -36,6 +36,8 @@
         }).$mount('#app')
 
         // 现在，应用已经启动了！-->
+        <!-- <input type='range'  v-model='inputData' @change='change'> -->
+        <input type='date'  v-model='inputData' @change='change'>
         <router-link class="link" to="/confirm"> confirm</router-link>
         <router-link class="link" to="/HelloFromVux"> HelloFromVux</router-link>
         <router-link class="link" to="/Auditing"> Auditing</router-link>
@@ -52,23 +54,87 @@
         <router-link class="link" to="/vuxForm"> vuxForm</router-link>
         <router-link class="link" to="/xdailog"> xdailog</router-link>
         <router-link class="link" to="/props"> props</router-link>
-
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAQMAAADaX5RTAAAAA3NCSVQICAjb4U/gAAAABlBMVEX///+ZmZmOUEqyAAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAACusAAArrAYKLDVoAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjAvMTIGkKG+AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAB1JREFUCJljONjA8LiBoZyBwY6BQQZMAtlAkYMNAF1fBs/zPvcnAAAAAElFTkSuQmCC" />
+        <!-- <calendar></calendar> -->
 
     </div>
 </template>
 
 <script>
     import Confirm from '@/components/Confirm';
+    import calendar from '@/components/calendar';
 
     export default {
         name:'home',
         data(){
             return {
-
+                inputData:'',
             }
         },
         components:{
-            Confirm,
+            Confirm,calendar
+        },
+        mounted(){
+           /* let [a,b]=[[],[]];
+            this.sort2(1,3,4,2,7);
+            // this.push(a,b,[ 4, 5, 6]);//将每个参数看为一位
+            this.push(a,b,1, 2, 3);//将每个参数看为一位*/
+
+            
+            // 箭头函数可以让setTimeout里面的this，绑定定义时所在的作用域，而不是指向运行时所在的作用域
+            function Timer() {
+                this.s1 = 0;
+                this.s2 = 0;
+                // 箭头函数
+                /*setInterval(() => {
+                    this.s1++
+                    console.log('s1',this);
+                }, 1000);
+                // 普通函数
+                setInterval(function () {
+                    console.log('s2',this);
+                  this.s2++;
+                }, 1000);*/
+                // 箭头函数----绑定在定义所在的作用域内
+                setTimeout(() => {
+                    this.s1++
+                    console.log('s1',this);//timer
+                }, 1000);
+                // 普通函数----指向运行时所在的作用域
+                setTimeout(function () {
+                    console.log('s2',this);//window
+                    this.s2++;//window下没有s2
+                }, 1000);
+                // console.log(9999)
+            };
+            var timer = new Timer();
+            // 初始值都为0
+            console.log('s1: ', timer.s1);//0
+            console.log('s2: ', timer.s2);//0
+            setTimeout(() => console.log('s1: ', timer.s1), 3100);//3
+            setTimeout(() => console.log('s2: ', timer.s2), 3100);//0
+        },
+        methods:{
+            push(array,b,...items){
+                // arguments变量的写法
+                /*function sortNumbers() {
+                  return Array.prototype.slice.call(arguments).sort();
+                }*/
+                items.forEach(function(item) {
+                  array.push(item);
+                  b.push(item+1);
+                });
+                  console.log(2222,array,b);
+            },
+            // rest参数
+            sort2(...numbers){
+                // numbers.sort();
+                console.log(numbers.sort());
+            },
+            change(){
+                console.log(this.inputData)
+            }
+            
         }
     }
 </script>

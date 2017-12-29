@@ -52,7 +52,41 @@ let util ={
          m = date.getMonth() +1,
          d = date.getDate();
          return y+'-'+m+'-'+d
+    },
+    // 去重
+    deletCompeat(){
+        Array.prototype.unique3 = function(){
+         var res = [];
+         var json = {};
+         for(var i = 0; i < this.length; i++){
+          if(!json[this[i].date]){
+            res.push(this[i]);
+            json[this[i].date] = this[i];
+          }else{
+            json[this[i].date].name = json[this[i].date].name + this[i].name;
+          }
+         }
+         return res;
+        }
+        var arr = [
+            {
+                date:"1",
+                name:"来歌"
+            },
+            {
+                date:"2",
+                name:"鹿晗"
+            },
+            {
+                date:"1",
+                name:"艳娇"
+            },
+        ];
+        console.log(arr.unique3());
+
+        };
     }
-};
+
+
 export default util
 

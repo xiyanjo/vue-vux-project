@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Confirm from './components/Confirm'
 
 import HelloFromVux from './components/HelloFromVux'
+import hello from './components/Hello'
 import Auditing from './components/Auditing'
 import toast from './components/toast'
 import actionsheet from './components/actionsheet'
@@ -31,6 +32,9 @@ Vue.use(AlertPlugin);
 Vue.use(ToastPlugin);
 
 Vue.use(VueRouter);
+
+
+
 // Vue.use(vuexI18n.plugin, store)
 const routes = [{
     path: '/',
@@ -83,6 +87,9 @@ const routes = [{
 },{
     path: '/props',
     component: props
+},{
+    path: '/hello',
+    component: hello
 }];
 
 
