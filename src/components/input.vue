@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div style="padding:15px;" v-for="item in data">
+        <div style="padding:15px;" v-if=false 
+            v-for="item in data">
             {{item}}
             <check-icon :value.sync="aa">Do you agree? ({{ item }})</check-icon>
             <br>
@@ -11,7 +12,7 @@
 
             <!--<check-icon :value.sync="demo2" type="plain">Do you agree?({{ demo2 }})</check-icon>-->
         </div>
-        <table id="app">
+        <table v-if=false id="app">
             <tr v-for="(run, index) in settings.runs">
 
                 <td>
@@ -26,18 +27,19 @@
                     <input type="text" :value="run">
                 </td>
             </tr>
-
         </table>
-        <div>
+
+        <div v-if=false>
             我是总计
             <input type="text" :value="total">
             我是百分比
             <input type="text" :value="scale">
         </div>
-        <button @click="ajax()">提交</button>
+        <button v-if=false @click="ajax()" >提交</button>
 
 
-        <template v-for="(item,index) in list">
+        <template v-if=false 
+            v-for="(item,index) in list" >
             <div v-for="(val,key,ind) in item">
                 <label for="input" v-if="ind==0">{{val}}</label>
                 <input type="text" 
@@ -51,9 +53,37 @@
         </template>
 
 
-        <div>
-            <input v-model="something">
-        </div>
+        <template v-if=false>
+                autocomplete 属性规定输入字段是否应该启用自动完成功能。适用于：form以及 input
+            <form action="demo_form.asp" method="get" autocomplete="on">
+                First name:<input type="text" name="fname" /><br />
+                Last name: <input type="text" name="lname" autocomplete="off"/><br />
+                E-mail: <input type="email" name="email" autocomplete="on" /><br />
+                <input type="submit" />
+            </form>
+        </template>
+
+        <template v-if=true>
+            <table border="1">
+                <tr>
+                  <!-- <th>一月 <dialog close>关闭对话窗口</dialog></th> -->
+                    <th>一月 
+                        <dialog open style="width:200px;height:100px">
+                            对话窗口
+                            <input type="text" placeholder="请输入" style="width:150px;height:30px">
+                        </dialog>
+                    </th>
+                    <th>二月</th>
+                    <th>三月</th>
+                </tr>
+                <tr>
+                  <td>31</td>
+                  <td>28</td>
+                  <td>31</td>
+                </tr>
+            </table>
+        </template>
+
     </div>
 </template>
 
