@@ -53,18 +53,22 @@ let util ={
          d = date.getDate();
          return y+'-'+m+'-'+d
     },
-    // 去重
+     /**
+      * 去重思想
+      * 建立一个空数组，将要去重的数组中的每一项作为key存到空数组中并赋值
+      * 当空数组中有该key时，不对其操作，没有该key时，作为新的key加入到空数组中
+      */
     deletCompeat(){
         Array.prototype.unique3 = function(){
          var res = [];
          var json = {};
          for(var i = 0; i < this.length; i++){
-          if(!json[this[i].date]){
-            res.push(this[i]);
-            json[this[i].date] = this[i];
-          }else{
-            json[this[i].date].name = json[this[i].date].name + this[i].name;
-          }
+            if(!json[this[i].date]){
+              res.push(this[i]);
+              json[this[i].date] = this[i];//json数组增加 this[i].date 属性并赋值
+            }else{
+              json[this[i].date].name = json[this[i].date].name + this[i].name;
+            }
          }
          return res;
         }
@@ -84,8 +88,9 @@ let util ={
         ];
         console.log(arr.unique3());
 
-        };
+        },
     }
+
 
 
 export default util

@@ -22,6 +22,9 @@ import vueEvent from './components/vueEvent.vue'
 import vueForm from './components/vueForm.vue'
 import vuxForm from './components/vuxForm.vue'
 import xdailog from './components/xDailog.vue'
+
+import select from './components/select.vue'
+
 import props from './view/props.vue'
 
 
@@ -90,6 +93,9 @@ const routes = [{
 },{
     path: '/hello',
     component: hello
+},{
+    path: '/select',
+    component: select
 }];
 
 

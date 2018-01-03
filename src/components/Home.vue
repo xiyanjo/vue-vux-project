@@ -54,6 +54,7 @@
         <router-link class="link" to="/vuxForm"> vuxForm</router-link>
         <router-link class="link" to="/xdailog"> xdailog</router-link>
         <router-link class="link" to="/props"> props</router-link>
+        <router-link class="link" to="/select"> select</router-link>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAQMAAADaX5RTAAAAA3NCSVQICAjb4U/gAAAABlBMVEX///+ZmZmOUEqyAAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAACusAAArrAYKLDVoAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjAvMTIGkKG+AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAB1JREFUCJljONjA8LiBoZyBwY6BQQZMAtlAkYMNAF1fBs/zPvcnAAAAAElFTkSuQmCC" />
         <!-- <calendar></calendar> -->
 
