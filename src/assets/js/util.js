@@ -60,37 +60,61 @@ let util ={
       */
     deletCompeat(){
         Array.prototype.unique3 = function(){
-         var res = [];
-         var json = {};
-         for(var i = 0; i < this.length; i++){
-            if(!json[this[i].date]){
-              res.push(this[i]);
-              json[this[i].date] = this[i];//json数组增加 this[i].date 属性并赋值
-            }else{
-              json[this[i].date].name = json[this[i].date].name + this[i].name;
-            }
-         }
-         return res;
+            var res = [];
+            var json = {};
+                for(var i = 0; i < this.length; i++){
+                    if(!json[this[i].date]){
+                      res.push(this[i]);
+                      json[this[i].date] = this[i];//json数组增加 this[i].date 属性并赋值
+                    }else{
+                      json[this[i].date].name = json[this[i].date].name + this[i].name;
+                    }
+                }
+                 return res;
         }
         var arr = [
-            {
-                date:"1",
-                name:"来歌"
-            },
-            {
-                date:"2",
-                name:"鹿晗"
-            },
-            {
-                date:"1",
-                name:"艳娇"
-            },
-        ];
+                {
+                    date:"1",
+                    name:"来歌"
+                },
+                {
+                    date:"2",
+                    name:"鹿晗"
+                },
+                {
+                    date:"1",
+                    name:"艳娇"
+                },
+            ];
         console.log(arr.unique3());
-
-        },
-    }
-
+    },
+    /**
+     * 获取地址栏参数
+     */
+    getUrlParam(key){
+        let url=location.href; //取得整个地址栏
+        let params = {};
+        let search = url.substring(url.indexOf('?')+1);
+        if(!search){
+            return '';
+        }
+        let s = search.split("&"); //各个参数放到数组里
+        /*for(var i=0;i < arr.length;i++){ 
+            num=arr[i].indexOf("="); 
+            if(num>0){ 
+                 name=arr[i].substring(0,num);
+                 value=arr[i].substr(num+1);
+                 this[name]=value;
+            } 
+        } */
+        s.forEach(function (i){
+            let k = i.substring(0,i.indexOf('='));
+            let p = i.substring(i.indexOf('=')+1);
+            params[k]=p;
+        })
+        return params[key] || '';
+    } 
+}   
 
 
 export default util

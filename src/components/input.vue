@@ -63,7 +63,7 @@
             </form>
         </template>
 
-        <template v-if=true>
+        <template v-if=false>
             <table border="1">
                 <tr>
                   <!-- <th>一月 <dialog close>关闭对话窗口</dialog></th> -->
@@ -83,16 +83,32 @@
                 </tr>
             </table>
         </template>
+        <template v-if=false>
+             <grid >
+                  <grid-item :label="1" >
+                    
+                  </grid-item>
+                  <grid-item :label="2">
+                  
+                  </grid-item>
+                  <grid-item >
+                
+                    <span slot="label">{{'3'}}</span>
+                  </grid-item>
+            </grid>
+        </template>
 
     </div>
 </template>
 
 <script>
-    import {CheckIcon} from 'vux'
+    import {CheckIcon, Grid, GridItem, GroupTitle} from 'vux'
 
     export default {
         components: {
-            CheckIcon
+            CheckIcon,Grid,
+    GridItem,
+    GroupTitle
         },
         data () {
             return {
