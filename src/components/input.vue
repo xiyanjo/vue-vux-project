@@ -103,12 +103,11 @@
 
 <script>
     import {CheckIcon, Grid, GridItem, GroupTitle} from 'vux'
+    import util from '@/assets/js/util'
 
     export default {
         components: {
-            CheckIcon,Grid,
-    GridItem,
-    GroupTitle
+            CheckIcon,Grid,GridItem,GroupTitle
         },
         data () {
             return {
@@ -171,7 +170,12 @@
                 }
             }
         },
-        mounted(){},
+        mounted(){
+            let arr1 = [1,2,3];
+            // let arr2 = [1,2,3];
+            let arr2 = [1,3,2];
+            console.log(44444,util.arrayEqual(arr1,arr2));            
+        },
         created(){}
     }
 </script>

@@ -113,7 +113,38 @@ let util ={
             params[k]=p;
         })
         return params[key] || '';
-    } 
+    },
+    /**
+     * @desc 判断两个数组是否相等
+     */
+    arrayEqual(arr1, arr2) {
+        console.log(arr1)
+        if(arr1 === arr2) return true;
+        if(arr1.length != arr2.length) return false;
+        for(var i = 0; i < arr1.length; ++i) {        
+            if (arr1[i] !== arr2[i]) return false;   
+        }    
+        return true;
+    },
+    /**
+     * @desc 给元素添加类名  className--某个元素的属性
+     */
+    addClass(ele, cls) {
+        // hasClass(ele, cls)  //jq方法
+        if (true) {       
+            ele.className += ' ' + cls;    
+        }
+    },
+    /**
+     * 
+     * @desc 判断元素是否有某个class
+     * @param {HTMLElement} ele 
+     * @param {String} cls 
+     * @return {Boolean}
+     */
+    hasClass(ele, cls) {
+        return (new RegExp('(\\s|^)' + cls + '(\\s|$)')).test(ele.className);
+    }
 }   
 
 
