@@ -19,6 +19,7 @@
 <script>
     import Children from '@/components/Children.vue'
     import child from '@/components/child1.vue'
+
     export default {
         name: 'hello',
         data () {
@@ -38,6 +39,8 @@
             }
         },
         components:{Children,child},
+        created(){
+        },
         methods:{
             change(data) {
                 this.childData = data;

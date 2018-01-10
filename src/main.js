@@ -26,6 +26,7 @@ import xdailog from './components/xDailog.vue'
 import select from './components/select.vue'
 
 import props from './view/props.vue'
+import pdfPrewer from './components/pdfPrewer.vue'
 
 
 
@@ -96,6 +97,9 @@ const routes = [{
 },{
     path: '/select',
     component: select
+},{
+    path: '/pdfPrewer',
+    component: pdfPrewer
 }];
 
 
