@@ -46,6 +46,7 @@
         <router-link class="link" to="/alert"> alert</router-link>
         <router-link class="link" to="/checkList"> checkList</router-link>
         <router-link class="link" to="/checkIcon"> checkIcon</router-link>
+        <router-link class="link" to="/checker"> checker</router-link>
         <router-link class="link" to="/Parent"> Parent</router-link>
         <router-link class="link" to="/vueData"> vueData</router-link>
         <router-link class="link" to="/input"> input</router-link>

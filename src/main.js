@@ -15,6 +15,7 @@ import actionsheet from './components/actionsheet'
 import alert from './components/alert'
 import checkList from './components/checkList'
 import checkIcon from './components/checkIcon.vue'
+import checker from './components/checker.vue'
 import Parent from './components/Parent.vue'
 import vueData from './components/vueData.vue'
 import input from './components/input.vue'
@@ -67,6 +68,9 @@ const routes = [{
 },{
     path: '/checkIcon',
     component: checkIcon
+},{
+    path: '/checker',
+    component: checker
 },{
     path: '/Parent',
     component: Parent

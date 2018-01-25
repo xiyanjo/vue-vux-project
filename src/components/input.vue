@@ -98,6 +98,11 @@
             </grid>
         </template>
 
+        <!-- 调用微信摄像头或照片 -->
+        <template v-if=false>
+            <input type="file" style="/* visibility: hidden */" capture="camera" accept="image/*,video/*" name="" value="" >
+        </template>
+
     </div>
 </template>
 
