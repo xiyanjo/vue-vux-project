@@ -29,6 +29,7 @@ import select from './components/select.vue'
 import props from './view/props.vue'
 import pdfPrewer from './components/pdfPrewer.vue'
 
+import Vuex from 'vuex'
 
 
 import {AlertPlugin, ToastPlugin} from 'vux'
@@ -37,6 +38,8 @@ Vue.use(AlertPlugin);
 Vue.use(ToastPlugin);
 
 Vue.use(VueRouter);
+Vue.use(Vuex)
+
 
 
 
