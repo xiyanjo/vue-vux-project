@@ -102,6 +102,12 @@
         <template v-if=false>
             <input type="file" style="/* visibility: hidden */" capture="camera" accept="image/*,video/*" name="" value="" >
         </template>
+        <div>
+            <div class="fra" @click=clickOn>
+                <span class="one">one</span>
+                <li class="two">two</li>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -151,6 +157,9 @@
             },
             ajax(){
                 console.log('ajax', this.settings.runs);
+            },
+            clickOn(e){
+                console.log(e.target.tagName);
             }
         },
         computed: {
