@@ -165,9 +165,140 @@
 	 * 2遍历数组当前元素小于最小值则重新赋值最小值
 	 * 3字符串转为数字
 	 */
+	arrs.sort(function (a,b){return b-a});//最大值倒序
+	arrs.sort(function (a,b){return a-b});//最小值顺序
+	// console.log(arrs[0]);
+	// console.log(Math.max(1,2,3,4));//传入所有参数
+	// console.log(Math.max.apply(Math,arrs));//改变this指向Math，同时传参可以为数组
+	// console.log(Math.min(1,2,3,4));
 	
-	
+	/**生成随机数*/
+	 // console.log(Math.random().toString(16).substring(2))
+	 // console.log(Math.random().toString(36).substring(2))
+	 // console.log(Math.random().toString(2))//二进制
 
 
+
+	// 将一个数组插入另一个数组指定的位置
+	var a =[0,1,2,3],b=['a','b'];
+	var insertInd = 1;
+	// 等价于 a.splice(1,0,'a','b');
+	// splice(index,num,a,b,c);index,num必填，a,b,c增加的数组
+	a.splice.apply(a,Array.prototype.concat(insertInd,0,b));
+	
+	// console.log(a,b,Array.prototype.concat(insertInd,0,b));
+
+
+
+	/*定义一个人类*/   
+	function Person(name,age) {   
+	    this.name=name; this.age=age;   
+	}   
+	 /*定义一个学生类*/   
+	function Student(name,age,grade) {   
+	    Person.apply(this,arguments); this.grade=grade;   
+	}   
+	//创建一个学生类   
+	var student=new Student("qian",21,"一年级");   
+	//测试   
+	// console.log("name:"+student.name+"\n"+"age:"+student.age+"\n"+"grade:"+st	udent.grade); 
+	
+	var ie = !-[1,];//利用ie8得条件注释
+	// console.log(ie);
+		
+
+	/**事件委托
+	 * 通过监听父元素来监听子元素
+	 * addEventListener  e.target为当前点击对象
+	 */
+
+	// 检查属性是否存在使用 in 方法	
+	
+	/**字符串中出现最多的字符及个数
+	 * 循环字符串，obj[arr[i]]?obj[arr[i]]++;obj[arr[i]]=1;
+	 * if(maxNum<obj[arr[i]]){ maxNum = obj[arr[i]];maxObj=arr[i] }
+	 */
+
+	 // 投资递增
+	/* var baseNum = 4400,rate = 1.04,totalNum=0;
+	 for(var i=1;i<41;i++){
+	 	if(i<=20){
+			totalNum = (totalNum + baseNum)*rate;
+	 		console.log(i,parseInt(totalNum),parseInt(totalNum-baseNum*i),parseInt(baseNum*i));
+
+	 	}
+	 	if(i>20){
+			totalNum = totalNum *rate;
+	 		console.log(i,parseInt(totalNum),parseInt(totalNum-baseNum*i));
+
+	 	}
+	 }
+	 console.log('totalNum',parseInt(totalNum));*/
+	 /**类似setTimeout() 和 setImmediate() */
+
+	 /**this指向：函数作为参数
+	  * 严格模式下指向undefined，非严格模式指向window
+	  */
+	function callIt(func) {
+		func();
+	}
+	var counter = {
+	    count: 0,
+	    // Sloppy-mode method
+	    inc: function () {
+	    	/*// 严格模式下函数作为参数时，this指向undefined
+	    	'use strict';
+	    	console.log(this)//undefined 报错*/
+	        this.count++;
+	    }
+	}
+	// 函数作为参数时 this指向window 
+	callIt(counter.inc);
+	// console.log(counter.count,count); // 0
+
+	callIt(counter.inc.bind(counter));//改变this指向
+	counter.inc();
+	// console.log(counter.count); // 1
+
+
+	//严格模式thisundefined，及window情况
+	var obj = {
+	    name: 'Jane',
+	    friends: [ 'Tarzan', 'Cheeta' ],
+	    /*loop: function () {
+		    'use strict';
+		    this.friends.forEach(function (friend) {
+		        console.log(this.name+' knows '+friend);
+		    }, this);
+		},*/
+		loop: function () {
+		    'use strict';
+		    this.friends.forEach(friend => {
+		        // console.log(this.name+' knows '+friend);
+		    });
+		}
+	};
+	// obj.loop();
+	// 
+	// 
+	
+	var x = 10;
+	function foo() {
+	  	var y = x + 5;
+		console.log('x',x,y)
+	  	return y;
+	};
+	function bar() {
+	  var x = 2;
+	  return foo();
+	}
+	function main() {
+		foo()
+		bar()
+	  // console.log(); // Static scope: 15; Dynamic scope: 15
+	  return 0;
+	}
+	 // main();
+	 bar()
 </script>
 </html>
