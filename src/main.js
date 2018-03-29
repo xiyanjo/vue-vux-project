@@ -28,6 +28,7 @@ import select from './components/select.vue'
 
 import props from './view/props.vue'
 import pdfPrewer from './components/pdfPrewer.vue'
+import huadong from './components/handle/huadong.vue'
 
 import Vuex from 'vuex'
 
@@ -107,6 +108,9 @@ const routes = [{
 },{
     path: '/pdfPrewer',
     component: pdfPrewer
+},{
+    path: '/huadong',
+    component: huadong
 }];
 
 
