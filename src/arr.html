@@ -300,7 +300,81 @@
 	  return 0;
 	}
 	 // main();
-	 bar()
+	 // bar()
+	 function addNum(n){
+	 		n='只能改变运算，参数不能改变原始值！';
+	 		return n+=10	
+	 }
+	 var num = 10;
+	 var result = addNum(num);
+	 // console.log(result,num);
+
+	 function setObj (obj){
+	 		obj.name='fufu';
+	 		obj=new Object();//因为对参数进行了重新赋值，所以后面的设置不生效
+	 		obj.name = 'fu2';//如果没有以上，则覆盖
+	 }
+	 var obj = new Object();
+	 // setObj(obj);
+	 // console.log(obj);
+	 // 
+	 // 作用域
+	 var n1  = 1,m='';
+	 function changeColor(){
+	 	var n2 = 2;
+	 	function repeatColor(){
+	 		var n3 = n2;
+	 		n2 = n1;
+	 		n1 =  n3
+	 		m = ''+n1+n2+n3
+	 	}
+	 	repeatColor();
+	 	return m;//当前函数要有返回值
+	 }
+	  // console.log(changeColor());
+	  
+	  // this 指向自己所在的作用域
+	  window.color = 'red';
+	  var o = {color:'blue'};
+	  var o1 = {color1:'blue'};
+	  function sayColor(){
+	  	console.log(this.color);
+	  }
+	  // o.sayColor = sayColor;
+	  // o1.sayColor = sayColor;
+	  // o.sayColor();
+	  // o1.sayColor();
+	  // sayColor.call(o);
+	  // sayColor.call(window);
+
+
+
+	  // 工厂模式
+	  function factory(name,age){
+	  		var o = new Object();
+	  		// o.name = name|| 'fu' ;
+	  		this.name = name|| 'fu' ;
+	  		// o.age = age||'18';
+	  		this.age = age||'18';
+	  		o.favor = function (){
+	  			 console.log('beauty',this,o.name,o.age);
+	  		}
+	  		return o;
+	  };
+	  var o1 = factory('a','90');
+	  var o2 = factory();
+	  // o1.favor();
+	  // o2.favor();
+	  // 字面量形式
+   		var o4 = new Object();
+  		o4.name = name|| 'fu' ;
+  		o4.age = age||'18';
+  		o4.favor = function (){
+  			 console.log('o4',this);
+  		}
+		// o4.favor();
+	   // console.log(o1,o2,o,this)
+
 </script>
 
 </html>
