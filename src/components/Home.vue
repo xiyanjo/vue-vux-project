@@ -4,36 +4,36 @@
         通过 Vue.js 可以实现多视图的单页Web应用（single page web application，SPA）。
         Vue.js 路由需要载入 vue-router 库-->
         代码内有vue-router 相关简单配置信息
-<!--
-        // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
+        <!--
+            // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
 
-        // 1. 定义（路由）组件。
-        // 可以从其他文件 import 进来
-        const Foo = { template: '<div>foo</div>' }
-        const Bar = { template: '<div>bar</div>' }
+            // 1. 定义（路由）组件。
+            // 可以从其他文件 import 进来
+            const Foo = { template: '<div>foo</div>' }
+            const Bar = { template: '<div>bar</div>' }
 
-        // 2. 定义路由
-        // 每个路由应该映射一个组件。 其中"component" 可以是
-        // 通过 Vue.extend() 创建的组件构造器，
-        // 或者，只是一个组件配置对象。
-        // 我们晚点再讨论嵌套路由。
-        const routes = [
-        { path: '/foo', component: Foo },
-        { path: '/bar', component: Bar }
-        ]
+            // 2. 定义路由
+            // 每个路由应该映射一个组件。 其中"component" 可以是
+            // 通过 Vue.extend() 创建的组件构造器，
+            // 或者，只是一个组件配置对象。
+            // 我们晚点再讨论嵌套路由。
+            const routes = [
+            { path: '/foo', component: Foo },
+            { path: '/bar', component: Bar }
+            ]
 
-        // 3. 创建 router 实例，然后传 `routes` 配置
-        // 你还可以传别的配置参数, 不过先这么简单着吧。
-        const router = new VueRouter({
-        routes // （缩写）相当于 routes: routes
-        })
+            // 3. 创建 router 实例，然后传 `routes` 配置
+            // 你还可以传别的配置参数, 不过先这么简单着吧。
+            const router = new VueRouter({
+            routes // （缩写）相当于 routes: routes
+            })
 
-        // 4. 创建和挂载根实例。
-        // 记得要通过 router 配置参数注入路由，
-        // 从而让整个应用都有路由功能
-        const app = new Vue({
-        router
-        }).$mount('#app')
+            // 4. 创建和挂载根实例。
+            // 记得要通过 router 配置参数注入路由，
+            // 从而让整个应用都有路由功能
+            const app = new Vue({
+            router
+            }).$mount('#app')
 
         // 现在，应用已经启动了！-->
         <!-- <input type='range'  v-model='inputData' @change='change'> -->
@@ -62,7 +62,12 @@
         <router-link class="link" to="/huadong"> huadong</router-link>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAQMAAADaX5RTAAAAA3NCSVQICAjb4U/gAAAABlBMVEX///+ZmZmOUEqyAAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAACusAAArrAYKLDVoAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjAvMTIGkKG+AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAB1JREFUCJljONjA8LiBoZyBwY6BQQZMAtlAkYMNAF1fBs/zPvcnAAAAAElFTkSuQmCC" />
         <!-- <calendar></calendar> -->
+        
 
+        <template>
+            <div>全局组件只注册一次即可在所有文件中使用</div>
+            <my-component></my-component>    
+        </template>
     </div>
 </template>
 

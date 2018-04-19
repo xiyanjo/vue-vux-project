@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-        我是child
+    
         <div>{{bar}}</div>
         <input type="text" @input="updateValue" placeholder="你好">
     </div>

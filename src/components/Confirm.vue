@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div>    
         <group>
             <x-switch :title="('Toggle')" v-model="show"></x-switch>
         </group>
@@ -82,6 +82,8 @@
         <div style="padding:15px;">
             <x-button @click.native="showPlugin3" type="primary">插件形式调用promt</x-button>
         </div>
+        <my-component></my-component>    
+        
     </div>
 </template>
 

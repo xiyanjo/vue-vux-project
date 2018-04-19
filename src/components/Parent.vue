@@ -22,10 +22,6 @@
     import Children from '@/components/Children.vue'
     import child from '@/components/child.vue'
     import Vue from 'vue';
-    // 注册全局组件
-    Vue.component('my-component', {
-      template: '<div>我是全局组件</div>'
-    })
     export default {
         name: 'hello',
         data () {

@@ -43,7 +43,10 @@ Vue.use(ToastPlugin);
 Vue.use(VueRouter);
 Vue.use(Vuex)
 
-
+// 注册全局组件
+Vue.component('my-component', {
+  template: '<div>我是全局组件，在main.js中注册</div>'
+})
 
 
 // Vue.use(vuexI18n.plugin, store)
