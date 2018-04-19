@@ -1,47 +1,25 @@
 <template>
-    <div class="hello">
-        <template v-if="false">
-            <p >我是父组件中传递的myMsg ： {{myMsg}}</p>
-            <div>
-                 <!-- props 时 子组件中值改变后不会改变父组件的值 -->
-                 <label for="">父组件中传递  子组件可改变的值</label>
-                <input type="text" :value="myMsg">
-            </div>
-            <ul>
-                <li>{{name}}</li>
-                <li>
-                    <input type="text" v-model='size'>
-                </li>
-                <button @click="up">发给父组件</button>
-            </ul>
-            <div>
-                {{normalizedSize}}
-            </div>
-        </template>
-
-
+    <div class="children">
+        <h2>children</h2>
         <template>
-            <!-- <p >我是父组件中传递的myMsg ： {{todo.myMsg}}</p> -->
-
             <div>
-                 <!-- props 时 子组件中值改变后不会改变父组件的值 -->
-                 <label for="">父组件中传递  子组件可改变的值</label>
-                <!-- <input type="text" :value="todo.myMsg"> -->
-            </div>
-            <ul>
-                <li>{{name}}</li>
-                <li>
-                    <input type="text" v-model='todo.size'>
-                </li>
-                <button @click="up">发给父组件</button>
-            </ul>
+                <input type="text" v-model='todo.size'>
+            </div> 
+        </template>
+        <!-- props 时 子组件中值改变后不会改变父组件的值 -->
+        <template>
             <div>
-                <!-- {{normalizedSize}} -->
+                <label for="">使用父组件中数据，子组件可改变</label>
+                <input type="text" :value="myMsg">
+                <span>{{normalizedSize}}</span>
+            </div>  
+        </template>
+        <template>
+            <div>
+                <span>子组件向父组件传递数据及事件</span>
+                <button @click="up">发给父组件</button> 
             </div>
         </template>
-
-
-        <!-- <my-component></my-component>     -->
     </div>
 </template>
 
@@ -58,16 +36,16 @@
 
             }
         },
-        props:['size','myMsg','name','todo'],
+        props:['myMsg','name','todo'],
         computed: {
             normalizedSize: function () {
-                 console.log(8888)
+                 console.log('formate data')
                 return this.todo.size.trim().toLowerCase()
             }
         },
         methods:{
             up() {
-                console.log(666);
+                console.log('emit total in children');
                 this.$emit('up',this.total); //主动触发upup方法，'hehe'为向父组件传递的数据
             }
         }
@@ -79,5 +57,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.children{
+    padding-bottom: 30px;
+}
 </style>

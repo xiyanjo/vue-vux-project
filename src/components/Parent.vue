@@ -1,17 +1,12 @@
 <template>
-    <div class="hello">
-        <!--<h1>{{ msg }}</h1>-->
-        <!-- <input type="text" v-model="myMsg"> -->
-        <!-- <input type="text" v-model="name"> -->
-        <!--需要转换为aa-bb-->
-        <!-- <Children :my-msg.sync="myMsg" :name="name" :size='size' @up="change"></Children> -->
-
-
+    <div class="parent">
         <!-- 只传一个数组 -->
-        <Children :todo="todo" @up="change"></Children>
-        <!-- <div>{{todo.size}}</div> -->
+        <Children :todo="todo" @up="change" :myMsg="myMsg"></Children>
         <!-- <child :foo.sync="bar"></child> -->
-        <child :bar="bar"></child>
+        <child @input="inputChild"></child>
+
+        <my-component></my-component>    
+
     </div>
 </template>
 
@@ -19,31 +14,40 @@
     import Children from '@/components/Children.vue'
     import child from '@/components/child.vue'
     import Vue from 'vue';
+    // 注册全局组件
+    Vue.component('my-component', {
+      template: '<div>我是全局组件</div>'
+    })
     export default {
         name: 'hello',
         data () {
             return {
                 msg: '6666',
-                myMsg:'第一个',
+                myMsg:'P-msg',
                 name:'xiyanjo',
                 childData:'',
                 size:'size',
                 todo: {
                   name: 'Learn Vue',
-                  size: 'FALSE',
+                  size: 'Todo.size',
                   myMsg:'第二个'
 
                 },
-                bar:'child1---66666'
+                bar:'  p-bar'
             }
         },
         components:{Children,child},
         created(){
         },
         methods:{
+            // 监听children事件
             change(data) {
                 this.childData = data;
-                console.log(6666,this.childData);
+                console.log('listen children event and get data',this.childData);
+            },
+            // 监听child事件
+            inputChild(){
+                // console.log('listen child')
             }
         }
 
