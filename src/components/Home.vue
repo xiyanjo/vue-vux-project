@@ -62,11 +62,10 @@
         <router-link class="link" to="/huadong"> huadong</router-link>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAQMAAADaX5RTAAAAA3NCSVQICAjb4U/gAAAABlBMVEX///+ZmZmOUEqyAAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAACusAAArrAYKLDVoAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjAvMTIGkKG+AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAB1JREFUCJljONjA8LiBoZyBwY6BQQZMAtlAkYMNAF1fBs/zPvcnAAAAAElFTkSuQmCC" />
         <!-- <calendar></calendar> -->
-        
-
         <template>
             <div>全局组件只注册一次即可在所有文件中使用</div>
-            <my-component></my-component>    
+            <my-component></my-component>  
+            <part-child></part-child>  
         </template>
     </div>
 </template>
@@ -83,6 +82,9 @@ var data = Mock.mock({
         'id|+1': 1
     }]
 })
+var partChild = {
+  template: '<div>我是局部组件，需要components引入</div>'
+}
 // 输出结果
 //console.log(JSON.stringify(data, null, 4))
     export default {
@@ -93,7 +95,7 @@ var data = Mock.mock({
             }
         },
         components:{
-            Confirm,calendar
+            Confirm,calendar, partChild
         },
         mounted(){
            /* let [a,b]=[[],[]];
@@ -166,6 +168,9 @@ var data = Mock.mock({
     background: pink;
     padding: 0 5px;
     margin: 4px 0;
-    display: block;
+    display:inline-block;
+}
+a.link{
+    display:inline-block;
 }
 </style>

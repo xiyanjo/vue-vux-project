@@ -12,9 +12,6 @@
         <!-- <div>{{todo.size}}</div> -->
         <!-- <child :foo.sync="bar"></child> -->
         <child :bar="bar"></child>
-
-        <my-component></my-component>    
-
     </div>
 </template>
 

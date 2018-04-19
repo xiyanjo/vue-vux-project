@@ -1,5 +1,7 @@
 <template>
-    <div>    
+    <div>   
+            <part-child></part-child>  
+     
         <group>
             <x-switch :title="('Toggle')" v-model="show"></x-switch>
         </group>
