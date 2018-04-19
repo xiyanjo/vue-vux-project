@@ -1,7 +1,7 @@
 <template>
     <div class="child">
         <h2>child</h2>
-        <input type="text" @input="updateValue" placeholder="请输入">
+        <input type="text" :value="myMsg" @input="updateValue"  @blur="update" placeholder="请输入">
     </div>
 </template>
 
@@ -28,22 +28,26 @@
             },
             updateValue: function (e) {
                   var formattedValue = e.target.value;
-                  
+
                     // 删除两侧的空格符
-                    formattedValue.trim()
+                   /* formattedValue.trim()
                     // 保留 2 位小数
                     .slice(
                       0,
                       formattedValue.indexOf('.') === -1
                         ? formattedValue.length
                         : formattedValue.indexOf('.') + 3
-                    )
+                    )*/
                   // 如果值尚不合规，则手动覆盖为合规的值
                   /*if (formattedValue !== value) {
                     this.$refs.input.value = formattedValue
                   }*/
                   // 通过 input 事件带出数值
-                  this.$emit('input', Number(formattedValue))
+                  this.$emit('input', formattedValue);
+            },
+            // 子组件中现实的声明update方法，子组件数据改变时父组件数据也改变
+            update:function (e){
+                this.$emit('update:myMsg', e.target.value);
             }
         }
     }

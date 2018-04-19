@@ -1,11 +1,27 @@
 <template>
     <div class="parent">
-        <!-- 只传一个数组 -->
-        <Children :todo="todo" @up="change" :myMsg="myMsg"></Children>
-        <!-- <child :foo.sync="bar"></child> -->
-        <child @input="inputChild"></child>
 
-        <my-component></my-component>    
+        <template >
+            <div>以下为父组件原来数据</div>
+            <div>{{todo}}</div>
+        </template>
+
+        <template>
+            <div style="margin-top:30px">以下为组件内容</div>
+            <!-- 只传一个数组 -->
+            <div style="margin-top:30px">子组件改变引用类型数据 影响父组件中数据</div>
+            <Children :todo="todo" @up="change" :myMsg="myMsg"></Children>
+
+            <template>
+                <div>以下为.sync  子组件中数据影响父组件中数据</div>
+                <child @input="inputChild" :myMsg.sync="myMsg"></child>
+                <div>{{myMsg}}</div>
+            </template>
+            
+
+            <my-component></my-component>  
+        </template>
+          
 
     </div>
 </template>
@@ -47,7 +63,7 @@
             },
             // 监听child事件
             inputChild(){
-                // console.log('listen child')
+                console.log('listen child',this.myMsg);
             }
         }
 
