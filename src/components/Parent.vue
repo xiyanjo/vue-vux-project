@@ -8,18 +8,24 @@
 
 
         <!-- 只传一个数组 -->
-        <Children v-bind="todo" @up="change"></Children>
-        <div>{{todo.size}}</div>
+        <Children :todo="todo" @up="change"></Children>
+        <!-- <div>{{todo.size}}</div> -->
         <!-- <child :foo.sync="bar"></child> -->
-        <child ></child>
+        <child :bar="bar"></child>
+
+        <my-component></my-component>    
 
     </div>
 </template>
 
 <script>
     import Children from '@/components/Children.vue'
-    import child from '@/components/child1.vue'
-
+    import child from '@/components/child.vue'
+    import Vue from 'vue';
+    // 注册全局组件
+    Vue.component('my-component', {
+      template: '<div>我是全局组件</div>'
+    })
     export default {
         name: 'hello',
         data () {

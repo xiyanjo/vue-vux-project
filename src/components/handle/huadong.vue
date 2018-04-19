@@ -33,6 +33,20 @@
             <button @click="next" class="button"><i class="next"></i><span class="text-hidden">next</span></button>
         </div>
         <!--<img :src="imgSrc4" alt="">-->
+        <template>
+            <blog-post>
+              <h1 slot="header">
+                h1
+              </h1>
+              <p slot="header">p2</p>
+
+              <p slot="footer">
+                    footer3
+              </p>
+
+              <p> p4 </p>.
+            </blog-post>
+        </template>
     </div>
 </template>
 <script>
@@ -41,6 +55,19 @@
     import img2 from '@/assets/img/2.jpg';
     import img3 from '@/assets/img/3.jpg';
     import img4 from '@/assets/img/4.jpg';
+    import Vue from 'vue'
+    Vue.component('blog-post', {
+      render: function (createElement) {
+        var header = this.$slots.header
+        var body   = this.$slots.default
+        var footer = this.$slots.footer
+        return createElement('div', [
+          createElement('header', header),
+          createElement('main', body),
+          createElement('footer', footer)
+        ])
+      }
+    })
     export default {
         components: {
             stack

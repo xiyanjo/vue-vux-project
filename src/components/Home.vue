@@ -48,8 +48,10 @@
         <router-link class="link" to="/checkIcon"> checkIcon</router-link>
         <router-link class="link" to="/checker"> checker</router-link>
         <router-link class="link" to="/Parent"> Parent</router-link>
+        <router-link class="link" to="/Children"> Children</router-link>
         <router-link class="link" to="/vueData"> vueData</router-link>
         <router-link class="link" to="/input"> input</router-link>
+        <router-link class="link" to="/inputChecked"> inputChecked</router-link>
         <router-link class="link" to="/vueEvent"> vueEvent</router-link>
         <router-link class="link" to="/vueForm"> vueForm</router-link>
         <router-link class="link" to="/vuxForm"> vuxForm</router-link>

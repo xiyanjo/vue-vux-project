@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-
+	
 </head>
 <body>
 </body>
@@ -374,6 +374,20 @@
   		}
 		// o4.favor();
 	   // console.log(o1,o2,o,this)
+
+
+		var obj = {
+		    des: 'a',
+		    getName : function () {
+		        console.log(this.des);
+		    }
+		}
+		var fn = obj.getName
+		// obj.getName();//a
+		// var fn2 = obj.getName()//a
+		fn()//undefined
+		// fn2();//报错，不是一个方法
+
 
 </script>
 

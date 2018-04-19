@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
+import router from './router'
 import App from './App'
-import Home from './components/Home'
+import Vuex from 'vuex'
+
+/*import Home from './components/Home'
 import Confirm from './components/Confirm'
 
 import HelloFromVux from './components/HelloFromVux'
@@ -28,9 +31,8 @@ import select from './components/select.vue'
 
 import props from './view/props.vue'
 import pdfPrewer from './components/pdfPrewer.vue'
-import huadong from './components/handle/huadong.vue'
+import huadong from './components/handle/huadong.vue'*/
 
-import Vuex from 'vuex'
 
 
 import {AlertPlugin, ToastPlugin} from 'vux'
@@ -45,7 +47,7 @@ Vue.use(Vuex)
 
 
 // Vue.use(vuexI18n.plugin, store)
-const routes = [{
+/*const routes = [{
     path: '/',
     component: Home
 },{
@@ -111,12 +113,12 @@ const routes = [{
 },{
     path: '/huadong',
     component: huadong
-}];
+}];*/
 
 
-const router = new VueRouter({
+/*const router = new VueRouter({
     routes
-});
+});*/
 
 FastClick.attach(document.body);
 
