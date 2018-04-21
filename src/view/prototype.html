@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Father() {
+        this.color='pink';
+        this.colors = ['p','l','k'];
+    }
+    function Child() {
+
+    }
+    Child.prototype = new Father();
+    var ins1 = new  Child();
+    var ins2 = new  Child();
+    ins1.colors.push('aaa');
+    ins2.color= 'blue';
+    // console.log(ins1.color,ins1.colors,ins2.colors,ins2.color);
+
+
+    // 使用arguments.callee 实现递归
+    function fac(num) {
+        if(num<=1){
+            return 1;
+        }else{
+            // return num *fac(num-1);
+            return num *arguments.callee(num-1);
+        }
+    }
+    var aa = fac;
+    fac=null;
+    // console.log(aa,fac);
+    // console.log(aa(10));
+
+
+    // this与闭包
+    var name = 'peiqi';
+    var obj={
+        name:'fufu',
+        sayHi:function () {
+            return this.name;
+        }
+    };
+    var arr={
+        name:'xiaoxioa'
+    }
+    // console.log((arr.sayHi = obj.sayHi)());//peiqi  先执行赋值语句，之后调用赋值语句的结果
+    // console.log(arr.sayHi());//xiaoxiao 执行对象本身的方法，this指向arr
+
+
+    for (var i=0;i<10;i++){
+        console.log(i);
+    }
+    var i=20;
+    console.log(i);
+</script>
+</html>
