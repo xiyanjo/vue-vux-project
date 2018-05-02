@@ -18,6 +18,10 @@
                 <div>{{myMsg}}</div>
             </template>
             
+            <template>
+                <div style="margin-top:30px">以下为自定义事件表单控件</div>  
+                <currency-input v-model="price"></currency-input>
+            </template>
 
             <my-component></my-component>  
         </template>
@@ -34,13 +38,47 @@
     Vue.component('my-component', {
       template: '<div>我是全局组件</div>'
     })
+
+    // 自定义事件的表单
+    Vue.component('currency-input', {
+      template: '\
+        <span>\
+          $\
+          <input\
+            ref="input"\
+            v-bind:value="value"\
+            v-on:input="updateValue($event.target.value)"\
+          >\
+        </span>\
+      ',
+      props: ['value'],
+      methods: {
+        // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
+        updateValue: function (value) {
+          var formattedValue = value
+            // 删除两侧的空格符
+            .trim()
+            // 保留 2 位小数
+            .slice(
+              0,
+              value.indexOf('.') === -1
+                ? value.length
+                : value.indexOf('.') + 3
+            )
+          // 如果值尚不合规，则手动覆盖为合规的值
+          if (formattedValue !== value) {
+            this.$refs.input.value = formattedValue
+          }
+          // 通过 input 事件带出数值
+          this.$emit('input', Number(formattedValue))
+        }
+      }
+    })
     export default {
         name: 'hello',
         data () {
             return {
-                msg: '6666',
                 myMsg:'P-msg',
-                name:'xiyanjo',
                 childData:'',
                 size:'size',
                 todo: {
@@ -49,7 +87,7 @@
                   myMsg:'第二个'
 
                 },
-                bar:'  p-bar'
+                price:'',
             }
         },
         components:{Children,child},

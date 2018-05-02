@@ -50,7 +50,7 @@
         methods:{
             up() {
                 console.log('emit total in children');
-                this.$emit('up',this.total); //主动触发upup方法，'hehe'为向父组件传递的数据
+                // this.$emit('up',this.total); //主动触发upup方法，'hehe'为向父组件传递的数据
                 this.$emit('up',this.todo); //主动触发upup方法，'hehe'为向父组件传递的数据
             }
         }
