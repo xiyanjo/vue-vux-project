@@ -36,32 +36,38 @@
             }).$mount('#app')
 
         // 现在，应用已经启动了！-->
-        <!-- <input type='range'  v-model='inputData' @change='change'> -->
+
         <input type='date'  v-model='inputData' @change='change'>
-        <router-link class="link" to="/confirm"> confirm</router-link>
-        <router-link class="link" to="/HelloFromVux"> HelloFromVux</router-link>
+        <div>
+            <router-link class="link" to="/inputList"> inputList</router-link>
+            <router-link class="link" to="/input"> input</router-link>
+            <router-link class="link" to="/select"> select</router-link>
+            <router-link class="link" to="/seletMult"> seletMult</router-link>
+            <router-link class="link" to="/vueForm"> vueForm</router-link>
+            <router-link class="link" to="/vuxForm"> vuxForm</router-link>
+        </div>
+        
+        <div>
+            <router-link class="link" to="/vueData"> vueData</router-link>
+            <router-link class="link" to="/vueEvent"> vueEvent</router-link>
+        </div>
+
+        <div>
+            <router-link class="link" to="/Parent"> Parent</router-link>
+            <router-link class="link" to="/Children"> Children</router-link>
+            <router-link class="link" to="/props"> props</router-link>
+
+        </div>
+        <div>
+            <router-link class="link" to="/pdfPrewer"> pdfPrewer</router-link>
+            <router-link class="link" to="/huadong"> huadong</router-link>
+        </div>
+        
+
+
         <router-link class="link" to="/Auditing"> Auditing</router-link>
-        <router-link class="link" to="/toast"> toast</router-link>
-        <router-link class="link" to="/actionsheet"> actionsheet</router-link>
-        <router-link class="link" to="/alert"> alert</router-link>
-        <router-link class="link" to="/checkList"> checkList</router-link>
-        <router-link class="link" to="/checkIcon"> checkIcon</router-link>
-        <router-link class="link" to="/checker"> checker</router-link>
-        <router-link class="link" to="/Parent"> Parent</router-link>
-        <router-link class="link" to="/Children"> Children</router-link>
-        <router-link class="link" to="/vueData"> vueData</router-link>
-        <router-link class="link" to="/input"> input</router-link>
-        <router-link class="link" to="/inputChecked"> inputChecked</router-link>
-        <router-link class="link" to="/vueEvent"> vueEvent</router-link>
-        <router-link class="link" to="/vueForm"> vueForm</router-link>
-        <router-link class="link" to="/vuxForm"> vuxForm</router-link>
-        <router-link class="link" to="/xdailog"> xdailog</router-link>
-        <router-link class="link" to="/props"> props</router-link>
-        <router-link class="link" to="/select"> select</router-link>
-        <router-link class="link" to="/pdfPrewer"> pdfPrewer</router-link>
-        <router-link class="link" to="/huadong"> huadong</router-link>
+
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAQMAAADaX5RTAAAAA3NCSVQICAjb4U/gAAAABlBMVEX///+ZmZmOUEqyAAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAACusAAArrAYKLDVoAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjAvMTIGkKG+AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAB1JREFUCJljONjA8LiBoZyBwY6BQQZMAtlAkYMNAF1fBs/zPvcnAAAAAElFTkSuQmCC" />
-        <!-- <calendar></calendar> -->
         <template>
             <div>全局组件只注册一次即可在所有文件中使用</div>
             <my-component></my-component>  
@@ -71,8 +77,8 @@
 </template>
 
 <script>
-    import Confirm from '@/components/Confirm';
-    import calendar from '@/components/calendar';
+    // import Confirm from '@/components/Confirm';
+    // import calendar from '@/components/calendar';
     // 使用 Mock
 var Mock = require('mockjs')
 var data = Mock.mock({
@@ -95,7 +101,8 @@ var partChild = {
             }
         },
         components:{
-            Confirm,calendar, partChild
+            // Confirm,calendar,
+             partChild
         },
         mounted(){
            /* let [a,b]=[[],[]];

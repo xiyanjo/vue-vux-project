@@ -12,8 +12,8 @@
 </template>
 <script>
     import {Group, Checklist, Cell, Divider, XButton, CellBox, CellFormPreview, Badge } from 'vux'
-    import inputChecked from '@/components/inputChecked.vue'
-    import vuxCells from '@/components/cells.vue'
+    // import inputChecked from '@/components/inputChecked.vue'
+    // import vuxCells from '@/components/cells.vue'
     import vm from 'Vue'
     var bus = new vm();
     export default{
@@ -30,7 +30,8 @@
             }
         },
         components: {Group, Checklist, Cell, Divider, XButton,Cell, CellBox, CellFormPreview, Group, Badge,
-            inputChecked,vuxCells},
+            // inputChecked,vuxCells
+        },
         computed:{
             enTotal:{
                 get:function() {

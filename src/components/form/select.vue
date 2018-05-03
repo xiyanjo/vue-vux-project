@@ -14,8 +14,8 @@
 </template>
 
 <script>
-    import Confirm from '@/components/Confirm';
-    import calendar from '@/components/calendar';
+    // import Confirm from '@/components/Confirm';
+    // import calendar from '@/components/calendar';
 
     export default {
         name:'home',
@@ -25,7 +25,7 @@
             }
         },
         components:{
-            Confirm,calendar
+            // Confirm,calendar
         },
         mounted(){
            

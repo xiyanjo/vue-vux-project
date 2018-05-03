@@ -31,8 +31,8 @@
 </template>
 
 <script>
-    import Children from '@/components/Children.vue'
-    import child from '@/components/child.vue'
+    import Children from '@/components/faChildren/Children.vue'
+    import child from '@/components/faChildren/child.vue'
     import Vue from 'vue';
     // 注册全局组件
     Vue.component('my-component', {

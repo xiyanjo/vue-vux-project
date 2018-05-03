@@ -56,7 +56,7 @@
 </template>
 
 <script>
-    import Children from '@/components/Children.vue'
+    import Children from '@/components/faChildren/Children.vue'
     import jquery from '@/assets/js/jquery-3.2.1.min.js'
     export default {
         name: 'hello',

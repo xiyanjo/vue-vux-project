@@ -53,7 +53,7 @@
 </template>
 
 <script>
-    import Children from '@/components/Children.vue'
+    import Children from '@/components/faChildren/Children.vue'
     export default {
         name: 'hello',
         data () {
