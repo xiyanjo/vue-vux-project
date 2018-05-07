@@ -24,7 +24,8 @@ import child from '@/components/faChildren/child.vue'
 
 
 
-
+// 动态组件
+import isFeatures from '@/components/dynamicComponent/isFeatures.vue'
 
 
 import props from '@/view/props.vue'
@@ -92,5 +93,8 @@ export default new Router({
 },{
     path: '/huadong',
     component: huadong
+},{
+    path: '/isFeatures',
+    component: isFeatures
 }]
 })

@@ -48,16 +48,37 @@
             <div @click.ctrl="doThis">Do something</div>
         </div>
 
+        <template>  
+            <!-- <input :value="selfValue" v-on:input="$emit('input', $event.target.value)"> -->
+        </template>
+            <custom-input v-model="searchText" @input="getChange">slot插槽插入内容</custom-input>
 
     </div>
 </template>
 
 <script>
     import Children from '@/components/faChildren/Children.vue'
+    import Vue from 'vue'
+
+Vue.component('custom-input', {
+  props: ['value'],
+  template: `
+    <div>
+    <input placeholder="自定义事件"
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    >
+    <slot></slot>
+    </div>
+  `
+})
     export default {
         name: 'hello',
         data () {
-            return {}
+            return {
+                // selfValue:'',
+                searchText:''
+            }
         },
         components: {Children},
         computed: {},
@@ -67,6 +88,9 @@
             },
             doThat(){
                 console.log(8888);
+            },
+            getChange(val){
+                console.log(val);
             }
         },
 //        过滤器
