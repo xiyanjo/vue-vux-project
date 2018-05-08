@@ -6,116 +6,63 @@ import VueRouter from 'vue-router'
 import router from './router'
 import App from './App'
 import Vuex from 'vuex'
-
-/*import Home from './components/Home'
-import Confirm from './components/Confirm'
-
-import HelloFromVux from './components/HelloFromVux'
-import hello from './components/Hello'
-import Auditing from './components/Auditing'
-import toast from './components/toast'
-import actionsheet from './components/actionsheet'
-import alert from './components/alert'
-import checkList from './components/checkList'
-import checkIcon from './components/checkIcon.vue'
-import checker from './components/checker.vue'
-import Parent from './components/Parent.vue'
-import vueData from './components/vueData.vue'
-import input from './components/input.vue'
-import vueEvent from './components/vueEvent.vue'
-import vueForm from './components/vueForm.vue'
-import vuxForm from './components/vuxForm.vue'
-import xdailog from './components/xDailog.vue'
-
-import select from './components/select.vue'
-
-import props from './view/props.vue'
-import pdfPrewer from './components/pdfPrewer.vue'
-import huadong from './components/handle/huadong.vue'*/
-
-
-
 import {AlertPlugin, ToastPlugin} from 'vux'
 
 Vue.use(AlertPlugin);
 Vue.use(ToastPlugin);
-
 Vue.use(VueRouter);
 Vue.use(Vuex)
+// Vue.use(vuexI18n.plugin, store)
 
-// 注册全局组件
+// 全局注册基础组件时使用
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
+
+
+// 注册单个全局组件
 Vue.component('my-component', {
   template: '<div>我是全局组件，在main.js中注册</div>'
 })
 
 
-// Vue.use(vuexI18n.plugin, store)
+
+// 全局注册基础组件时  webpack 3以上的版本才会生效
+const requireComponent = require.context(
+  // components 文件夹的相对路径
+  './components',
+  // 是否查找子文件夹
+  false,
+  // 用于匹配组件文件名的正则表达式
+  /Base[A-Z]\w+\.(vue|js)$/
+)
+console.log('requireComponent',requireComponent)
+requireComponent.keys().forEach(fileName => {
+    console.log('fileName',fileName)
+  // 获取组件配置
+  const componentConfig = requireComponent(fileName)
+
+  // 取得组件的 Pascal 式命名
+  const componentName = upperFirst(
+    camelCase(
+      // 将文件名前面的 `'./` 和扩展名剥离
+      fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
+    )
+  )
+
+  // 以全局方式注册组件
+  Vue.component(
+    componentName,
+    // 如果组件是通过 `export default` 导出，
+    // 则在 `.default` 中，查找组件选项，
+    // 否则回退至模块根对象中，查找组件选项
+    componentConfig.default || componentConfig
+  )
+})
+
+
 /*const routes = [{
     path: '/',
     component: Home
-},{
-    path: '/confirm',
-    component: Confirm
-},{
-    path: '/HelloFromVux',
-    component: HelloFromVux
-},{
-    path: '/Auditing',
-    component: Auditing
-},{
-    path: '/toast',
-    component: toast
-},{
-    path: '/actionsheet',
-    component: actionsheet
-},{
-    path: '/alert',
-    component: alert
-},{
-    path: '/checkList',
-    component: checkList
-},{
-    path: '/checkIcon',
-    component: checkIcon
-},{
-    path: '/checker',
-    component: checker
-},{
-    path: '/Parent',
-    component: Parent
-},{
-    path: '/vueData',
-    component: vueData
-},{
-    path: '/input',
-    component: input
-},{
-    path: '/vueEvent',
-    component: vueEvent
-},{
-    path: '/vueForm',
-    component: vueForm
-},{
-    path: '/vuxForm',
-    component: vuxForm
-},{
-    path: '/xdailog',
-    component: xdailog
-},{
-    path: '/props',
-    component: props
-},{
-    path: '/hello',
-    component: hello
-},{
-    path: '/select',
-    component: select
-},{
-    path: '/pdfPrewer',
-    component: pdfPrewer
-},{
-    path: '/huadong',
-    component: huadong
 }];*/
 
 
