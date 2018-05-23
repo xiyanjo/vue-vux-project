@@ -48,7 +48,7 @@
             },
             // 子组件中现实的声明update方法，子组件数据改变时父组件数据也改变
             update:function (e){
-                this.$emit('update:myMsg', e.target.value);
+                this.$emit('update:childMsg', e.target.value);
             }
         },
         mounted(){

@@ -62,6 +62,7 @@
         },
         mounted(){
             this.$emit('childrenCom');
+            console.log('this.$attrs 值为 childMsg',this.$attrs,this.$listeners);
         }
 
 

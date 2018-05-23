@@ -19,6 +19,7 @@
                 @up="change" 
                 @childCom="childEve"
                 @input="inputChild"
+                @update:childMsg="updateChild"
             ></Children>
 
             <template>
@@ -149,24 +150,33 @@
         created(){
         },
         methods:{
-            // 监听children事件
+            onFocus(){
+                console.log('.native');
+            },
+            // children组件开始
+            childrenEve(){
+                 console.log('Children.vue')
+            },
             change(data) {
                 this.childData = data;
                 console.log('children event and get data',this.childData);
+            },
+            // children组件结束
+            // child组件开始
+            childEve(){
+                console.log('Child.vue')
             },
             // 监听child事件
             inputChild(){
                 console.log('listen child',this.myMsg);
             },
-            onFocus(){
-                console.log('.native');
+            updateChild(data){
+                console.log('update:childMsg 带冒号的事件监听',data);
             },
-            childrenEve(){
-                 console.log('Children.vue')
-            },
-            childEve(){
-                console.log('Child.vue')
-            }
+            // child组件结束
+            
+
+            
         }
 
     }
