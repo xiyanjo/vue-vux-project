@@ -4,7 +4,7 @@
         <template>
             <div>
                 <!-- 引用类型重新赋值，防止影响父组件 -->
-                <label for="">size----</label>
+                <label for="">size----使用父组件中数据，传递时不变</label>
                 <input type="text"  v-model='childSize'>
             </div> 
         </template>
@@ -21,13 +21,19 @@
                 <button @click="up">发给父组件</button> 
             </div>
         </template>
+
+        <template>
+            <child v-bind="$attrs" v-on="$listeners" name='b-c数据'></child>
+        </template>
     </div>
 </template>
 
 <script>
+    import child from '@/components/faChildren/child.vue'
 
     export default {
         name: 'hello',
+        components:{child},
         data () {
             return {
                 msg: '4444',
@@ -53,6 +59,9 @@
                 // this.$emit('up',this.total); //主动触发upup方法，'hehe'为向父组件传递的数据
                 this.$emit('up',this.todo); //主动触发upup方法，'hehe'为向父组件传递的数据
             }
+        },
+        mounted(){
+            this.$emit('childrenCom');
         }
 
 

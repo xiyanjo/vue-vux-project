@@ -1,7 +1,8 @@
 <template>
     <div class="child">
         <h2>child</h2>
-        <input type="text" :value="myMsg" @input="updateValue"  @blur="update" placeholder="请输入">
+        <input type="text" :value="childMsg" @input="updateValue"  @blur="update" placeholder="请输入">
+        <p>{{name}}</p>
     </div>
 </template>
 
@@ -14,7 +15,7 @@
 
             }
         },
-        props:['size','myMsg','name','todo'],
+        props:['size','childMsg','name','todo'],
         computed: {
             normalizedSize: function () {
                  console.log('child1.vue')
@@ -49,6 +50,9 @@
             update:function (e){
                 this.$emit('update:myMsg', e.target.value);
             }
+        },
+        mounted(){
+            this.$emit('childCom');
         }
     }
 </script>

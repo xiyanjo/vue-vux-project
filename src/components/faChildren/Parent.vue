@@ -10,12 +10,20 @@
             <div style="margin-top:30px">以下为组件内容</div>
             <!-- 只传一个数组 -->
             <div style="margin-top:30px">子组件改变引用类型数据 影响父组件中数据</div>
-            <Children :todo="todo" @up="change" :myMsg="myMsg"></Children>
+            <h3>a-b-c 从a中传递数据到c，同时监听c中事件</h3>
+            <Children :todo="todo"
+                :myMsg="myMsg"
+                :childMsg.sync="myMsg"
+                
+                @childrenCom="childrenEve"
+                @up="change" 
+                @childCom="childEve"
+                @input="inputChild"
+            ></Children>
 
             <template>
                 <div>以下为.sync  子组件中数据影响父组件中数据</div>
-                <child @input="inputChild" :myMsg.sync="myMsg"></child>
-                <div>{{myMsg}}</div>
+                <child @input="inputChild" :childMsg.sync="myMsg"></child>
             </template>
             
             <template>
@@ -26,6 +34,10 @@
             <my-component></my-component>  
         </template>
           
+        <template>
+          <!-- <base-input v-on:focus.native="onFocus" :value=true></base-input> -->
+          <base-input-listener v-on:focus.native="onFocus" :value=false></base-input-listener>
+        </template>
 
     </div>
 </template>
@@ -74,6 +86,49 @@
         }
       }
     })
+    // 使用.native时 含input时有问题  
+    Vue.component('base-input', {
+      template: `<label><input v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"></label>`,
+      props: ['value'],
+      methods: {
+        
+      }
+    })
+    // 使用.native时 含input时有问题----$listener属性解决-----------------------------------------------？？？？？？
+    Vue.component('base-input-listener', {
+      inheritAttrs: false,
+      props: ['label', 'value'],
+      computed: {
+        inputListeners: function () {
+          var vm = this
+          // `Object.assign` 将这些对象合并在一起，构成一个新的对象
+          return Object.assign({},
+            // 我们在父组件中添加的所有监听器
+            this.$listeners,
+            // 然后我们可以新增自定义的监听器，
+            // 或覆盖掉一些监听器的行为。
+            {
+              // 这里确保组件能够正常运行 v-model 指令
+              input: function (event) {
+                vm.$emit('input', event.target.value)
+              }
+            }
+          )
+        }
+      },
+      template: `
+        <label>
+          {{ label }}
+          <input
+            v-bind="$attrs"
+            v-bind:value="value"
+            v-on="inputListeners"
+          >
+        </label>
+      `
+    })
+
+
     export default {
         name: 'hello',
         data () {
@@ -97,11 +152,20 @@
             // 监听children事件
             change(data) {
                 this.childData = data;
-                console.log('listen children event and get data',this.childData);
+                console.log('children event and get data',this.childData);
             },
             // 监听child事件
             inputChild(){
                 console.log('listen child',this.myMsg);
+            },
+            onFocus(){
+                console.log('.native');
+            },
+            childrenEve(){
+                 console.log('Children.vue')
+            },
+            childEve(){
+                console.log('Child.vue')
             }
         }
 
