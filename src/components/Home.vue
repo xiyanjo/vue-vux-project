@@ -143,6 +143,8 @@ var partChild = {
             console.log('s2: ', timer.s2);//0
             setTimeout(() => console.log('s1: ', timer.s1), 3100);//3
             setTimeout(() => console.log('s2: ', timer.s2), 3100);//0
+
+            this.returnClose();
         },
         methods:{
             push(array,b,...items){
@@ -154,7 +156,6 @@ var partChild = {
                   array.push(item);
                   b.push(item+1);
                 });
-                  console.log(2222,array,b);
             },
             // rest参数
             sort2(...numbers){
@@ -163,6 +164,20 @@ var partChild = {
             },
             change(){
                 console.log(this.inputData)
+            },
+            returnClose(){
+                // pushHistory();  
+                var bool=false;  
+                setTimeout(function(){  
+                      bool=true;  
+                },1500);  
+                window.addEventListener("popstate", function(e) {  
+                  if(bool){  
+                        WeixinJSBridge.call('closeWindow');//本人是直接关闭微信页面;项目需要
+                    }  
+                    // pushHistory();     
+                }, false);  
+     
             }
             
         }
