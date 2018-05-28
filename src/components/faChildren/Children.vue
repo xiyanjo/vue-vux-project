@@ -23,7 +23,19 @@
         </template>
 
         <template>
-            <child v-bind="$attrs" v-on="$listeners" name='b-c数据'></child>
+            <div class="strongDes">parent中传递数据，child在children中引用，在child内部调用作用域插槽--在child父级中处理child中数据</div>
+            <child v-bind="$attrs" v-on="$listeners" name='b-c数据'>
+                <!-- <template slot-scope="a">
+                      为待办项自定义一个模板，通过 `slotProps` 定制每个待办项。
+                      <span v-if="a.food.id==2">✓父组件中重新处理数据---</span>
+                      {{ a.food.text }}
+                </template> -->
+                <!-- es6解构语法 -->
+                <template slot-scope="{ food }">
+                    <span v-if="food.id==1">✓</span>
+                    {{ food.text }}
+                </template>
+            </child>
         </template>
     </div>
 </template>

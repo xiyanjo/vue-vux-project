@@ -14,13 +14,14 @@
             <Children :todo="todo"
                 :myMsg="myMsg"
                 :childMsg.sync="myMsg"
+                :foods='faFoods'
                 
                 @childrenCom="childrenEve"
                 @up="change" 
                 @childCom="childEve"
                 @input="inputChild"
-                @update:childMsg="updateChild"
-            ></Children>
+                @update:childMsg="updateChild">
+            </Children>
 
             <template>
                 <div class="strongDes">.sync语法糖功能----子组件中数据改变，同步到父组件中数据</div>
@@ -149,6 +150,7 @@
 
                 },
                 price:'',
+                faFoods:[{'id':'1','text':'土豆丝'},{'id':'2','text':'黄瓜'},{'id':'3','text':'西红柿'}],//作用域插槽
             }
         },
         components:{Children,child},
@@ -188,7 +190,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
     .strongDes{
       color: pink;
     }

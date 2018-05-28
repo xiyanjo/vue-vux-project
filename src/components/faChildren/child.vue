@@ -3,11 +3,19 @@
         <h2>child</h2>
         <input type="text" :value="childMsg" @input="updateValue"  @blur="update" placeholder="请输入">
         <p>{{name}}</p>
+        <template>
+        <div class="strongDes">作用域插槽</div>
+          <ul>
+            <li v-for="food in foods" :key="food.id">
+              <!-- 我们为每个 todo 准备了一个插槽，--><!-- 将 `todo` 对象作为一个插槽的 prop 传入。-->
+              <slot :food="food"><!-- 回退的内容 -->{{ food.text }}</slot>
+            </li>
+          </ul>
+        </template>
     </div>
 </template>
 
 <script>
-
     export default {
         name: 'hello',
         data () {
@@ -15,7 +23,7 @@
 
             }
         },
-        props:['size','childMsg','name','todo'],
+        props:['size','childMsg','name','foods'],
         computed: {
             normalizedSize: function () {
                  console.log('child1.vue')
