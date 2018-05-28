@@ -2,15 +2,15 @@
     <div class="parent">
 
         <template >
-            <div>以下为父组件原来数据</div>
+            <div class="strongDes">以下为父组件原来数据</div>
             <div>{{todo}}</div>
         </template>
 
         <template>
             <div style="margin-top:30px">以下为组件内容</div>
             <!-- 只传一个数组 -->
-            <div style="margin-top:30px">子组件改变引用类型数据 影响父组件中数据</div>
-            <h3>a-b-c 从a中传递数据到c，同时监听c中事件</h3>
+            <div class="strongDes" style="margin-top:30px">子组件改变引用类型数据 影响父组件中数据</div>
+            <h3 class="strongDes">a-b-c 从a中传递数据到c，同时监听c中事件</h3>
             <Children :todo="todo"
                 :myMsg="myMsg"
                 :childMsg.sync="myMsg"
@@ -23,12 +23,12 @@
             ></Children>
 
             <template>
-                <div>以下为.sync  子组件中数据影响父组件中数据</div>
+                <div class="strongDes">.sync语法糖功能----子组件中数据改变，同步到父组件中数据</div>
                 <child @input="inputChild" :childMsg.sync="myMsg"></child>
             </template>
             
             <template>
-                <div style="margin-top:30px">以下为自定义事件表单控件</div>  
+                <div class="strongDes" style="margin-top:30px">以下为自定义事件表单控件</div>  
                 <currency-input v-model="price"></currency-input>
             </template>
 
@@ -189,5 +189,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+    .strongDes{
+      color: pink;
+    }
 </style>

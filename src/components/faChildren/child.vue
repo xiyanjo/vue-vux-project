@@ -46,7 +46,7 @@
                   // 通过 input 事件带出数值
                   this.$emit('input', formattedValue);
             },
-            // 子组件中现实的声明update方法，子组件数据改变时父组件数据也改变
+            // .sync语法糖功能：子组件中现实的声明update方法，子组件数据改变时父组件数据也改变
             update:function (e){
                 this.$emit('update:childMsg', e.target.value);
             }
