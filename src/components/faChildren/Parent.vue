@@ -36,7 +36,7 @@
         </template>
           
         <template>
-          <!-- <base-input v-on:focus.native="onFocus" :value=true></base-input> -->
+          <base-input v-on:focus.native="onFocus" :value=true></base-input>
           <base-input-listener v-on:focus.native="onFocus" :value=false></base-input-listener>
         </template>
 
@@ -89,10 +89,14 @@
     })
     // 使用.native时 含input时有问题  
     Vue.component('base-input', {
-      template: `<label><input v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"></label>`,
+      // template: `<label><input v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"></label>`,
+      template: `<label><input v-bind="$attrs" :value="value" @input=baseInput></label>`,
       props: ['value'],
       methods: {
-        
+        baseInput(event){
+            console.log('base-input');
+            this.$emit('input', event.target.value)
+        }
       }
     })
     // 使用.native时 含input时有问题----$listener属性解决-----------------------------------------------？？？？？？
@@ -111,6 +115,7 @@
             {
               // 这里确保组件能够正常运行 v-model 指令
               input: function (event) {
+                console.log('base-input-listener');
                 vm.$emit('input', event.target.value)
               }
             }
