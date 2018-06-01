@@ -35,11 +35,28 @@
 
             <my-component></my-component>  
         </template>
-          
+          <!-- .native组件根上监听事件 -->
         <template>
           <base-input v-on:focus.native="onFocus" :value=true></base-input>
           <base-input-listener v-on:focus.native="onFocus" :value=false></base-input-listener>
         </template>
+
+        <!-- is动态组件 -->
+        <template>
+          <div>
+            <button
+              v-for="tab in tabs"
+              v-bind:key="tab"
+              v-bind:class="['tab-button', { active: currentTab === tab }]"
+              v-on:click="currentTab = tab"
+            >{{ tab }}</button>
+            <keep-alive>
+              <component v-bind:is="currentTabComponent" class="tab" keep-alive></component> 
+            </keep-alive>
+          </div>
+        </template>
+
+      
 
     </div>
 </template>
@@ -48,6 +65,25 @@
     import Children from '@/components/faChildren/Children.vue'
     import child from '@/components/faChildren/child.vue'
     import Vue from 'vue';
+    // tab组件开始
+    Vue.component('tab-home', { 
+      template: `<div>Home component</div>
+        <div>
+          <div style="float:left;width:50px">
+            <span @click='currentTabVal="我是1111111111111111"'>111 </span>
+            <span @click='currentTabVal="我是2222222222222222"'>222</span>
+          </div>
+          <div style="float:left">{{currentTabVal}}</div>
+        </div>` 
+    })
+    Vue.component('tab-posts', { 
+      template: '<div>Posts component</div>' 
+    })
+    Vue.component('tab-archive', { 
+      template: '<div>Archive component</div>' 
+    })
+    // tab组件结束
+    
     // 注册全局组件
     Vue.component('my-component', {
       template: '<div>我是全局组件</div>'
@@ -151,10 +187,17 @@
                 },
                 price:'',
                 faFoods:[{'id':'1','text':'土豆丝'},{'id':'2','text':'黄瓜'},{'id':'3','text':'西红柿'}],//作用域插槽
+                // tab切换
+                currentTab: 'Home',
+                tabs: ['Home', 'Posts', 'Archive'],
+                currentTabVal:'',//当前选中项值
             }
         },
         components:{Children,child},
-        created(){
+        computed: {
+          currentTabComponent: function () {
+            return 'tab-' + this.currentTab.toLowerCase()
+          }
         },
         methods:{
             onFocus(){
@@ -180,11 +223,10 @@
             updateChild(data){
                 console.log('update:childMsg 带冒号的事件监听',data);
             },
-            // child组件结束
-            
-
-            
-        }
+            // child组件结束  
+        },
+        created(){
+        },
 
     }
 </script>
@@ -193,5 +235,25 @@
 <style>
     .strongDes{
       color: pink;
+    }
+    .tab-button {
+      padding: 6px 10px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: #f0f0f0;
+      margin-bottom: -1px;
+      margin-right: -1px;
+    }
+    .tab-button:hover {
+      background: #e0e0e0;
+    }
+    .tab-button.active {
+      background: #e0e0e0;
+    }
+    .tab {
+      border: 1px solid #ccc;
+      padding: 10px;
     }
 </style>
