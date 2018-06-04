@@ -51,7 +51,7 @@
               v-on:click="currentTab = tab"
             >{{ tab }}</button>
             <keep-alive>
-              <component v-bind:is="currentTabComponent" class="tab" keep-alive></component> 
+              <component v-bind:is="currentTabComponent" class="tab"  keep-alive></component> 
             </keep-alive>
           </div>
         </template>
@@ -67,14 +67,21 @@
     import Vue from 'vue';
     // tab组件开始
     Vue.component('tab-home', { 
-      template: `<div>Home component</div>
-        <div>
-          <div style="float:left;width:50px">
-            <span @click='currentTabVal="我是1111111111111111"'>111 </span>
-            <span @click='currentTabVal="我是2222222222222222"'>222</span>
+      template: `<div>
+          <div>Home component</div>
+          <div>
+            <div style="float:left;width:50px">
+              <span @click='currentTabVal="1"'>111 </span>
+              <span @click='currentTabVal="2"'>222</span>
+            </div>
+            <div v-if="currentTabVal" >{{currentTabVal}}</div>
           </div>
-          <div style="float:left">{{currentTabVal}}</div>
-        </div>` 
+         </div>`   ,
+      data(){
+        return {
+          currentTabVal:'6666',
+        }
+      }
     })
     Vue.component('tab-posts', { 
       template: '<div>Posts component</div>' 
@@ -170,8 +177,7 @@
         </label>
       `
     })
-
-
+    
     export default {
         name: 'hello',
         data () {
@@ -190,7 +196,6 @@
                 // tab切换
                 currentTab: 'Home',
                 tabs: ['Home', 'Posts', 'Archive'],
-                currentTabVal:'',//当前选中项值
             }
         },
         components:{Children,child},
