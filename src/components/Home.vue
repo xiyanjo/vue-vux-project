@@ -62,6 +62,11 @@
             <router-link class="link" to="/pdfPrewer"> pdfPrewer</router-link>
             <router-link class="link" to="/huadong"> huadong</router-link>
         </div>
+        <div>
+            <router-link class="link" to="/boundaryTreatment"> boundaryTreatment边界处理</router-link>
+        </div>
+
+
         
 
 

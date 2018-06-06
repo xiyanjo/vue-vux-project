@@ -26,6 +26,9 @@ import child from '@/components/faChildren/child.vue'
 
 // 动态组件
 import isFeatures from '@/components/dynamicComponent/isFeatures.vue'
+// 边界情况
+import boundaryTreatment from '@/components/boundaryTreatment.vue'
+
 
 
 import props from '@/view/props.vue'
@@ -96,5 +99,8 @@ export default new Router({
 },{
     path: '/isFeatures',
     component: isFeatures
+},{
+    path: '/boundaryTreatment',
+    component: boundaryTreatment
 }]
 })
