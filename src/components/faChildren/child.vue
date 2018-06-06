@@ -61,6 +61,7 @@
         },
         mounted(){
             this.$emit('childCom');
+            // this.$root.faMethod();
         }
     }
 </script>

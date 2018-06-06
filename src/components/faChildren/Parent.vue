@@ -11,7 +11,7 @@
             <!-- 只传一个数组 -->
             <div class="strongDes" style="margin-top:30px">子组件改变引用类型数据 影响父组件中数据</div>
             <h3 class="strongDes">a-b-c 从a中传递数据到c，同时监听c中事件</h3>
-            <Children :todo="todo"
+            <Children ref="children" :todo="todo"
                 :myMsg="myMsg"
                 :childMsg.sync="myMsg"
                 :foods='faFoods'
@@ -25,7 +25,10 @@
 
             <template>
                 <div class="strongDes">.sync语法糖功能----子组件中数据改变，同步到父组件中数据</div>
-                <child @input="inputChild" :childMsg.sync="myMsg"></child>
+                <div> ref和v-for 一起使用返回的是数组</div>
+                <div v-for="refData in refDatas">  
+                  <child  :ref="refData.ind" @input="inputChild" :childMsg.sync="myMsg">{{refData.ind}}</child>   
+                </div>
             </template>
             
             <template>
@@ -188,14 +191,14 @@
                 todo: {
                   name: 'Learn Vue',
                   size: 'Todo.size',
-                  myMsg:'第二个'
-
+                  // myMsg:'第二个'
                 },
                 price:'',
                 faFoods:[{'id':'1','text':'土豆丝'},{'id':'2','text':'黄瓜'},{'id':'3','text':'西红柿'}],//作用域插槽
                 // tab切换
                 currentTab: 'Home',
                 tabs: ['Home', 'Posts', 'Archive'],
+                refDatas:[{ind:'refFor1'},{ind:'refFor2'}]
             }
         },
         components:{Children,child},
@@ -231,7 +234,15 @@
             // child组件结束  
         },
         created(){
+              // 在此处调用时未渲染，报错 // this.useChildrenEvent();// 调用子组件中事件
         },
+        mounted(){
+              console.log('我是子组件中的数据' ,this.$refs.children.msg)
+                this.$refs.children.childrenEvent();// 调用子组件中事件
+                this.$refs.refFor1.myMsg = '.refFor1';
+                this.$refs.refFor2.myMsg = '.refFor2';
+                console.log(3333,this.$refs.child,this.$refs.children,this.$refs.refFor1,this.$refs.refFor2);
+        }
 
     }
 </script>

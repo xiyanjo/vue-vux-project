@@ -70,7 +70,11 @@
                 console.log('emit total in children');
                 // this.$emit('up',this.total); //主动触发upup方法，'hehe'为向父组件传递的数据
                 this.$emit('up',this.todo); //主动触发upup方法，'hehe'为向父组件传递的数据
-            }
+            },
+            childrenEvent(){
+              console.log('我是子组件中的方法，在父组件中调用this.$refs.children');
+            },
+            
         },
         mounted(){
             this.$emit('childrenCom');

@@ -6,7 +6,17 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+  	return {
+  		appMsg:'app'
+  	}
+  },
+  methods:{
+  	rootMethod(){
+              console.log('我是父组件中的方法，在子组件中调用')
+            }
+  }
 }
 </script>
 
