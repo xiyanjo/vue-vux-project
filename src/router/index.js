@@ -29,6 +29,9 @@ import isFeatures from '@/components/dynamicComponent/isFeatures.vue'
 // 边界情况
 import boundaryTreatment from '@/components/boundaryTreatment.vue'
 
+// 可复用性及组合
+import reusable from '@/components/reusable.vue'
+
 
 
 import props from '@/view/props.vue'
@@ -102,5 +105,8 @@ export default new Router({
 },{
     path: '/boundaryTreatment',
     component: boundaryTreatment
+},{
+    path: '/reusable',
+    component: reusable
 }]
 })

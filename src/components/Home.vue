@@ -64,6 +64,9 @@
         </div>
         <div>
             <router-link class="link" to="/boundaryTreatment"> boundaryTreatment边界处理</router-link>
+        </div> 
+         <div>
+            <router-link class="link" to="/reusable"> reusable可复用</router-link>
         </div>
 
 
