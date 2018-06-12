@@ -1,45 +1,26 @@
 <template>
     <div class="parent">
-        <h5>JSX</h5>
-        <anchored-heading-all :level="5">Hello world!Hello world</anchored-heading-all>
+        <template>
+            <h3>JSX</h3>
+            <p>h(tag,{},[])或h(tag,{},string) []和''二选一</p>
+        </template>
+        
+        <template>
+          <anchored-heading-all :level="4">
+            <div>Hello world!</div>
+          </anchored-heading-all>
+        </template>
 
-        <textRender >default</textRender>      
+        <template>
+            <com-outside>444</com-outside>
+        </template>
+        
     </div>
 </template>
 
 <script>
 
 import Vue from 'vue';
-Vue.component('textRender', {
-  render: function (createElement) {
-    return createElement(
-        // 一个 HTML 标签字符串，组件选项对象，或者// 解析上述任何一种的一个 async 异步函数，必要参数。
-        'div',this.$slots.default//只有添加时才显示默认的值
-
-        // {Object} // 一个包含模板相关属性的数据对象 // 这样，您可以在 template 中使用这些属性。可选参数。
-      /*  {
-          // (详情见下一节)
-        },
-        // {String | Array} // 子节点 (VNodes)，由 `createElement()` 构建而成， // 或使用字符串来生成“文本节点”。可选参数。
-        [
-          '先写一些文字1',
-          createElement('h1', '一则头条'),
-          // ?????????????????????????????????????????
-          createElement(MyComponent, {
-            props: {
-              someProp: 'foobar'
-            }
-          })
-        ]*/
-      )
-  },
-  props: {
-    level: {
-      type: Number,
-      required: false
-    }
-  }
-})
 // 格式化id
 var getChildrenTextContent = function (children) {
   return children.map(function (node) {
@@ -49,17 +30,16 @@ var getChildrenTextContent = function (children) {
   }).join('')
 }
 Vue.component('anchored-heading-all', {
-  render: function (createElement) {
+  render: function (h) {
     // 创建 kebabCase 风格的ID
-    var headingId = getChildrenTextContent(this.$slots.default)
-      .toLowerCase()
-      .replace(/\W+/g, '-')
-      .replace(/(^\-|\-$)/g, '')
+     console.log('this.$slots.default',this.$slots.default)
+    var headingId = getChildrenTextContent(this.$slots.default).toLowerCase().replace(/\W+/g, '-').replace(/(^\-|\-$)/g, '');
 
-    return createElement(
+    return h(
       'h' + this.level,
+      // 'h' + this.level,this.$slots.default,//''和[]
       [
-        createElement('a', {
+        h('a', {
           attrs: {
             name: headingId,
             href: '#' + headingId,
@@ -71,7 +51,12 @@ Vue.component('anchored-heading-all', {
           /*domProps: {
             innerHTML: '<div>baz</div>'//标签内部HTML
           },*/
-        }, this.$slots.default)
+        }, 
+        [
+          // 可以嵌套多个节点，添加多个同级节点
+          h('span', {}, this.$slots.default),
+          h('span', {}, '同个下级tag')
+        ])
       ]
     )
   },
@@ -83,6 +68,16 @@ Vue.component('anchored-heading-all', {
   }
 })
 
+Vue.component('com-outside', {
+  functional: true,     //1
+  // 为了弥补缺少的实例
+  // 提供第二个参数作为上下文
+  render: function (h, context) {   //2
+    console.log(111,h, context);
+    h('div','aaa')
+  },
+})
+
 
 
 
@@ -91,7 +86,7 @@ Vue.component('anchored-heading-all', {
         components:{},
         data () {
             return {
-               
+               jsx:'fa jsx'
             }
         },
         computed: {
