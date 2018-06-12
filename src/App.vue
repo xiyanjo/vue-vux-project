@@ -6,6 +6,22 @@
 
 <script>
 import Vue from 'vue';
+
+
+Vue.directive('demo', {
+  bind: function (el, binding, vnode) {
+    var s = JSON.stringify
+    console.log('binding',binding);
+    el.innerHTML =
+      'name: '       + s(binding.name) + '<br>' +
+      'value: '      + s(binding.value) + '<br>' + //指令的绑定值
+      'expression: ' + s(binding.expression) + '<br>' +
+      'argument: '   + s(binding.arg) + '<br>' + //参数
+      'modifiers: '  + s(binding.modifiers) + '<br>' +//修饰符
+      'vnode keys: ' + Object.keys(vnode).join(', ')//Vue 编译生成的虚拟节点
+  }
+})
+
 // 使用.native时 含input时有问题  
 Vue.component('base-input', {
   // template: `<label><input v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"></label>`,
@@ -43,7 +59,14 @@ Vue.component('base-input-listener', {
   },
   template: `<label>{{ label }}<input v-bind="$attrs" v-bind:value="value" v-on="inputListeners"></label>`
 })
-
+/*// 注册一个全局自定义指令 `v-focus`
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})*/
  // 注册全局组件
 Vue.component('my-component', {
   template: '<div>我是全局组件</div>'
@@ -64,11 +87,7 @@ Vue.component('tab-home', {
     return {
       currentTabVal:'6666',
     }
-  },
-  inject: ['getMap'],//接受父组件中传的方法
-  mounted(){
-    this.getMap('tab-home');
-  },
+  }
 })
 Vue.component('tab-posts', { 
   template: '<div>Posts component</div>' 
@@ -124,7 +143,8 @@ export default {
   name: 'app',
   data(){
   	return {
-  		appMsg:'app'
+  		appMsg:'app',
+       message: 'hello!'
   	}
   },
   methods:{

@@ -67,13 +67,17 @@
         </div> 
          <div>
             <router-link class="link" to="/reusable"> reusable可复用</router-link>
+        </div>  
+        <div>
+            <router-link class="link" to="/renderFun"> renderFun模版</router-link>
+        </div>
+
+        <div>
+            <router-link class="link" to="/Auditing"> Auditing</router-link> 
         </div>
 
 
-        
 
-
-        <router-link class="link" to="/Auditing"> Auditing</router-link>
 
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAQMAAADaX5RTAAAAA3NCSVQICAjb4U/gAAAABlBMVEX///+ZmZmOUEqyAAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAACusAAArrAYKLDVoAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjAvMTIGkKG+AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAB1JREFUCJljONjA8LiBoZyBwY6BQQZMAtlAkYMNAF1fBs/zPvcnAAAAAElFTkSuQmCC" />
         <template>
@@ -81,6 +85,12 @@
             <my-component></my-component>  
             <part-child></part-child>  
         </template>
+
+
+        <div>
+            <h5>全局自定义指令参数app.vue </h5>
+            <div v-demo:foo.c.d="message"></div>
+        </div>
     </div>
 </template>
 

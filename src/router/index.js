@@ -32,7 +32,8 @@ import boundaryTreatment from '@/components/boundaryTreatment.vue'
 // 可复用性及组合
 import reusable from '@/components/reusable.vue'
 
-
+// render函数模版
+import renderFun from '@/components/renderJSX/renderFun.vue'
 
 import props from '@/view/props.vue'
 import pdfPrewer from '@/components/pdfPrewer.vue'
@@ -108,5 +109,8 @@ export default new Router({
 },{
     path: '/reusable',
     component: reusable
+},{
+    path: '/renderFun',
+    component: renderFun
 }]
 })

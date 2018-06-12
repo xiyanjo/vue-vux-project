@@ -59,6 +59,12 @@
           </div>
         </template>
 
+        <!-- 自定义指令 -->
+        <template>
+          <h5>自定义指令--插入dom前的事件</h5>
+          <input v-focus>
+        </template>
+
       
 
     </div>
@@ -71,6 +77,7 @@
   
     export default {
         name: 'hello',
+        components:{Children,child},
         data () {
             return {
                 myMsg:'P-msg',
@@ -89,7 +96,15 @@
                 refDatas:[{ind:'refFor1'},{ind:'refFor2'}]
             }
         },
-        components:{Children,child},
+        // 局部指令
+        directives: {
+          focus: {
+            // 指令的定义--可选择钩子函数
+            inserted: function (el) {
+              el.focus()
+            }
+          }
+        },
         computed: {
           currentTabComponent: function () {
             return 'tab-' + this.currentTab.toLowerCase()
