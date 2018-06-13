@@ -6,7 +6,7 @@
         </template>
         
         <template>
-          <anchored-heading-all :level="4" :items="itemArrs">
+          <anchored-heading-all :level="4" :items="itemArrs" :inputVal="inputVal">
             <div>Hello world!</div>
           </anchored-heading-all>
         </template>
@@ -37,7 +37,20 @@ Vue.component('anchored-heading-all', {
     // 根据数据选择渲染方式
     if (this.items.length) {
         return h('ul', this.items.map(function (item) {
-          return h('li', item.name)
+          if(!item.name){
+            return h('input', {
+              domProps: {
+                value: self.value
+              },
+              on: {
+                input: function (event) {
+                  self.$emit('input', event.target.value)
+                }
+              }
+            })
+          }else{
+            return h('li', item.name)                                                                            
+          }
         }))
     } else {
         return h(
@@ -66,6 +79,10 @@ Vue.component('anchored-heading-all', {
     items :{
       type:Array,
       required:true
+    },
+    inputVal:{
+      type:String,
+      required:true
     }
   }
 })
@@ -89,7 +106,8 @@ Vue.component('anchored-heading-all', {
         data () {
             return {
                jsx:'fa jsx',
-               itemArrs:[{name:'a'},{name:'b'},{name:'c'},{name:'d'}],
+               itemArrs:[{name:'a'},{name:'b'},{name:''},{name:'d'}],
+               inputVal:'6666',
             }
         },
         computed: {
