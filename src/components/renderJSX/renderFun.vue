@@ -6,7 +6,7 @@
         </template>
         
         <template>
-          <anchored-heading-all :level="4" :items="itemArrs" :inputVal="inputVal">
+          <anchored-heading-all :level="4" :items="itemArrs" :inputVal="inputVal" @input="listenInput">
             <div>Hello world!</div>
           </anchored-heading-all>
         </template>
@@ -32,19 +32,20 @@ var getChildrenTextContent = function (children) {
 Vue.component('anchored-heading-all', {
   render: function (h) {
    
-    console.log('this.$slots.default',this.$slots.default)
+//    console.log('this.$slots.default',this.$slots.default)
     var headingId = getChildrenTextContent(this.$slots.default).toLowerCase().replace(/\W+/g, '-').replace(/(^\-|\-$)/g, ''); // 创建 kebabCase 风格的ID
-    // 根据数据选择渲染方式
+    var self = this;
+      // 根据数据选择渲染方式
     if (this.items.length) {
         return h('ul', this.items.map(function (item) {
           if(!item.name){
             return h('input', {
               domProps: {
-                value: self.value
+                value: self.inputVal//将props中的inputVal绑定给input
               },
-              on: {
+              on: {//事件监听 基于on
                 input: function (event) {
-                  self.$emit('input', event.target.value)
+                  self.$emit('input', event.target.value+'i love you')//子组件中emit事件，处理过的值传给父组件
                 }
               }
             })
@@ -114,7 +115,9 @@ Vue.component('anchored-heading-all', {
           
         },
         methods:{
-         
+            listenInput(val){
+                console.log('listen input event',val);
+            }
         },
         created(){
         },
