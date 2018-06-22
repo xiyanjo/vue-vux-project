@@ -1,23 +1,33 @@
 <template>
     <div class="parent">
         <template>
+            <div>组件模板方式：render，jSX，函数式</div>
             <h4 style="background: gold">模版：h(tag,{},[]) 或 h(tag,{},string)</h4>
         </template>
 
         <template>
             <h4 style="background: gold">模版写法</h4>
-            <anchored-heading-all :level="4" :items="itemArrs" :inputVal="inputVal" @input="listenInput" style="background: papayawhip">
+            <anchored-heading-all :level="4" :items="itemArrs" :inputVal="inputVal" @input="listenInput"
+                                  style="background: papayawhip">
                 <span>Hello world!--$slots.default</span>
             </anchored-heading-all>
         </template>
 
         <!--插槽作用域分发？-->
         <slot-temp style="background: pink">
-            <template slot-scope="scopMsg"><!--<template scope="scopMsg"  同前面的功能相同>-->
-                <!--{{scopMsg}}-->
-                <div v-for="item in scopMsg">{{item.text}}</div>
+            <template slot-scope="scope"><!--<template scope="scopMsg"  同前面的功能相同>-->
+                <!--{{scope}}-->
+                <div v-for="item in scope">{{item.text}}</div>
             </template>
         </slot-temp>
+
+
+        <template>
+            <!--函数式组件-->
+            <smart-list :items="itemArrs" :isOrdered="true">
+                <li v-for="(item, index) in itemArrs">函数式无状态 {{item.name}}</li>
+            </smart-list>
+        </template>
 
 
         <template>
@@ -39,8 +49,8 @@
         }).join('')
     }
     Vue.component('slot-temp', {
-        render: function (createElement) {
-            return createElement('div', [
+        render: function (h) {
+            return h('div', [
                 this.$scopedSlots.default([{text: 'aaa'}, {text: 'bbb'}, {text: 'ccc'}])
             ])
         }
@@ -73,10 +83,10 @@
                                     }
                             ),
                             /*h('span', /!* self.$slots.default*!/[
-                                self.$scopedSlots.default({
-                                    text: self.message
-                                })
-                            ])*/
+                             self.$scopedSlots.default({
+                             text: self.message
+                             })
+                             ])*/
                         ])
 
 
@@ -133,7 +143,62 @@
      },
      })*/
 
+    //    函数式组件
+    var EmptyList = {template: '<p>Empty list</p>'}; //当父组件传来的items元素为对象类型时
+    var TableList = 'ul'; // 当父组件定义了isOrdered变量且为true
+    var UnorderedList = 'ul';
+    var OrderedList = {/* ... */}
 
+    Vue.component('smart-list', {
+        functional: true,//无状态模式
+        props: {
+            items: {
+                type: Array,
+                required: true
+            },
+            isOrdered: Boolean
+        },
+        render: function (h, context) {
+            console.log(context);
+            var data = {
+                on: {
+                    beforeEnter: function (el) {
+                        el.style.opacity = 0
+                        el.style.height = 0
+                    },
+                    enter: function (el, done) {
+                        var delay = el.dataset.index * 150
+                        setTimeout(function () {
+                            Velocity(el, {opacity: 1, height: '1.6em'}, {complete: done})
+                        }, delay)
+                    },
+                    leave: function (el, done) {
+                        var delay = el.dataset.index * 150
+                        setTimeout(function () {
+                            Velocity(el, {opacity: 0, height: 0}, {complete: done})
+                        }, delay)
+                    }
+                },
+                attrs: {
+                    class: 'green'
+                }
+            }
+
+            function appropriateListComponent() {
+                var items = context.props.items;
+                if (items.length === 0)           return EmptyList;
+                if (typeof items[0] === 'object') return TableList;
+                if (context.props.isOrdered)      return OrderedList;
+                return UnorderedList
+            }
+
+            return h(
+                    appropriateListComponent(),
+                    data,
+                    context.children
+            )
+        }
+    })
     export default {
         name: 'renderFun',
         components: {},
@@ -142,9 +207,6 @@
                 jsx: 'fa jsx',
                 itemArrs: [{name: 'a'}, {name: 'b'}, {name: ''}, {name: 'd'}],
                 inputVal: '6666',
-                /*scopMsg: {
-                 message: '作用域插槽'
-                 },*/
             }
         },
         computed: {},
@@ -160,8 +222,12 @@
         }
 
     }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+    .green {
+        color: greenyellow;
+    }
 </style>
