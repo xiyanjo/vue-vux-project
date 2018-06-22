@@ -9,6 +9,8 @@
             <h4 style="background: gold">模版写法</h4>
             <anchored-heading-all :level="4" :items="itemArrs" :inputVal="inputVal" @input="listenInput"
                                   style="background: papayawhip">
+                <span slot="two">34536363</span>
+                <span>一个组件中有多个节点，$slots.default无法获取有slot的</span>
                 <span>Hello world!--$slots.default</span>
             </anchored-heading-all>
         </template>
@@ -25,7 +27,9 @@
         <template>
             <!--函数式组件-->
             <smart-list :items="itemArrs" :isOrdered="true">
-                <li v-for="(item, index) in itemArrs">函数式无状态 {{item.name}}</li>
+                函数式无状态需传入特性、事件监听器、子结点等
+                <li v-for="(item, index) in itemArrs">{{item.name}}</li>
+                <p slot="two">two</p>
             </smart-list>
         </template>
 
@@ -60,7 +64,7 @@
             var headingId = getChildrenTextContent(this.$slots.default).toLowerCase().replace(/\W+/g, '-').replace(/(^\-|\-$)/g, ''); // 创建 kebabCase 风格的ID
             var self = this;
             // 根据数据选择渲染方式
-            if (this.items.length) {
+            if (!this.items.length) {
                 return h('ul', this.items.map(function (item) {
                     if (!item.name) {
                         return h('li', [
@@ -82,6 +86,7 @@
                                         }
                                     }
                             ),
+//                                报错？？？？？？？？？
                             /*h('span', /!* self.$slots.default*!/[
                              self.$scopedSlots.default({
                              text: self.message
@@ -147,7 +152,7 @@
     var EmptyList = {template: '<p>Empty list</p>'}; //当父组件传来的items元素为对象类型时
     var TableList = 'ul'; // 当父组件定义了isOrdered变量且为true
     var UnorderedList = 'ul';
-    var OrderedList = {/* ... */}
+    var OrderedList = 'ul'
 
     Vue.component('smart-list', {
         functional: true,//无状态模式
@@ -181,9 +186,9 @@
                 },
                 attrs: {
                     class: 'green'
-                }
+                },
             }
-
+//            判断节点函数
             function appropriateListComponent() {
                 var items = context.props.items;
                 if (items.length === 0)           return EmptyList;
@@ -191,12 +196,7 @@
                 if (context.props.isOrdered)      return OrderedList;
                 return UnorderedList
             }
-
-            return h(
-                    appropriateListComponent(),
-                    data,
-                    context.children
-            )
+            return h(appropriateListComponent(), data, context.children)
         }
     })
     export default {
