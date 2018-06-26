@@ -61,6 +61,7 @@
         },
         mounted(){
             this.$emit('childCom');
+            this.myGlobalMethod('mowenwei');
             // this.$root.faMethod();
         }
     }

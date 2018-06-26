@@ -12,10 +12,10 @@ function resolve (dir) {
 }
 
 let webpackConfig = {
-  entry: {
+  entry: {// 配置webpack编译入口
     app: './src/main.js'
   },
-  output: {
+  output: {// 配置webpack输出路径和命名规则
     path: config.build.assetsRoot,
     filename: '[name].js',
     publicPath: process.env.NODE_ENV === 'production'
@@ -24,7 +24,7 @@ let webpackConfig = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
-    alias: {
+    alias: {// 创建import或require的别名，一些常用的，路径长的都可以用别名
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
     }
