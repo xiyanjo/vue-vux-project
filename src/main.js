@@ -12,7 +12,6 @@ Vue.use(AlertPlugin);
 Vue.use(ToastPlugin);
 Vue.use(VueRouter);
 Vue.use(Vuex)
-Vue.use(MyPlugin)//自定义插件
 // Vue.use(vuexI18n.plugin, store)
 
 // 全局注册基础组件时使用
