@@ -137,7 +137,12 @@
             // child组件结束  
         },
         created(){
-              // 在此处调用时未渲染，报错 // this.useChildrenEvent();// 调用子组件中事件
+            // 在此处调用时未渲染，报错 // this.useChildrenEvent();// 调用子组件中事件
+
+            console.log(this);
+            this.$myMethod('myMethod');//vue的实例的属性方法--使用this调用--this当前vue实例
+            Vue.myGlobalMethod('myGlobalMethod');//全局的方法---使用vue调用---vue本身方法
+
         },
         mounted(){
               console.log('我是子组件中的数据' ,this.$refs.children.msg)

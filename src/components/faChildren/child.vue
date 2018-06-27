@@ -16,8 +16,10 @@
 </template>
 
 <script>
+
     export default {
         name: 'hello',
+        components:{},
         data () {
             return {
 

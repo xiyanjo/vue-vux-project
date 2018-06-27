@@ -108,17 +108,22 @@
                 <li class="two">two</li>
             </div>
         </div>
+        <template>
+            <input-list></input-list>
+        </template>
 
     </div>
 </template>
 
 <script>
     import {CheckIcon, Grid, GridItem, GroupTitle} from 'vux'
+    import inputList from '@/components/form/inputList.vue'
+
     import util from '@/assets/js/util'
 
     export default {
         components: {
-            CheckIcon,Grid,GridItem,GroupTitle
+            CheckIcon,Grid,GridItem,GroupTitle,inputList
         },
         data () {
             return {

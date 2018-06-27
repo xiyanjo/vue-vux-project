@@ -5,13 +5,15 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import router from './router'
 import App from './App'
+import {MyPlugin} from '@/assets/js/myPlugin.js'
 import Vuex from 'vuex'
 import {AlertPlugin, ToastPlugin} from 'vux'
 
 Vue.use(AlertPlugin);
 Vue.use(ToastPlugin);
 Vue.use(VueRouter);
-Vue.use(Vuex)
+Vue.use(Vuex);
+Vue.use(MyPlugin);
 // Vue.use(vuexI18n.plugin, store)
 
 // 全局注册基础组件时使用

@@ -35,11 +35,18 @@
             <input type="text" :value="scale">
         </div>
         <button @click="ajax()">提交</button>
+
+        <template>
+            <input-jo></input-jo>
+        </template>
+
     </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
     import {CheckIcon} from 'vux'
+//    import inputJo from '@/components/form/input.vue'//循环引用报错
+
 
     export default {
         components: {
@@ -97,7 +104,15 @@
             }
         },
         mounted(){},
-        created(){}
+        created(){},
+        beforeCreate: function () {
+            // 官方文档给出的是require
+            // this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue')
+            // 在基于vue-cli@2.8.1按照上面的写法还是会报错
+            // Failed to mount component: template or render function not defined.
+            // 所以我们应该改为基于es6的写法异步加载一个组件如下
+            this.$options.components.inputJo = () => import('@/components/form/input.vue')
+        }
     }
 </script>
 <style>

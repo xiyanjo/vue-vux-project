@@ -89,12 +89,12 @@
 
         <div>
             <h5>全局自定义指令参数app.vue </h5>
-            <div v-demo:foo.c.d="message"></div>
+            <!--<div v-demo:foo.c.d="message"></div>-->
         </div>
     </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
     // import Confirm from '@/components/Confirm';
     // import calendar from '@/components/calendar';
     // 使用 Mock
@@ -162,7 +162,7 @@ var partChild = {
             setTimeout(() => console.log('s1: ', timer.s1), 3100);//3
             setTimeout(() => console.log('s2: ', timer.s2), 3100);//0
 
-            this.returnClose();
+//            this.returnClose();
         },
         methods:{
             push(array,b,...items){
@@ -183,6 +183,7 @@ var partChild = {
             change(){
                 console.log(this.inputData)
             },
+//            微信自动返回
             returnClose(){
                 // pushHistory();  
                 var bool=false;  
