@@ -108,22 +108,20 @@
                 <li class="two">two</li>
             </div>
         </div>
-        <template>
-            <input-list></input-list>
-        </template>
+
 
     </div>
 </template>
 
 <script>
     import {CheckIcon, Grid, GridItem, GroupTitle} from 'vux'
-    import inputList from '@/components/form/inputList.vue'
+//    import inputList from '@/components/form/inputList.vue'
 
     import util from '@/assets/js/util'
 
     export default {
         components: {
-            CheckIcon,Grid,GridItem,GroupTitle,inputList
+            CheckIcon,Grid,GridItem,GroupTitle
         },
         data () {
             return {
@@ -195,7 +193,8 @@
             let arr2 = [1,3,2];
             console.log(44444,util.arrayEqual(arr1,arr2));            
         },
-        created(){}
+        created(){},
+
     }
 </script>
 <style>
