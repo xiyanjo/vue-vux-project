@@ -7,21 +7,6 @@
 <script>
 import Vue from 'vue';
 
-
-Vue.directive('demo', {
-  bind: function (el, binding, vnode) {
-    var s = JSON.stringify
-    console.log('binding',binding);
-    el.innerHTML =
-      'name: '       + s(binding.name) + '<br>' +
-      'value: '      + s(binding.value) + '<br>' + //指令的绑定值
-      'expression: ' + s(binding.expression) + '<br>' +
-      'argument: '   + s(binding.arg) + '<br>' + //参数
-      'modifiers: '  + s(binding.modifiers) + '<br>' +//修饰符
-      'vnode keys: ' + Object.keys(vnode).join(', ')//Vue 编译生成的虚拟节点
-  }
-})
-
 // 使用.native时 含input时有问题  
 Vue.component('base-input', {
   // template: `<label><input v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"></label>`,
