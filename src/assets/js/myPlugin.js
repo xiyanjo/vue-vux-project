@@ -4,13 +4,7 @@ const MyPlugin = {
         Vue.myGlobalMethod = function (val) {
             console.log(val + '添加全局方法或属性i am beatufy!');
         }
-        // 4. 添加实例方法
-        Vue.prototype.$myMethod = function (methodOptions) {
-            console.log(methodOptions + '添加实例方法i am beatufy!');
-        }
-
-
-        // 2. 添加全局资源--指令
+        // 2. 添加全局资源--指令/过滤器/过渡
         Vue.directive('glob-directive', {//定义全局指令
             // bind：只调用一次，指令第一次绑定到元素时调用。    在这里可以进行一次性的初始化设置。
             // inserted：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。
@@ -49,9 +43,17 @@ const MyPlugin = {
         })
         // 3. 注入组件；
         Vue.mixin({
-            created: function () {
-                // 逻辑...
-            }
+            created: function () {}
+        })
+        // 4. 添加实例方法
+        Vue.prototype.$myMethod = function (methodOptions) {
+            console.log(methodOptions + '添加实例方法i am beatufy!');
+        }
+        // 5. 全局过滤器---必须在vue实例化之前
+        Vue.filter('globFilter', function (value) {
+            if (!value) return '';
+            value = value.toString();
+            return value.toUpperCase() + '---globFilter'
         })
 
 

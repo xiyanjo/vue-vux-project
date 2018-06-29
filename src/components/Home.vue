@@ -87,7 +87,7 @@
         </template>
 
         <div>
-            <h5>全局自定义指令参数app.vue </h5>
+            <h5>{{'全局自定义指令参数app.vue' | globFilter}}</h5>
             <!--v-color-swatch在bind 和update时触发-->
             <div v-glob-directive:foo.c.d="message" v-color-swatch="bgColor" @click="bgColor = 'gray'"></div>
         </div>
