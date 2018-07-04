@@ -91,6 +91,17 @@
             <!--v-color-swatch在bind 和update时触发-->
             <div v-glob-directive:foo.c.d="message" v-color-swatch="bgColor" @click="bgColor = 'gray'"></div>
         </div>
+
+        <template>
+            <div>
+                <p :class="{ [$style.red]:true }">
+                    CSS Modules
+                </p>
+                <p :class="[$style.red, $style.bold]">
+                    Red and bold
+                </p>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -125,12 +136,13 @@ var partChild = {
              partChild
         },
         mounted(){
+
+            console.log('CSS Modules------',this.$style.red);//et6f0c2DdyEOjZNxUtAHT_0 基于文件名、类名的标识符
+
            /* let [a,b]=[[],[]];
             this.sort2(1,3,4,2,7);
             // this.push(a,b,[ 4, 5, 6]);//将每个参数看为一位
             this.push(a,b,1, 2, 3);//将每个参数看为一位*/
-
-            
             // 箭头函数可以让setTimeout里面的this，绑定定义时所在的作用域，而不是指向运行时所在的作用域
             function Timer() {
                 this.s1 = 0;
@@ -204,6 +216,17 @@ var partChild = {
         }
     }
 </script>
+
+<!--通过module标识符防止覆盖 <style module="color"> -->
+<style module>
+    .red {
+        color: red;
+    }
+    .bold {
+        font-weight: bold;
+    }
+
+</style>
 
 <style lang="less">
 .link{

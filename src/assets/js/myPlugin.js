@@ -65,7 +65,7 @@ const MyPlugin = {
             console.log(methodOptions + '添加实例方法i am beatufy!');
         }
 
-
+        
     }
 }
 export{MyPlugin}

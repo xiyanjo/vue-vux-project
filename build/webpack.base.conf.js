@@ -65,6 +65,33 @@ let webpackConfig = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      // webpack.config.js -> module.rules
+      {
+        test: /\.css$/,
+        oneOf: [
+          // 这里匹配 `<style module>`
+          {
+            resourceQuery: /module/,
+            use: [
+              'vue-style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                  localIdentName: '[local]_[hash:base64:5]'
+                }
+              }
+            ]
+          },
+          // 这里匹配普通的 `<style>` 或 `<style scoped>`
+          {
+            use: [
+              'vue-style-loader',
+              'css-loader'
+            ]
+          }
+        ]
       }
     ]
   }
