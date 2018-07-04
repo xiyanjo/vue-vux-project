@@ -217,7 +217,6 @@ var partChild = {
     }
 </script>
 
-<!--通过module标识符防止覆盖 <style module="color"> -->
 <style module>
     .red {
         color: red;

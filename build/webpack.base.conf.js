@@ -66,30 +66,18 @@ let webpackConfig = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
-      // webpack.config.js -> module.rules
       {
         test: /\.css$/,
-        oneOf: [
-          // 这里匹配 `<style module>`
+        use: [
+          'vue-style-loader',
           {
-            resourceQuery: /module/,
-            use: [
-              'vue-style-loader',
-              {
-                loader: 'css-loader',
-                options: {
-                  modules: true,
-                  localIdentName: '[local]_[hash:base64:5]'
-                }
-              }
-            ]
-          },
-          // 这里匹配普通的 `<style>` 或 `<style scoped>`
-          {
-            use: [
-              'vue-style-loader',
-              'css-loader'
-            ]
+            loader: 'css-loader',
+            options: {
+              // 开启 CSS Modules
+              modules: true,
+              // 自定义生成的类名
+              localIdentName: '[local]_[hash:base64:8]'
+            }
           }
         ]
       }
