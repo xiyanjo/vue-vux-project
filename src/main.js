@@ -6,13 +6,15 @@ import VueRouter from 'vue-router'
 import router from './router'
 import App from './App'
 import {MyPlugin} from '@/assets/js/myPlugin.js'
-import Vuex from 'vuex'
+// import Vuex from 'vuex'
 import {AlertPlugin, ToastPlugin} from 'vux'
+
+import store from './store'// 等同于  //import store from './store/index'  index默认为store文件的出口*************
 
 Vue.use(AlertPlugin);
 Vue.use(ToastPlugin);
 Vue.use(VueRouter);
-Vue.use(Vuex);
+// Vue.use(Vuex);
 Vue.use(MyPlugin);
 // Vue.use(vuexI18n.plugin, store)
 
@@ -80,6 +82,7 @@ Vue.config.productionTip = false;
 // 每个 Vue.js 应用都是通过构造函数 Vue 创建一个 Vue 的根实例来启动的：
 new Vue({
     router,
+    store,
     render: h => h(App)
 }).$mount('#app-box');
 
