@@ -76,6 +76,10 @@
             <router-link class="link" to="/Auditing"> Auditing</router-link> 
         </div>
 
+        <div>
+            <router-link class="link" to="/uploadImg"> uploadImg</router-link>
+        </div>
+
 
 
 

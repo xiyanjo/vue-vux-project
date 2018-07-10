@@ -16,6 +16,8 @@ import vueForm from '@/components/vueForm.vue'
 import vuxForm from '@/components/vuxForm.vue'
 import Auditing from '@/components/Auditing'
 
+import uploadImg from '@/components/uploadImg'
+
 // 父子组件
 import Parent from '@/components/faChildren/Parent.vue'
 import Children from '@/components/faChildren/Children.vue'
@@ -58,6 +60,9 @@ export default new Router({
 },{
     path: '/Auditing',
     component: Auditing
+},{
+    path: '/uploadImg',
+    component: uploadImg
 },{
     path: '/inputList',
     component: inputList
