@@ -107,18 +107,31 @@
 
         <template>
             <div style="background: #ccc">
-                <h3>{{$store.state.count+'<--$store | this.$store-->'+ storeCount +'计算后值-->'+countPlusLocalState}}</h3>
-                <div>
-                    <button @click="add(2)">++++</button>
-                    <button @click="reduce">---</button>
-                </div>
+                <template>
+                    <h3>{{'getters中---->' +count}}</h3>
+                    <h3>{{$store.state.count+'<--$store | this.$store-->'+ storeCount
+                        +'组件计算后值-->'+countPlusLocalState}}</h3>
+                </template>
+                <template>
+                    <h3>{{'store中---->' +exampComputed}}</h3>
+                    <div>
+                        <button @click="add(2)">mutations.add 2</button>
+                        <button @click="reduce(1)">mutations.reduce 1</button>
+                    </div>
+
+                    <div>
+                        <button @click="addAction">addAction mutations.add 10</button>
+                        <button @click="reduceActionHandle">reduceAction mutations.reduce</button>
+                    </div>
+                </template>
+
             </div>
         </template>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-    import {mapState, mapMutations} from 'vuex';//辅助函数帮助我们生成计算属性
+    import {mapState, mapMutations, mapGetters, mapActions} from 'vuex';//辅助函数帮助我们生成计算属性
 
     // 使用 Mock
     var Mock = require('mockjs')
@@ -133,7 +146,6 @@
         template: '<div>我是局部组件，需要components引入</div>'
     }
     // 输出结果
-    //console.log(JSON.stringify(data, null, 4))
     export default {
         name: 'home',
         data(){
@@ -145,22 +157,33 @@
 
             }
         },
-//        当映射的计算属性的名称与 state 的子节点名称相同时，我们也可以给 mapState 传一个字符串数组
-        /* computed: mapState(['count']),*/// 映射 this.count 为 store.state.count
         computed: {
-            localComputed () {
-                return '对象展开运算符'
-            },
-            // 使用对象展开运算符将此对象混入到外部对象中
+            /** 对象展开运算符----- 将此对象混入到外部对象中
+             * 参数：数组/对象
+             * 数组：当映射的计算属性的名称与 **相同时，我们也可以给 mapState 传一个字符串数组
+             * 对象：state为参数
+             */
+
+            /**  mapState
+             * 数组：...mapState(['count']) // 映射 this.count 为 store.state.count
+             * 对象：如下
+             */
+//            store 在组件中使用
             ...mapState({
                 storeCount: state=>state.count,  //理解为传入state对象，修改state.count属性
+                exampComputed: state=>state.exampComputed,
                 countPlusLocalState (state) {
-                    return state.count + this.localComputed
+                    return state.count + '对象展开运算符'
                 }
-            })
+            }),
+            /** mapGetters
+             * 每次count变化时都变化
+             * 数组：...mapGetters(["count"]),同 // count(){return this.$store.getters.count;}
+             */
+//            store中getters在组件中使用
+            ...mapGetters(["count"]),//map  getters同 // count(){return this.$store.getters.count;}
         },
         components: {
-            // Confirm,calendar,
             partChild
         },
         mounted(){
@@ -207,9 +230,23 @@
 //            this.returnClose();
         },
         methods: {
-            ...mapMutations([//对象展开运算符
+//            在vue中使用mutations中改变store的方法
+            ...mapMutations([
                 'add', 'reduce'
             ]),
+//            在vue中使用actions--调用mutations中的方法--改变状态--异步 ----- 组件中分发actions
+            ...mapActions(['addAction', 'reduceAction']),
+//            处理actions异步
+            reduceActionHandle(){
+/*//                一个异步
+                this.$store.dispatch('reduceAction').then(res => {
+                    console.log(res);
+                })*/
+//                两个异步，两种处理
+                this.$store.dispatch('actionB').then(() => {
+                    console.log('actionB over');
+                })
+            },
             push(array, b, ...items){
                 // arguments变量的写法
                 /*function sortNumbers() {
