@@ -24,8 +24,6 @@ import Children from '@/components/faChildren/Children.vue'
 import child from '@/components/faChildren/child.vue'
 
 
-
-
 // 动态组件
 import isFeatures from '@/components/dynamicComponent/isFeatures.vue'
 // 边界情况
@@ -44,78 +42,79 @@ import huadong from '@/components/handle/huadong.vue'
 Vue.use(Router)
 
 export default new Router({
-  /*routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    }
-  ]*/
+    /*routes: [
+     {
+     path: '/',
+     name: 'Hello',
+     component: Hello
+     }
+     ]*/
 
 
-  mode:'history',
-  routes:[{
-    path: '/',
-    component: Home
-},{
-    path: '/Auditing',
-    component: Auditing
-},{
-    path: '/uploadImg',
-    component: uploadImg
-},{
-    path: '/inputList',
-    component: inputList
-},{
-    path: '/Parent',
-    component: Parent
-},{
-    path: '/Children',
-    component: Children
-},{
-    path: '/child',
-    component: child
-},{
-    path: '/vueData',
-    component: vueData
-},{
-    path: '/input',
-    component: input
-},{
-    path: '/seletMult',
-    component: seletMult
-},{
-    path: '/vueEvent',
-    component: vueEvent
-},{
-    path: '/vueForm',
-    component: vueForm
-},{
-    path: '/vuxForm',
-    component: vuxForm
-},{
-    path: '/props',
-    component: props
-},{
-    path: '/select',
-    component: select
-},{
-    path: '/pdfPrewer',
-    component: pdfPrewer
-},{
-    path: '/huadong',
-    component: huadong
-},{
-    path: '/isFeatures',
-    component: isFeatures
-},{
-    path: '/boundaryTreatment',
-    component: boundaryTreatment
-},{
-    path: '/reusable',
-    component: reusable
-},{
-    path: '/renderFun',
-    component: renderFun
-}]
+    mode: 'history',
+    routes: [{
+        path: '/:id/:cord',
+        name: 'home',
+        component: Home
+    }, {
+        path: '/Auditing',
+        component: Auditing
+    }, {
+        path: '/uploadImg',
+        component: uploadImg
+    }, {
+        path: '/inputList',
+        component: inputList
+    }, {
+        path: '/Parent',
+        component: Parent
+    }, {
+        path: '/Children',
+        component: Children
+    }, {
+        path: '/child',
+        component: child
+    }, {
+        path: '/vueData',
+        component: vueData
+    }, {
+        path: '/input',
+        component: input
+    }, {
+        path: '/seletMult',
+        component: seletMult
+    }, {
+        path: '/vueEvent',
+        component: vueEvent
+    }, {
+        path: '/vueForm',
+        component: vueForm
+    }, {
+        path: '/vuxForm',
+        component: vuxForm
+    }, {
+        path: '/props',
+        component: props
+    }, {
+        path: '/select',
+        component: select
+    }, {
+        path: '/pdfPrewer',
+        component: pdfPrewer
+    }, {
+        path: '/huadong',
+        component: huadong
+    }, {
+        path: '/isFeatures',
+        component: isFeatures
+    }, {
+        path: '/boundaryTreatment',
+        component: boundaryTreatment
+    }, {
+        path: '/reusable',
+        component: reusable
+    }, {
+        path: '/renderFun',
+        component: renderFun
+    }]
 })

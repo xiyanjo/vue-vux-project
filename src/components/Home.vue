@@ -187,66 +187,29 @@
             partChild
         },
         mounted(){
-
             console.log('CSS Modules------', this.$style.red);//et6f0c2DdyEOjZNxUtAHT_0 基于文件名、类名的标识符
-
-            /* let [a,b]=[[],[]];
-             this.sort2(1,3,4,2,7);
-             // this.push(a,b,[ 4, 5, 6]);//将每个参数看为一位
-             this.push(a,b,1, 2, 3);//将每个参数看为一位*/
-            // 箭头函数可以让setTimeout里面的this，绑定定义时所在的作用域，而不是指向运行时所在的作用域
-            function Timer() {
-                this.s1 = 0;
-                this.s2 = 0;
-                // 箭头函数
-                /*setInterval(() => {
-                 this.s1++
-                 console.log('s1',this);
-                 }, 1000);
-                 // 普通函数
-                 setInterval(function () {
-                 console.log('s2',this);
-                 this.s2++;
-                 }, 1000);*/
-                // 箭头函数----绑定在定义所在的作用域内
-                setTimeout(() => {
-                    this.s1++
-                    console.log('s1', this);//timer
-                }, 1000);
-                // 普通函数----指向运行时所在的作用域
-                setTimeout(function () {
-                    console.log('s2', this);//window
-                    this.s2++;//window下没有s2
-                }, 1000);
-                // console.log(9999)
-            };
-            var timer = new Timer();
-            // 初始值都为0
-            console.log('s1: ', timer.s1);//0
-            console.log('s2: ', timer.s2);//0
-            setTimeout(() => console.log('s1: ', timer.s1), 3100);//3
-            setTimeout(() => console.log('s2: ', timer.s2), 3100);//0
-
-//            this.returnClose();
+            this.setTimeoutCharacter();//settimeout 以及箭头函数this的影响
+            this.returnClose();//微信自动返回
         },
         methods: {
-//            在vue中使用mutations中改变store的方法
+            /*在vue中使用mutations中改变store的方法*/
             ...mapMutations([
                 'add', 'reduce'
             ]),
-//            在vue中使用actions--调用mutations中的方法--改变状态--异步 ----- 组件中分发actions
+           /*在vue中使用actions--调用mutations中的方法--改变状态--异步 ----- 组件中分发actions*/
             ...mapActions(['addAction', 'reduceAction']),
-//            处理actions异步
+            /*处理actions异步*/
             reduceActionHandle(){
-/*//                一个异步
-                this.$store.dispatch('reduceAction').then(res => {
-                    console.log(res);
-                })*/
+                /*//                一个异步
+                 this.$store.dispatch('reduceAction').then(res => {
+                 console.log(res);
+                 })*/
 //                两个异步，两种处理
                 this.$store.dispatch('actionB').then(() => {
                     console.log('actionB over');
                 })
             },
+            /* rest参数 ??? */
             push(array, b, ...items){
                 // arguments变量的写法
                 /*function sortNumbers() {
@@ -257,7 +220,7 @@
                     b.push(item + 1);
                 });
             },
-            // rest参数
+            /* rest参数 */
             sort2(...numbers){
                 // numbers.sort();
                 console.log(numbers.sort());
@@ -265,7 +228,7 @@
             change(){
                 console.log(this.inputData)
             },
-//            微信自动返回
+           /*微信自动返回*/
             returnClose(){
                 // pushHistory();  
                 var bool = false;
@@ -279,8 +242,51 @@
                     // pushHistory();     
                 }, false);
 
-            }
-
+            },
+           /*vue-router 学习*/
+            routeHandle(){
+                //            console.log(9999,this.$router,this.$route);//路由器//当前路由
+                console.log(this.$route.params.id);//获取路由参数
+            },
+            setTimeoutCharacter(){
+                function Timer() {
+                    this.s1 = 0;
+                    this.s2 = 0;
+                    // 箭头函数
+                    /*setInterval(() => {
+                     this.s1++
+                     console.log('s1',this);
+                     }, 1000);
+                     // 普通函数
+                     setInterval(function () {
+                     console.log('s2',this);
+                     this.s2++;
+                     }, 1000);*/
+                    // 箭头函数----绑定在定义所在的作用域内
+                    setTimeout(() => {
+                        this.s1++
+                        console.log('s1', this);//timer
+                    }, 1000);
+                    // 普通函数----指向运行时所在的作用域
+                    setTimeout(function () {
+                        console.log('s2', this);//window
+                        this.s2++;//window下没有s2
+                    }, 1000);
+                    // console.log(9999)
+                };
+                var timer = new Timer();
+                // 初始值都为0
+                console.log('s1: ', timer.s1,'s2: ', timer.s2);//0 //0
+                setTimeout(() => console.log('s1: ', timer.s1), 3100);//3
+                setTimeout(() => console.log('s2: ', timer.s2), 3100);//0
+            },
+            /*push函数参数学习*/
+            pushParam(){
+                let [a,b]=[[], []];
+                this.sort2(1, 3, 4, 2, 7);
+                // this.push(a,b,[ 4, 5, 6]);//将每个参数看为一位
+                this.push(a, b, 1, 2, 3);//将每个参数看为一位
+            },
         }
     }
 </script>
