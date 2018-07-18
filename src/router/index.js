@@ -5,8 +5,9 @@ import Home from '@/components/Home'
 
 
 // 表单
+import form from '@/components/form/form.vue'
 import select from '@/components/form/select.vue'
-import input from '@/components/form/input.vue'
+import Input from '@/components/form/input.vue'
 import seletMult from '@/components/form/seletMult.vue'
 import inputList from '@/components/form/inputList.vue'
 
@@ -42,79 +43,83 @@ import huadong from '@/components/handle/huadong.vue'
 Vue.use(Router)
 
 export default new Router({
-    /*routes: [
-     {
-     path: '/',
-     name: 'Hello',
-     component: Hello
-     }
-     ]*/
-
-
     mode: 'history',
-    routes: [{
-        path: '/:id/:cord',
-        name: 'home',
-        component: Home
-    }, {
-        path: '/Auditing',
-        component: Auditing
-    }, {
-        path: '/uploadImg',
-        component: uploadImg
-    }, {
-        path: '/inputList',
-        component: inputList
-    }, {
-        path: '/Parent',
-        component: Parent
-    }, {
-        path: '/Children',
-        component: Children
-    }, {
-        path: '/child',
-        component: child
-    }, {
-        path: '/vueData',
-        component: vueData
-    }, {
-        path: '/input',
-        component: input
-    }, {
-        path: '/seletMult',
-        component: seletMult
-    }, {
-        path: '/vueEvent',
-        component: vueEvent
-    }, {
-        path: '/vueForm',
-        component: vueForm
-    }, {
-        path: '/vuxForm',
-        component: vuxForm
-    }, {
-        path: '/props',
-        component: props
-    }, {
-        path: '/select',
-        component: select
-    }, {
-        path: '/pdfPrewer',
-        component: pdfPrewer
-    }, {
-        path: '/huadong',
-        component: huadong
-    }, {
-        path: '/isFeatures',
-        component: isFeatures
-    }, {
-        path: '/boundaryTreatment',
-        component: boundaryTreatment
-    }, {
-        path: '/reusable',
-        component: reusable
-    }, {
-        path: '/renderFun',
-        component: renderFun
-    }]
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home,
+            children: [
+                {// 先定义先生效，匹配 /home/id/cord
+                    path: '/home/:id/:cord',
+                    name: 'home',
+                    component: Home
+                },
+            ]
+        },
+        {
+            path: '/form',
+            name: 'form',
+            component: form,
+            children: [
+                { // 匹配 /form/input
+                    // path: '/input',//  '/'为根路径---'/input'访问此组件
+                    path: 'input',
+                    name: 'input',
+                    component: Input
+                }, {
+                    path: 'inputList',
+                    component: inputList
+                }, {
+                    path: 'select',
+                    component: select
+                }, {
+                    path: 'seletMult',
+                    component: seletMult
+                }, {
+                    path: 'vueForm',
+                    component: vueForm
+                }, {
+                    path: 'vuxForm',
+                    component: vuxForm
+                }
+            ]
+        },
+        {
+            path: '/Auditing',
+            component: Auditing
+        }, {
+            path: '/uploadImg',
+            component: uploadImg
+        }, {
+            path: '/Parent',
+            component: Parent,
+        }, {
+            path: '/vueData',
+            component: vueData
+        }, {
+            path: '/vueEvent',
+            component: vueEvent
+        }, {
+            path: '/props',
+            component: props
+        }, {
+            path: '/pdfPrewer',
+            component: pdfPrewer
+        }, {
+            path: '/huadong',
+            component: huadong
+        }, {
+            path: '/isFeatures',
+            component: isFeatures
+        }, {
+            path: '/boundaryTreatment',
+            component: boundaryTreatment
+        }, {
+            path: '/reusable',
+            component: reusable
+        }, {
+            path: '/renderFun',
+            component: renderFun
+        }]
 })

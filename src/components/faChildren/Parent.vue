@@ -1,6 +1,5 @@
 <template>
     <div class="parent">
-
         <template >
             <div class="strongDes">以下为父组件原来数据</div>
             <div>{{todo}}</div>

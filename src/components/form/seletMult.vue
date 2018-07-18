@@ -94,7 +94,7 @@
         </template>
         <template>
             <button @click="isListShow=true">显示select</button>
-            <input-list v-show="isListShow"></input-list>
+            <!--<input-list v-show="isListShow"></input-list>-->
         </template>
     </div>
 </template>
@@ -168,13 +168,18 @@
             // vm.toggle === 'no'
         },
         beforeCreate() {
-//            解决循环组件调用问题，在这里不生效，考虑为vue版本问题------------
-            // 官方文档给出的是require
+
+            {
+                //        &&&&&&&&&&&&&--------------有bug-------------&&&&&&&&&&&&&&
+                //            解决循环组件调用问题，在这里不生效，考虑为vue版本问题------------
+                // 官方文档给出的是require
 //            this.$options.components.inputList = require('@/components/form/inputList.vue');
-            // 在基于vue-cli@2.8.1按照上面的写法还是会报错
-            // Failed to mount component: template or render function not defined.
-            // 所以我们应该改为基于es6的写法异步加载一个组件如下
+                // 在基于vue-cli@2.8.1按照上面的写法还是会报错
+                // Failed to mount component: template or render function not defined.
+                // 所以我们应该改为基于es6的写法异步加载一个组件如下
 //            this.$options.components.inputList = () => import('@/components/form/inputList.vue')
+            }
+
         }
     }
 

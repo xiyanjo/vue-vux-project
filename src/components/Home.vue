@@ -37,14 +37,13 @@
 
         // 现在，应用已经启动了！-->
 
+        <template>
+            <button @click="toParent">跳转到组件</button>
+        </template>
+
         <input type='date' v-model='inputData' @change='change'>
         <div>
-            <router-link class="link" to="/inputList"> inputList</router-link>
-            <router-link class="link" to="/input"> input</router-link>
-            <router-link class="link" to="/select"> select</router-link>
-            <router-link class="link" to="/seletMult"> seletMult</router-link>
-            <router-link class="link" to="/vueForm"> vueForm</router-link>
-            <router-link class="link" to="/vuxForm"> vuxForm</router-link>
+            <router-link class="link" to="/form"> form</router-link>
         </div>
 
         <div>
@@ -54,7 +53,7 @@
 
         <div>
             <router-link class="link" to="/Parent"> Parent</router-link>
-            <router-link class="link" to="/Children"> Children</router-link>
+            <router-link class="link" to="/Parent/Children"> Children</router-link>
             <router-link class="link" to="/props"> props</router-link>
 
         </div>
@@ -189,15 +188,22 @@
         mounted(){
             console.log('CSS Modules------', this.$style.red);//et6f0c2DdyEOjZNxUtAHT_0 基于文件名、类名的标识符
             this.setTimeoutCharacter();//settimeout 以及箭头函数this的影响
-            this.returnClose();//微信自动返回
+
+            let ua = navigator.userAgent.toLowerCase();
+            let isWeixin = ua.indexOf('micromessenger') != -1;
+            if (isWeixin)   this.returnClose();//微信返回按钮自动关闭网页
         },
         methods: {
             /*在vue中使用mutations中改变store的方法*/
             ...mapMutations([
                 'add', 'reduce'
             ]),
-           /*在vue中使用actions--调用mutations中的方法--改变状态--异步 ----- 组件中分发actions*/
+            /*在vue中使用actions--调用mutations中的方法--改变状态--异步 ----- 组件中分发actions*/
             ...mapActions(['addAction', 'reduceAction']),
+//            跳转到组件
+            toParent(){
+                this.$router.push({path: '/parent',params: { userId: 'userid' }});
+            },
             /*处理actions异步*/
             reduceActionHandle(){
                 /*//                一个异步
@@ -228,7 +234,7 @@
             change(){
                 console.log(this.inputData)
             },
-           /*微信自动返回*/
+            /*微信自动返回*/
             returnClose(){
                 // pushHistory();  
                 var bool = false;
@@ -243,11 +249,17 @@
                 }, false);
 
             },
-           /*vue-router 学习*/
+
+            /**
+             * vue-router 学习
+             * 路由优先级--先定义优先级高
+             * /user/foo 导航到 /user/bar --- 组件不刷新
+             * this.$router---路由器,this.$route----当前路由
+             */
             routeHandle(){
-                //            console.log(9999,this.$router,this.$route);//路由器//当前路由
                 console.log(this.$route.params.id);//获取路由参数
             },
+            /*settimeout 以及箭头函数this的影响*/
             setTimeoutCharacter(){
                 function Timer() {
                     this.s1 = 0;
@@ -276,7 +288,7 @@
                 };
                 var timer = new Timer();
                 // 初始值都为0
-                console.log('s1: ', timer.s1,'s2: ', timer.s2);//0 //0
+                console.log('s1: ', timer.s1, 's2: ', timer.s2);//0 //0
                 setTimeout(() => console.log('s1: ', timer.s1), 3100);//3
                 setTimeout(() => console.log('s2: ', timer.s2), 3100);//0
             },
