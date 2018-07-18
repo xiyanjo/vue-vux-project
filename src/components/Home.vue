@@ -202,7 +202,19 @@
             ...mapActions(['addAction', 'reduceAction']),
 //            跳转到组件
             toParent(){
-                this.$router.push({path: '/parent',params: { userId: 'userid' }});
+
+                const userId = '123';
+                /**this.$router.push 参数
+                 * this.$router.push({name: 'home', params: {id:userId,cord:'cord'}});// -> /home/123/cord
+                 * 如果提供了 path，params 会被忽略   params 不生效
+                 * 使用以下方法 ：this.$router.push({path: `/home/${userId}/cord`}); // -> /user/123
+                 * query参数：可以一起添加
+                 */
+                this.$router.push({
+                    path: '/home/userid/cord',//如果提供了 path，params 会被忽略
+                    params: {cord: 'cord', id: 'userid'},// 命名的路由 // 这里的 params 不生效
+                    query: {plan: 'private'},// 带查询参数，变成 /register?plan=private
+                });
             },
             /*处理actions异步*/
             reduceActionHandle(){

@@ -82,7 +82,10 @@ export default new Router({
                 }, {
                     path: 'vuxForm',
                     component: vuxForm
-                }
+                }, {
+                    path: '*',//任意路径在加载form,先定义优先级高
+                    component: form
+                },
             ]
         },
         {
