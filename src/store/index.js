@@ -19,9 +19,9 @@ const state = ()=>{
     }
 }
 let state1 = state;
-setTimeout(()=>{
+/*setTimeout(()=>{
     console.log(state1());
-},6000)
+},6000)*/
 // getters---store 的计算属性  --- 返回值被依赖缓存，依赖发生改变重新计算
 const getters = {
     count: state=> {

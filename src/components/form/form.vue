@@ -10,7 +10,12 @@
             <router-link class="link" to="/form/vueForm"> vueForm</router-link>
             <router-link class="link" to="/form/vuxForm"> vuxForm</router-link>
         </template>
-        <router-view></router-view>
+        <template>
+            <router-view></router-view>
+            <router-view style="width: 200px;float: left" name="a"></router-view>
+            <router-view style="width: 200px;float: right" name="b"></router-view>
+        </template>
+
 
     </div>
 </template>
@@ -23,8 +28,7 @@
         data(){
             return {}
         },
-        components: {
-        },
+        components: {},
         mounted(){
 
         },

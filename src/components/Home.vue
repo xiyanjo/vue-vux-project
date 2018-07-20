@@ -209,6 +209,9 @@
                  * 如果提供了 path，params 会被忽略   params 不生效
                  * 使用以下方法 ：this.$router.push({path: `/home/${userId}/cord`}); // -> /user/123
                  * query参数：可以一起添加
+                 * repace方法：不会向history中添加新纪录，push方法：会添加新纪录
+                 * router.go(1)// 在浏览器记录中前进一步，等同于 history.forward()
+                 *  router.go(-1)// 后退一步记录，等同于 history.back()
                  */
                 this.$router.push({
                     path: '/home/userid/cord',//如果提供了 path，params 会被忽略
