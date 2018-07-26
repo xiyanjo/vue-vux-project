@@ -1,48 +1,44 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
-import Home from '@/components/Home'
-
-
+const Home=()=>import('@/components/Home')
 // 表单
-import form from '@/components/form/form.vue'
-import select from '@/components/form/select.vue'
-import input from '@/components/form/input.vue'
-import seletMult from '@/components/form/seletMult.vue'
-import inputList from '@/components/form/inputList.vue'
+const form=()=>import('@/components/form/form.vue')
+const select=()=>import('@/components/form/select.vue')
+const input=()=>import('@/components/form/input.vue')
+const seletMult=()=>import('@/components/form/seletMult.vue')
+const inputList=()=>import('@/components/form/inputList.vue')
 
-import vueData from '@/components/vueData.vue'
-import vueEvent from '@/components/vueEvent.vue'
-import vueForm from '@/components/vueForm.vue'
-import vuxForm from '@/components/vuxForm.vue'
-import Auditing from '@/components/Auditing'
+const vueData=()=>import('@/components/vueData.vue')
+const vueEvent=()=>import('@/components/vueEvent.vue')
+const vueForm=()=>import('@/components/vueForm.vue')
+const vuxForm=()=>import('@/components/vuxForm.vue')
+const Auditing=()=>import('@/components/Auditing')
 
-import uploadImg from '@/components/uploadImg'
+const uploadImg=()=>import('@/components/uploadImg')
 
-// 父子组件
-import Parent from '@/components/faChildren/Parent.vue'
-import Children from '@/components/faChildren/Children.vue'
-import child from '@/components/faChildren/child.vue'
+// 父子组(件
+const Parent=()=>import('@/components/faChildren/Parent.vue')
 
+// 动态组(件
+const isFeatures=()=>import('@/components/dynamicComponent/isFeatures.vue')
+// 边界情(况
+const boundaryTreatment=()=>import('@/components/boundaryTreatment.vue')
 
-// 动态组件
-import isFeatures from '@/components/dynamicComponent/isFeatures.vue'
-// 边界情况
-import boundaryTreatment from '@/components/boundaryTreatment.vue'
-
-// 可复用性及组合
-import reusable from '@/components/reusable.vue'
+// 可复用(性及组合
+const reusable=()=>import('@/components/reusable.vue')
 
 // render函数模版
-import renderFun from '@/components/renderJSX/renderFun.vue'
+const renderFun =()=>import('@/components/renderJSX/renderFun.vue')
 
-import props from '@/view/props.vue'
-import pdfPrewer from '@/components/pdfPrewer.vue'
-import huadong from '@/components/handle/huadong.vue'
+const props =()=>import('@/view/props.vue')
+const pdfPrewer =()=>import('@/components/pdfPrewer.vue')
+const huadong =()=>import('@/components/handle/huadong.vue')
 
-Vue.use(Router)
 
-export default new Router({
+Vue.use(VueRouter)
+
+const router = new VueRouter({
     mode: 'history',
     routes: [
         {
@@ -90,6 +86,11 @@ export default new Router({
                 default: form,
                 a: select,
                 b: seletMult
+            },
+            // 路由独享守卫
+            beforeEnter: (to, from, next) => {
+                console.log('form---beforeEnter');
+                next();
             },
             // 路由组件传参
             // props: { a: true, b: false },//包含命名视图的路由---每个命名视图添加 `props` 选项：
@@ -158,5 +159,28 @@ export default new Router({
         }, {
             path: '/renderFun',
             component: renderFun
-        }]
+        }],
+    scrollBehavior (to, from, savedPosition) {
+        // return 期望滚动到哪个的位置
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
+    }
 })
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+    console.log('beforeEach---全局路由守卫');
+    next();//必填，进入下一个管道
+})
+// 全局解析守卫
+router.beforeResolve((to, from, next) => {
+    console.log('beforeResolve---全局解析守卫');
+    next();
+})
+// 全局后置钩子
+router.afterEach((to, from) => {
+    console.log('afterEach---全局后置钩子');
+})
+export default router;
