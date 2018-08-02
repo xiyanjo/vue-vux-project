@@ -153,7 +153,6 @@
                 message: {aa: 'i am home'},
                 bgColor: 'pink',
 //                storeCount:this.$store.state.count,//直接在data中定义时，只有初始值，不会监听到变化
-
             }
         },
         computed: {
