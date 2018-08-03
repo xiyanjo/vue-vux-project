@@ -31,6 +31,10 @@ const reusable=()=>import('@/components/reusable.vue')
 // render函数模版
 const renderFun =()=>import('@/components/renderJSX/renderFun.vue')
 
+// 布局
+const flex =()=>import('@/components/layout/flexLayout.vue')
+const layout =()=>import('@/components/layout/layout.vue')
+
 const props =()=>import('@/view/props.vue')
 const pdfPrewer =()=>import('@/components/pdfPrewer.vue')
 const huadong =()=>import('@/components/handle/huadong.vue')
@@ -84,8 +88,6 @@ const router = new VueRouter({
             name: 'form',
             components: {//命名视图--------------------？？？？？？？不生效？？？？？？？？？
                 default: form,
-                a: select,
-                b: seletMult
             },
             // 路由独享守卫
             beforeEnter: (to, from, next) => {
@@ -122,6 +124,23 @@ const router = new VueRouter({
                     component: form
                 },
             ]
+        },
+        {
+            path: '/layout',
+            name: 'layout',
+            component: layout,
+            /*children: [
+                {
+                    path: 'flex',
+                    name: 'flex',
+                    component: flex,
+                },
+            ]*/
+        },
+        {
+            path: '/flex',
+            name: 'flex',
+            component: flex,
         },
         {
             path: '/Auditing',
@@ -171,7 +190,7 @@ const router = new VueRouter({
 })
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
-    console.log('beforeEach---全局路由守卫');
+    console.log('beforeEach---全局路由守卫',to);
     next();//必填，进入下一个管道
 })
 // 全局解析守卫
