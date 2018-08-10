@@ -34,6 +34,8 @@ const renderFun =()=>import('@/components/renderJSX/renderFun.vue')
 // 布局
 const flex =()=>import('@/components/layout/flexLayout.vue')
 const layout =()=>import('@/components/layout/layout.vue')
+// 继承
+const jsInheritance =()=>import('@/components/inheritance/jsInheritance.vue')
 
 const props =()=>import('@/view/props.vue')
 const pdfPrewer =()=>import('@/components/pdfPrewer.vue')
@@ -136,6 +138,10 @@ const router = new VueRouter({
                     component: flex,
                 },
             ]*/
+        },{
+            path: '/jsInheritance',
+            name: 'jsInheritance',
+            component: jsInheritance,
         },
         {
             path: '/flex',

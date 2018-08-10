@@ -51,6 +51,10 @@
         </div>
 
         <div>
+            <router-link class="link" to="/jsInheritance"> jsInheritance</router-link>
+        </div>
+
+        <div>
             <router-link class="link" to="/vueData"> vueData</router-link>
             <router-link class="link" to="/vueEvent"> vueEvent</router-link>
         </div>
