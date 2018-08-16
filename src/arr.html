@@ -1,392 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	
+    <meta charset="UTF-8">
+    <title>Document</title>
+
 </head>
 <body>
 </body>
 
 <script>
-	/**数组是否有重复的元素-------------------------------*/
-	function isRepeat (arrs){
-		if(arrs.length>0){
-			var s = arrs.join('');
-			for (var i=0,ilen=arrs.length; i<ilen;i++) {
-				if(s.replace(arrs[i],'').indexOf(arrs[i])>-1){
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	function isRepeat2(arrs){
-		var hash = [];
-		if(arrs.length>0){
-			for(var i=0;i<arrs.length;i++){
-				if(hash[arrs[i]]){
-					return true;
-				}
-				hash[arrs[i]] = true;
-			}
-			return false;
-		}
-	}
-	/**数组中每个元素出现次数-----------------------*/
-	function eleRepeatCount(arrs){
-		var newArrs=[];
-		if(arrs.length>0){
-			for (var i = arrs.length - 1; i >= 0; i--) {
-				var temp=arrs[i],count=0;
-				for (var j = arrs.length - 1; j >= 0; j--) {
-					if(arrs[j]==temp){
-						count++;
-						// arrs[j]='已经出现过';
-					}
-				}
-				newArrs.push(temp+':'+count);
-			}
-		}
-		return newArrs;
-	}
-	var arrs=[11,22,22,33,33,44,5,6,5];
-	var arr2=[1,2,4,3];
-	// console.log(isRepeat(arrs));
-	// console.log(isRepeat(arr2));
-	// console.log(isRepeat2(arrs));
-	
-
-	// console.log(eleRepeatCount(arrs));
-
-	/**兼容ie8 indexOf -1时没有相同元素--------------------*/
-	function indexOf(arr,arrs){
-		if(arrs.length>0){
-			for (var i = 0; i < arrs.length; i++) {
-				if(arrs[i]==arr){
-					return i;
-				}
-				return -1
-			}
-		}
-	}
-	/**indexOf() ie8不兼容
-	 * 返回某个指定的字符串值在字符串,数组中首次出现的位置
-	 */
-	
-
-	/** 去重--------------------------------------------*/
-
-	/**1 数组下标去重法*/
-	function arrayUnique(arrs){
-		var newArrs = [];
-		for (var i = 0; i < arrs.length; i++) {
-			if(newArrs.indexOf){
-				if(newArrs.indexOf(arrs[i])==-1){
-					newArrs.push(arrs[i]);
-				}
-			}else{
-				if(indexOf(arrs[i],newArrs)==-1){
-					newArrs.push(arrs[i]);
-				}
-			}
-		}
-		return newArrs;
-	}
-	// console.log(arrayUnique(arrs));
-	/**2 排序后相邻去重法 */
-	function arrSortUnique(arrs){
-		var newArrs = [];
-		if(arrs.length>0){
-			arrs.sort();
-			for (var i = 0; i < arrs.length; i++) {
-				if(arrs[i]!=newArrs[newArrs.length-1]){
-					newArrs.push(arrs[i])
-				}
-			}
-			return newArrs;
-		}
-	}
-	// console.log(arrSortUnique(arrs));
-	
-	/**3 对象键值对去重法 高效*/
-	function arrObjUnique(){
-		var newArrs = [],hash=[];
-		if(arrs.length>0){
-			for (var i = 0; i < arrs.length; i++) {
-				if(!hash[arrs[i]]){
-					hash[arrs[i]] = 1;
-					newArrs.push(arrs[i]);
-				}
-			}
-			return newArrs;
-		}
-	}
-
-	// console.log(arrSortUnique(arrs));
-	/** 1使用indexOf和splice 删除数组中某个元素-------------------------
-	 */
-	function removeArrElem(elem,arrs){
-		var newElem=[];
-		if(arrs.length>0){
-			var index = indexOf(elem,arrs);
-			if(index>-1){
-				newElem = arrs.splice(index,1)
-			}
-		}
-		return [newElem,arrs];
-	}
-	// console.log(removeArrElem(11,arrs));
-    /**
-	 * 2遍历相同直接splice 删除数组中某个元素
-	 */
-	function removeArrElem2(elem,arrs){
-		var newElem=[];
-		if(arrs.length>0){
-			for (var i = 0; i < arrs.length; i++) {
-				if(elem==arrs[i]){
-					newElem = arrs.splice(i,1)
-				}
-			}
-		}
-		return [newElem,arrs];
-	}
-	// console.log(removeArrElem2(22,arrs));
-
-	// 判断是否为数组类型--实例
-	// 1
-	// console.log([] instanceof Array);
-	// 2 跨iframe的时候使用页面中数组会失败
-	// console.log([].constructor==Array); 
 
 
-	/**最大最小值算法-------------------
-	 * 思路：
-	 * 1默认第一个变量为最小值
-	 * 2遍历数组当前元素小于最小值则重新赋值最小值
-	 * 3字符串转为数字
-	 */
-	arrs.sort(function (a,b){return b-a});//最大值倒序
-	arrs.sort(function (a,b){return a-b});//最小值顺序
-	// console.log(arrs[0]);
-	// console.log(Math.max(1,2,3,4));//传入所有参数
-	// console.log(Math.max.apply(Math,arrs));//改变this指向Math，同时传参可以为数组
-	// console.log(Math.min(1,2,3,4));
-	
-	/**生成随机数*/
-	 // console.log(Math.random().toString(16).substring(2))
-	 // console.log(Math.random().toString(36).substring(2))
-	 // console.log(Math.random().toString(2))//二进制
+    aboutThis();
+    scopeEvent();
+    /*数组*/
+    function arrEvent() {
+        /**数组是否有重复的元素-------------------------------*/
+        function isRepeat(arrs) {
+            if (arrs.length > 0) {
+                var s = arrs.join('');
+                for (var i = 0, ilen = arrs.length; i < ilen; i++) {
+                    if (s.replace(arrs[i], '').indexOf(arrs[i]) > -1) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        function isRepeat2(arrs) {
+            var hash = [];
+            if (arrs.length > 0) {
+                for (var i = 0; i < arrs.length; i++) {
+                    if (hash[arrs[i]]) {
+                        return true;
+                    }
+                    hash[arrs[i]] = true;
+                }
+                return false;
+            }
+        }
+
+        /**数组中每个元素出现次数-----------------------*/
+        function eleRepeatCount(arrs) {
+            var newArrs = [];
+            if (arrs.length > 0) {
+                for (var i = arrs.length - 1; i >= 0; i--) {
+                    var temp = arrs[i], count = 0;
+                    for (var j = arrs.length - 1; j >= 0; j--) {
+                        if (arrs[j] == temp) {
+                            count++;
+                            // arrs[j]='已经出现过';
+                        }
+                    }
+                    newArrs.push(temp + ':' + count);
+                }
+            }
+            return newArrs;
+        }
+
+        var arrs = [11, 22, 22, 33, 33, 44, 5, 6, 5];
+        var arr2 = [1, 2, 4, 3];
+        // console.log(isRepeat(arrs));
+        // console.log(isRepeat(arr2));
+        // console.log(isRepeat2(arrs));
 
 
+        // console.log(eleRepeatCount(arrs));
 
-	// 将一个数组插入另一个数组指定的位置
-	var a =[0,1,2,3],b=['a','b'];
-	var insertInd = 1;
-	// 等价于 a.splice(1,0,'a','b');
-	// splice(index,num,a,b,c);index,num必填，a,b,c增加的数组
-	a.splice.apply(a,Array.prototype.concat(insertInd,0,b));
-	
-	// console.log(a,b,Array.prototype.concat(insertInd,0,b));
+        /**兼容ie8 indexOf -1时没有相同元素--------------------*/
+        function indexOf(arr, arrs) {
+            if (arrs.length > 0) {
+                for (var i = 0; i < arrs.length; i++) {
+                    if (arrs[i] == arr) {
+                        return i;
+                    }
+                    return -1
+                }
+            }
+        }
 
-
-
-	/*定义一个人类*/   
-	function Person(name,age) {   
-	    this.name=name; this.age=age;   
-	}   
-	 /*定义一个学生类*/   
-	function Student(name,age,grade) {   
-	    Person.apply(this,arguments); this.grade=grade;   
-	}   
-	//创建一个学生类   
-	var student=new Student("qian",21,"一年级");   
-	//测试   
-	// console.log("name:"+student.name+"\n"+"age:"+student.age+"\n"+"grade:"+st	udent.grade); 
-	
-	var ie = !-[1,];//利用ie8得条件注释
-	// console.log(ie);
-		
-
-	/**事件委托
-	 * 通过监听父元素来监听子元素
-	 * addEventListener  e.target为当前点击对象
-	 */
-
-	// 检查属性是否存在使用 in 方法	
-	
-	/**字符串中出现最多的字符及个数
-	 * 循环字符串，obj[arr[i]]?obj[arr[i]]++;obj[arr[i]]=1;
-	 * if(maxNum<obj[arr[i]]){ maxNum = obj[arr[i]];maxObj=arr[i] }
-	 */
-
-	 // 投资递增
-	/* var baseNum = 4400,rate = 1.04,totalNum=0;
-	 for(var i=1;i<41;i++){
-	 	if(i<=20){
-			totalNum = (totalNum + baseNum)*rate;
-	 		console.log(i,parseInt(totalNum),parseInt(totalNum-baseNum*i),parseInt(baseNum*i));
-
-	 	}
-	 	if(i>20){
-			totalNum = totalNum *rate;
-	 		console.log(i,parseInt(totalNum),parseInt(totalNum-baseNum*i));
-
-	 	}
-	 }
-	 console.log('totalNum',parseInt(totalNum));*/
-	 /**类似setTimeout() 和 setImmediate() */
-
-	 /**this指向：函数作为参数
-	  * 严格模式下指向undefined，非严格模式指向window
-	  */
-	function callIt(func) {
-		func();
-	}
-	var counter = {
-	    count: 0,
-	    // Sloppy-mode method
-	    inc: function () {
-	    	/*// 严格模式下函数作为参数时，this指向undefined
-	    	'use strict';
-	    	console.log(this)//undefined 报错*/
-	        this.count++;
-	    }
-	}
-	// 函数作为参数时 this指向window 
-	callIt(counter.inc);
-	// console.log(counter.count,count); // 0
-
-	callIt(counter.inc.bind(counter));//改变this指向
-	counter.inc();
-	// console.log(counter.count); // 1
+        /**indexOf() ie8不兼容
+         * 返回某个指定的字符串值在字符串,数组中首次出现的位置
+         */
 
 
-	//严格模式thisundefined，及window情况
-	var obj = {
-	    name: 'Jane',
-	    friends: [ 'Tarzan', 'Cheeta' ],
-	    /*loop: function () {
-		    'use strict';
-		    this.friends.forEach(function (friend) {
-		        console.log(this.name+' knows '+friend);
-		    }, this);
-		},*/
-		loop: function () {
-		    'use strict';
-		    this.friends.forEach(friend => {
-		        // console.log(this.name+' knows '+friend);
-		    });
-		}
-	};
-	// obj.loop();
-	// 
-	// 
-	
-	var x = 10;
-	function foo() {
-	  	var y = x + 5;
-		console.log('x',x,y)
-	  	return y;
-	};
-	function bar() {
-	  var x = 2;
-	  return foo();
-	}
-	function main() {
-		foo()
-		bar()
-	  // console.log(); // Static scope: 15; Dynamic scope: 15
-	  return 0;
-	}
-	 // main();
-	 // bar()
-	 function addNum(n){
-	 		n='只能改变运算，参数不能改变原始值！';
-	 		return n+=10	
-	 }
-	 var num = 10;
-	 var result = addNum(num);
-	 // console.log(result,num);
+        /** 去重--------------------------------------------*/
 
-	 function setObj (obj){
-	 		obj.name='fufu';
-	 		obj=new Object();//因为对参数进行了重新赋值，所以后面的设置不生效
-	 		obj.name = 'fu2';//如果没有以上，则覆盖
-	 }
-	 var obj = new Object();
-	 // setObj(obj);
-	 // console.log(obj);
-	 // 
-	 // 作用域
-	 var n1  = 1,m='';
-	 function changeColor(){
-	 	var n2 = 2;
-	 	function repeatColor(){
-	 		var n3 = n2;
-	 		n2 = n1;
-	 		n1 =  n3
-	 		m = ''+n1+n2+n3
-	 	}
-	 	repeatColor();
-	 	return m;//当前函数要有返回值
-	 }
-	  // console.log(changeColor());
-	  
-	  // this 指向自己所在的作用域
-	  window.color = 'red';
-	  var o = {color:'blue'};
-	  var o1 = {color1:'blue'};
-	  function sayColor(){
-	  	console.log(this.color);
-	  }
-	  // o.sayColor = sayColor;
-	  // o1.sayColor = sayColor;
-	  // o.sayColor();
-	  // o1.sayColor();
-	  // sayColor.call(o);
-	  // sayColor.call(window);
+        /**1 数组下标去重法*/
+        function arrayUnique(arrs) {
+            var newArrs = [];
+            for (var i = 0; i < arrs.length; i++) {
+                if (newArrs.indexOf) {
+                    if (newArrs.indexOf(arrs[i]) == -1) {
+                        newArrs.push(arrs[i]);
+                    }
+                } else {
+                    if (indexOf(arrs[i], newArrs) == -1) {
+                        newArrs.push(arrs[i]);
+                    }
+                }
+            }
+            return newArrs;
+        }
+
+        // console.log(arrayUnique(arrs));
+        /**2 排序后相邻去重法 */
+        function arrSortUnique(arrs) {
+            var newArrs = [];
+            if (arrs.length > 0) {
+                arrs.sort();
+                for (var i = 0; i < arrs.length; i++) {
+                    if (arrs[i] != newArrs[newArrs.length - 1]) {
+                        newArrs.push(arrs[i])
+                    }
+                }
+                return newArrs;
+            }
+        }
+
+        // console.log(arrSortUnique(arrs));
+
+        /**3 对象键值对去重法 高效*/
+        function arrObjUnique() {
+            var newArrs = [], hash = [];
+            if (arrs.length > 0) {
+                for (var i = 0; i < arrs.length; i++) {
+                    if (!hash[arrs[i]]) {
+                        hash[arrs[i]] = 1;
+                        newArrs.push(arrs[i]);
+                    }
+                }
+                return newArrs;
+            }
+        }
+
+        // console.log(arrSortUnique(arrs));
+        /** 1使用indexOf和splice 删除数组中某个元素-------------------------
+         */
+        function removeArrElem(elem, arrs) {
+            var newElem = [];
+            if (arrs.length > 0) {
+                var index = indexOf(elem, arrs);
+                if (index > -1) {
+                    newElem = arrs.splice(index, 1)
+                }
+            }
+            return [newElem, arrs];
+        }
+
+        // console.log(removeArrElem(11,arrs));
+        /**
+         * 2遍历相同直接splice 删除数组中某个元素
+         */
+        function removeArrElem2(elem, arrs) {
+            var newElem = [];
+            if (arrs.length > 0) {
+                for (var i = 0; i < arrs.length; i++) {
+                    if (elem == arrs[i]) {
+                        newElem = arrs.splice(i, 1)
+                    }
+                }
+            }
+            return [newElem, arrs];
+        }
+
+        // console.log(removeArrElem2(22,arrs));
+
+        // 判断是否为数组类型--实例
+        // 1
+        // console.log([] instanceof Array);
+        // 2 跨iframe的时候使用页面中数组会失败
+        // console.log([].constructor==Array);
+
+
+        /**最大最小值算法-------------------
+         * 思路：
+         * 1默认第一个变量为最小值
+         * 2遍历数组当前元素小于最小值则重新赋值最小值
+         * 3字符串转为数字
+         */
+        arrs.sort(function (a, b) {
+            return b - a
+        });//最大值倒序
+        arrs.sort(function (a, b) {
+            return a - b
+        });//最小值顺序
+        // console.log(arrs[0]);
+        // console.log(Math.max(1,2,3,4));//传入所有参数
+        // console.log(Math.max.apply(Math,arrs));//改变this指向Math，同时传参可以为数组
+        // console.log(Math.min(1,2,3,4));
+
+        /**生成随机数*/
+        // console.log(Math.random().toString(16).substring(2))
+        // console.log(Math.random().toString(36).substring(2))
+        // console.log(Math.random().toString(2))//二进制
+
+
+        // 将一个数组插入另一个数组指定的位置
+        var a = [0, 1, 2, 3], b = ['a', 'b'];
+        var insertInd = 1;
+        // 等价于 a.splice(1,0,'a','b');
+        // splice(index,num,a,b,c);index,num必填，a,b,c增加的数组
+        a.splice.apply(a, Array.prototype.concat(insertInd, 0, b));
+
+        // console.log(a,b,Array.prototype.concat(insertInd,0,b));
+    }
+    /*事件*/
+    function eventMethod() {
+        /**事件委托
+         * 通过监听父元素来监听子元素
+         * addEventListener  e.target为当前点击对象
+         */
+    }
+    /*字符串方法*/
+    function stringEvent() {
+        /**字符串中出现最多的字符及个数
+         * 循环字符串，obj[arr[i]]?obj[arr[i]]++;obj[arr[i]]=1;
+         * if(maxNum<obj[arr[i]]){ maxNum = obj[arr[i]];maxObj=arr[i] }
+         */
+    }
+    /*作用域*/
+    function scopeEvent() {
+        console.log('scope');
+        var x = 10;
+        function foo() {
+            var y = x + 5;
+            console.log('x', x, y, z);// 10,15//2,7
+            return y;
+        }
+        function bar() {
+            var x = 'foo2';
+            function foo2() {
+                var y = x + 'foo2';
+                console.log('xx', x, y, z);
+            }
+            foo();
+            foo2();
+            return foo();
+        }
+        function main() {
+            foo();
+            bar();
+            return 0;
+        }
+//        main();
+//        bar();
+
+
+        var a = 1;
+        function fn1() {
+            console.log(a);//1
+            a = 2;
+        }
+        fn1();
+        console.log(a);//2
+        console.log('scope');
+/*      比较简单
+        var n1 = 1, m = '';
+        function changeColor() {
+            var n2 = 2;
+            function repeatColor() {
+                var n3 = n2;//2
+                n2 = n1;//1
+                n1 = n3//2
+                m = '' + n1 +''+ n2+'' + n3
+            }
+            repeatColor();
+            console.log(m);//当前函数要有返回值
+        }
+        changeColor();*/
+    }
+
+    var ie = !-[1,];//利用ie8得条件注释
+    // console.log(ie);
+
+
+    // 检查属性是否存在使用 in 方法
+
+
+    /*this及函数参数*/
+    function aboutThis() {
+        /** 一 函数作为参数时--this指向
+         *  1 严格模式--undefined，非严格模式--window
+         *  2 bind或counter.inc.call(counter)改变this指向 example1
+         *  3 只能改变运算，参数不能改变原始值！ example2
+         *  4 函数参数为引用类型时，改变参数指向后再赋值，无法赋值给原引用类型 example4
+         */
+
+        console.log('this');
+//        example1
+        (function() {
+            function callIt(func) {
+                func();
+            }
+            var counter = {
+                count: 0,
+                inc: function () {//'use strict'; this---undefined
+                    this.count++;
+                    console.log('this.count', this.count);
+                }
+            }
+            /* callIt(counter.inc);//NAN
+             callIt(counter.inc.bind(counter));//改变this指向 counter.count //1
+             counter.inc.call(counter);//this-counter 2*/
+        })();
+
+//        example2
+        (function () {
+            function addNum(n) {
+                n = '只能改变运算，参数不能改变原始值！';
+                return n += 10
+            }
+            var num = 10;
+            var result = addNum(num);
+             console.log(result,num);
+        })();
+
+//        example4
+        (function () {
+            function setObj(obj,str) {
+                obj.name = 'fufu';
+                str='aaa';
+                obj = new Object();
+                str='bbb';
+                obj.name = 'fu2';//如果没有以上，则覆盖
+                console.log('setObj',obj,str);//fu2
+                return obj;
+            }
+            var obj = new Object();
+            setObj(obj);
+            console.log(obj);//fufu
+        })();
 
 
 
-	  // 工厂模式
-	  function factory(name,age){
-	  		var o = new Object();
-	  		// o.name = name|| 'fu' ;
-	  		this.name = name|| 'fu' ;
-	  		// o.age = age||'18';
-	  		this.age = age||'18';
-	  		o.favor = function (){
-	  			 console.log('beauty',this,o.name,o.age);
-	  		}
-	  		return o;
-	  };
-	  var o1 = factory('a','90');
-	  var o2 = factory();
-	  // o1.favor();
-	  // o2.favor();
-	  // 字面量形式
-   		var o4 = new Object();
-  		o4.name = name|| 'fu' ;
-  		o4.age = age||'18';
-  		o4.favor = function (){
-  			 console.log('o4',this);
-  		}
-		// o4.favor();
-	   // console.log(o1,o2,o,this)
+        (function () {
+//            简单
+            window.color = 'red';
+            var o = {color: 'blue'};
+            var o1 = {color: 'blue1'};
+            function sayColor() {
+                console.log(this.color);
+            }
+             o.sayColor = sayColor; o1.sayColor = sayColor;
+             o.sayColor();//blue  == sayColor.call(o);
+             o1.sayColor();//blue1
+        })();
 
 
-		var obj = {
-		    des: 'a',
-		    getName : function () {
-		        console.log(this.des);
-		    }
-		}
-		var fn = obj.getName
-		// obj.getName();//a
-		// var fn2 = obj.getName()//a
-		fn()//undefined
-		// fn2();//报错，不是一个方法
+        var objDes = {
+            des: 'a',
+            getName: function () {
+                console.log(this, this.des);
+            }
+        }
+        var fn = objDes.getName;
+        //     obj.getName();//a
+        fn()//undefined
+        console.log('end');
+    }
+
+    function factoryModal() {
+        /*工厂模式*/
+        function factory(name, age) {
+            var o = new Object();
+            // o.name = name|| 'fu' ;
+            this.name = name || 'fu';
+            // o.age = age||'18';
+            this.age = age || '18';
+            o.favor = function () {
+                console.log('beauty', this, o.name, o.age);
+            }
+            return o;
+        };
+        var o1 = factory('a', '90');
+        var o2 = factory();
+        // o1.favor();
+        // o2.favor();
+        // 字面量形式
+        var o4 = new Object();
+        o4.name = name || 'fu';
+        o4.age = age || '18';
+        o4.favor = function () {
+            console.log('o4', this);
+        }
+        // o4.favor();
+        // console.log(o1,o2,o,this)
+    }
+
+
+    for (let i = 0; i < 5; i++) {
+        console.log('i', i);
+    }
+    console.log('ourer-i', i);
+
+    /*闭包*/
+    function closeBag() {
+        var name = "The Window";
+        var object = {
+            name: "My Object",
+            getNameFunc: function () {
+                return function () {
+                    return this.name;
+                };
+            }
+        };
+        console.log(333, object.getNameFunc()());
+    }
 
 
 </script>

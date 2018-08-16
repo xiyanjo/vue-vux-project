@@ -61,5 +61,24 @@
     }
     var i=20;
     console.log(i);
+
+
+
+    function classEve() {
+        /*定义一个人类*/
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        /*定义一个学生类*/
+        function Student(name, age, grade) {
+            Person.apply(this, arguments);
+            this.grade = grade;
+        }
+        //创建一个学生类
+        var student = new Student("qian", 21, "一年级");
+        //测试
+        // console.log("name:"+student.name+"\n"+"age:"+student.age+"\n"+"grade:"+st	udent.grade);
+    }
 </script>
 </html>
