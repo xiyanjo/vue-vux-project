@@ -9,10 +9,12 @@
 </body>
 
 <script>
-
-
-    aboutThis();
-    scopeEvent();
+    var tip = "The Window";
+//    aboutThis();
+//    scopeEvent();
+//    closeBag();
+//    queueEvent();
+    recursionEvent()
     /*数组*/
     function arrEvent() {
         /**数组是否有重复的元素-------------------------------*/
@@ -224,60 +226,64 @@
     function scopeEvent() {
         console.log('scope');
         var x = 10;
+
         function foo() {
             var y = x + 5;
             console.log('x', x, y, z);// 10,15//2,7
             return y;
         }
+
         function bar() {
             var x = 'foo2';
+
             function foo2() {
                 var y = x + 'foo2';
                 console.log('xx', x, y, z);
             }
+
             foo();
             foo2();
             return foo();
         }
+
         function main() {
             foo();
             bar();
             return 0;
         }
+
 //        main();
 //        bar();
 
 
         var a = 1;
+
         function fn1() {
             console.log(a);//1
             a = 2;
         }
+
         fn1();
         console.log(a);//2
         console.log('scope');
-/*      比较简单
-        var n1 = 1, m = '';
-        function changeColor() {
-            var n2 = 2;
-            function repeatColor() {
-                var n3 = n2;//2
-                n2 = n1;//1
-                n1 = n3//2
-                m = '' + n1 +''+ n2+'' + n3
-            }
-            repeatColor();
-            console.log(m);//当前函数要有返回值
-        }
-        changeColor();*/
+        /*      比较简单
+         var n1 = 1, m = '';
+         function changeColor() {
+         var n2 = 2;
+         function repeatColor() {
+         var n3 = n2;//2
+         n2 = n1;//1
+         n1 = n3//2
+         m = '' + n1 +''+ n2+'' + n3
+         }
+         repeatColor();
+         console.log(m);//当前函数要有返回值
+         }
+         changeColor();*/
     }
 
-    var ie = !-[1,];//利用ie8得条件注释
+//    var ie = !-[1,];//利用ie8得条件注释
     // console.log(ie);
-
-
-    // 检查属性是否存在使用 in 方法
-
 
     /*this及函数参数*/
     function aboutThis() {
@@ -288,12 +294,13 @@
          *  4 函数参数为引用类型时，改变参数指向后再赋值，无法赋值给原引用类型 example4
          */
 
-        console.log('this');
+        console.log('---------');
 //        example1
-        (function() {
+        (function () {
             function callIt(func) {
                 func();
             }
+
             var counter = {
                 count: 0,
                 inc: function () {//'use strict'; this---undefined
@@ -312,53 +319,57 @@
                 n = '只能改变运算，参数不能改变原始值！';
                 return n += 10
             }
+
             var num = 10;
             var result = addNum(num);
-             console.log(result,num);
+            console.log(result, num);
         })();
 
 //        example4
         (function () {
-            function setObj(obj,str) {
+            function setObj(obj, str) {
                 obj.name = 'fufu';
-                str='aaa';
+                str = 'aaa';
                 obj = new Object();
-                str='bbb';
+                str = 'bbb';
                 obj.name = 'fu2';//如果没有以上，则覆盖
-                console.log('setObj',obj,str);//fu2
+                console.log('setObj', obj, str);//fu2
                 return obj;
             }
+
             var obj = new Object();
             setObj(obj);
             console.log(obj);//fufu
         })();
-
-
 
         (function () {
 //            简单
             window.color = 'red';
             var o = {color: 'blue'};
             var o1 = {color: 'blue1'};
+
             function sayColor() {
                 console.log(this.color);
             }
-             o.sayColor = sayColor; o1.sayColor = sayColor;
-             o.sayColor();//blue  == sayColor.call(o);
-             o1.sayColor();//blue1
+
+            o.sayColor = sayColor;
+            o1.sayColor = sayColor;
+            o.sayColor();//blue  == sayColor.call(o);
+            o1.sayColor();//blue1
+
+
+            var objDes = {
+                des: 'a',
+                getName: function () {
+                    console.log(this, this.des);
+                }
+            }
+            var fn = objDes.getName;
+            //     obj.getName();//a
+            fn()//undefined
         })();
 
-
-        var objDes = {
-            des: 'a',
-            getName: function () {
-                console.log(this, this.des);
-            }
-        }
-        var fn = objDes.getName;
-        //     obj.getName();//a
-        fn()//undefined
-        console.log('end');
+        console.log('---------');
     }
 
     function factoryModal() {
@@ -389,24 +400,86 @@
         // console.log(o1,o2,o,this)
     }
 
-
-    for (let i = 0; i < 5; i++) {
-        console.log('i', i);
+    function letEvent() {
+        for (let i = 0; i < 5; i++) {
+            console.log('i', i);
+        }
+        console.log('ourer-i', i);
     }
-    console.log('ourer-i', i);
+
+
 
     /*闭包*/
     function closeBag() {
-        var name = "The Window";
-        var object = {
-            name: "My Object",
-            getNameFunc: function () {
-                return function () {
-                    return this.name;
-                };
+        this.outClose = 'outClose';
+        console.log('-----');
+        (function () {
+            var object = {
+                tip: "My Object",
+                getNameFunc: function () {
+                    console.log(999, this.outClose);//this为obj
+                    return function () {
+                        return this.tip;
+                    };
+                }
+            };
+            console.log(333, object.getNameFunc()());
+        })();
+        console.log('-----');
+    }
+//    js运算技巧
+    function operationEvent() {
+//        判断一个数是否为整数
+        function isInteger(x) { return (x^0) === x; };//Number.isInteger()  es6
+    }
+
+//    队列同步异步执行顺序
+    function queueEvent() {
+        //函数先执行同步任务再执行异步任务
+       /* setTimeout(function(){
+            for(let i=0;i<200;i++){}
+            setTimeout(function(){
+                console.log(1);
+            }, 1000);
+            setTimeout(function(){
+                console.log(2);
+            }, 2000);
+            setTimeout(function(){
+                console.log(3);
+            }, 3000);
+            var time = new Date().getTime();
+            while(true){
+                //这里模拟一个6s的任务
+                if(new Date().getTime() - time > 4000){
+                    break;
+                }
             }
-        };
-        console.log(333, object.getNameFunc()());
+        }, 0)*/
+
+       /* setTimeout(function(){
+            setInterval(function(){
+                console.log('b');
+            }, 1000);
+            var time = new Date().getTime();
+            while(true){
+                if(new Date().getTime() - time > 3000){
+                    console.log('a');
+                    break;
+                }
+            }
+        }, 0);*/
+
+    }
+//    尾递归 尾调用 es6推荐
+    function recursionEvent() {
+        function factorial(n,total) {
+            if(n==1) return total;
+            return factorial(n-1,n*total);
+        }
+        function recursionEnd(n) {
+           return factorial(n,1)
+        }
+        console.log(recursionEnd(5));
     }
 
 
