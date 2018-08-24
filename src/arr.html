@@ -14,7 +14,8 @@
 //    scopeEvent();
 //    closeBag();
 //    queueEvent();
-    recursionEvent()
+//    recursionEvent();
+    sorts();
     /*数组*/
     function arrEvent() {
         /**数组是否有重复的元素-------------------------------*/
@@ -487,6 +488,113 @@
         console.log(recursionEnd(5));
     }
 
+
+//    排序
+    function sorts(){
+        let arr =[2,1,4,3,8,1];
+
+        /**
+         * 冒泡排序
+         * 比较相邻的两个数，每轮取出一个最大的，循环arr.length-1 轮
+         */
+        function bubbleSort(arr) {
+            var len = arr.length;
+            for (var i = 0; i < len - 1; i++) {
+                for (var j = 0; j < len - 1 - i; j++) {
+                    if (arr[j] > arr[j+1]) {        // 相邻元素两两对比
+                        var temp = arr[j+1];        // 元素交换
+                        arr[j+1] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+//        bubbleSort(arr);
+
+        /**
+         * 快速排序
+         */
+        function quickSort(arr) {
+            if(arr.length<=1) {
+                return arr;
+            }
+            let leftArr = []; let rightArr = []; let q = arr[0];
+            for(let i = 1; i<arr.length; i++) {
+                if(arr[i]>q) {
+                    rightArr.push(arr[i]);
+                }else{
+                    leftArr.push(arr[i]);
+                }
+            }
+            return [].concat(quickSort(leftArr),[q],quickSort(rightArr));
+        }
+        console.log(quickSort(arr));
+
+        /**
+         * 选择排序
+         * 取出最小数保存最小数索引，将当前数和最小数位置互换，循环arr.length-1次
+         */
+        function selectionSort(arr) {
+            var len = arr.length;
+            var minIndex, temp;
+            for (var i = 0; i < len - 1; i++) {
+                minIndex = i;
+                for (var j = i + 1; j < len; j++) {
+                    if (arr[j] < arr[minIndex]) {     // 寻找最小的数
+                        minIndex = j;                 // 将最小数的索引保存
+                    }
+                }
+                temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
+            return arr;
+        }
+//        selectionSort(arr);
+
+        /**
+         * 取出字符串中出现最大的字符
+         */
+        var str = 'skfjkejrkerjiuewpkdldll';
+        function totalMaxStr(str) {
+            let obj = {};
+            let num = 0 ;
+            let strKey = '';
+            for(let i =0;i<str.length;i++){
+                if(!obj[str[i]]){
+                    obj[str[i]]=1;
+                }else{
+                    obj[str[i]]+=1;
+                }
+            }
+            for(let k in obj){
+                if(obj[k]>num){
+                    num =obj[k];
+                    strKey = k;
+                }
+                console.log(strKey,num);
+            }
+        }
+        totalMaxStr(str);
+
+        /**
+         *  数组去重
+         *  对象和新数组，
+         */
+        function deletRepeat(arr) {
+            let  obj = {};
+            let newArr = [];
+            for(var i=0;i<arr.length;i++){
+                if(!obj[arr[i]]){
+                    obj[arr[i]] = true;
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr
+        }
+        deletRepeat(arr);
+    }
 
 </script>
 
