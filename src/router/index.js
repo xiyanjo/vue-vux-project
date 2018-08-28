@@ -42,6 +42,8 @@ const pdfPrewer =()=>import('@/components/pdfPrewer.vue')
 const huadong =()=>import('@/components/handle/huadong.vue')
 
 
+const esVue =()=>import('@/components/es.vue')
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -147,6 +149,10 @@ const router = new VueRouter({
             path: '/flex',
             name: 'flex',
             component: flex,
+        },{
+            path: '/esVue',
+            name: 'esVue',
+            component: esVue,
         },
         {
             path: '/Auditing',
