@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import FastClick from 'fastclick'
-import VueRouter from 'vue-router'
+// import VueRouter from 'vue-router'
 import router from './router'
 import App from './App'
 import {MyPlugin} from '@/assets/js/myPlugin.js'
@@ -13,7 +13,7 @@ import store from './store'// 等同于  //import store from './store/index'  in
 
 Vue.use(AlertPlugin);
 Vue.use(ToastPlugin);
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 // Vue.use(Vuex);
 Vue.use(MyPlugin);
 // Vue.use(vuexI18n.plugin, store)
@@ -21,6 +21,8 @@ Vue.use(MyPlugin);
 // 全局注册基础组件时使用
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+
+// console.log('VueRouter',VueRouter);路由对象函数
 
 
 // 注册单个全局组件
@@ -62,17 +64,6 @@ requireComponent.keys().forEach(fileName => {
     componentConfig.default || componentConfig
   )
 })
-
-
-/*const routes = [{
-    path: '/',
-    component: Home
-}];*/
-
-
-/*const router = new VueRouter({
-    routes
-});*/
 
 FastClick.attach(document.body);
 

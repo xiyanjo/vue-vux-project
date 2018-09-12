@@ -45,7 +45,7 @@ const huadong =()=>import('@/components/handle/huadong.vue')
 const esVue =()=>import('@/components/es.vue')
 
 Vue.use(VueRouter)
-
+// 创建一个路由对象
 const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -202,16 +202,16 @@ const router = new VueRouter({
 })
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
-    console.log('beforeEach---全局路由守卫',to);
+    // console.log('beforeEach---全局路由守卫',to);
     next();//必填，进入下一个管道
 })
 // 全局解析守卫
 router.beforeResolve((to, from, next) => {
-    console.log('beforeResolve---全局解析守卫');
+    // console.log('beforeResolve---全局解析守卫');
     next();
 })
 // 全局后置钩子
 router.afterEach((to, from) => {
-    console.log('afterEach---全局后置钩子');
+    // console.log('afterEach---全局后置钩子');
 })
 export default router;

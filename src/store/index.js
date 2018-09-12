@@ -22,7 +22,7 @@ let state1 = state;
 /*setTimeout(()=>{
     console.log(state1());
 },6000)*/
-// getters---store 的计算属性  --- 返回值被依赖缓存，依赖发生改变重新计算
+// getters---store 的计 算属性  --- 返回值被依赖缓存，依赖发生改变重新计算
 const getters = {
     count: state=> {
         return state.count += 100;//原有基础上加100

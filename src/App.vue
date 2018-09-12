@@ -5,6 +5,10 @@
 </template>
 
 <script>
+    window.addEventListener('hashchange',function () {
+        console.log('hash--',window.location.hash);
+    })
+
     import Vue from 'vue';
 
     // 使用.native时 含input时有问题

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF8">
 	<title>Document</title>
-	<link href="https://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.css" rel="stylesheet">
-	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<link href="https://cdn.bootcss.com/bootstrapvalidator/0.5.3/css/bootstrapValidator.css" rel="stylesheet">
+	<meta name="viewport" content="width=devicewidth,initialscale=1,userscalable=0">
 </head>
 <body>
 	<form action="form" autocomplete="on">
@@ -12,6 +12,15 @@
 		<input type="password" placeholder="我是隐藏密码">
 		<input type="text" autocomplete="on" placeholder="我是联想输入">
 	</form>
+	<div>
+        <pre>pre标签     空格原样输出    !</pre>
+        <span>HTML实体&nbsp&nbsp&nbsp HTML实体&nbsp</span>
+        <div class="whiteSpace">whitespace whitespace whitespace whitespacewhitespace whitespace whitespace whitespacewhitespace</div>
+        <div>  处理空格换行的一些方式  white-space: normal;
+            word-break: normal;
+            word-wrap: normal;
+            word-spacing: normal;</div>
+    </div>
 	<button type="submit">submit</button>
 </body>
 <script>
@@ -24,5 +33,9 @@
 		height: 30px;
 		background: pink;
 	}
+    .whiteSpace{
+        width: 40px;
+        background: pink;
+    }
 </style>
 </html>
