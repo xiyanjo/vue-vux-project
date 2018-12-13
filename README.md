@@ -21,3 +21,5 @@ npm run build --report
 # vue常见报错
 ## assigning to rvalue  在html的模板中v-model绑定的属性并没有在data属性中定义。
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+#des branch is not work .plase checkout dev1
