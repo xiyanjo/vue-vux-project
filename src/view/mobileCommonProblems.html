@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>iOS Safari</div>
+        <p>
+            1) Safari下使用border-image，不能设置border-color: transparent。
+
+            2) 使用'<meta name="format-detection" content="telephone=no" />' -- 解决连续数字误识别为电话号码导致样式出错的问题。
+        
+            3) Safari的iframe会自动去适应内容大小而无视CSS中设置的width，
+            该特性只能通过scrolling="no"属性关闭，并通过设置width: 1px; min-width: 100%;
+            但是设置scrolling="no"会导致安卓下iframe无法滑动，目前只能通过UA设备判断解决。
+            
+            4) Safari 10以下的flex布局不认width和flex-basis，但是会认min-width，详见Can I Use 中 flex 的 Known issue第一条。
+            
+            5) 在 Safari 中，setTimeout 无法触发 focus 事件，且不支持 autofocus 属性。可以使用Promise.resolve().then()来执行需要异步的 focus 代码。
+            
+            6) iOS 10 safari 会无视meta user-scalable=no，需要用e.preventDefault来解决。个人解决方案mobile-polyfill/ios10-user-scalable-no.js。
+                建议结合ua-parser-js使用，因为iOS 10+的其他浏览器（QQ、UC）等都还是尊敬这个东西的。
+            
+            7) Safari下开无痕浏览模式，操作localStorage会直接报错，需要try catch。
+            
+            <!-- 8) 某同学用unescape解析encodeURIComponent编码的信息，掉进了乱码的坑。unescape() 函数可对通过 escape() 编码的字符串进行解码。 -->
+            
+            <!-- 9) type=search有坑。 -->
+            
+            10) position:fixed有坑。
+            
+            11) 部分版本的padStart/padEnd实现有bug，会出现null
+            
+            12) ios版本：11.1-11.3 使用swiper或者transform属性时，有一定概率出现transform的元素以外的所有元素都消失，上下滑动一下页面又出现了。
+                给外层元素加一个overflow:hidden属性即可解决。
+                
+            13) 当使用-webkit-overflow-scrolling: touch;时，同时使用::-webkit-scrollbar伪类的display:none隐藏滚动条在iOS 11+出现失效的情况，
+                ele::-webkit-scrollbar{
+                    background-color:transparent;
+                }
+                ele::-webkit-scrollbar-track{
+                    background-color:transparent;
+                }
+                ele::-webkit-scrollbar-thumb{
+                    background-color:transparent;
+                }
+                
+                
+        </p>
+    </div>
+
+    <br>
+    <div>
+        <div>Andriod</div>
+        <p>
+            1) 部分机型touchmove事件不连续触发
+
+            Android的事件每次都要经过浏览器内核再发往UI线程，为了提高效率，如果浏览器内核中没有设置preventDefault，Android就认为该页面元素不需要touchmove事件，于是下次的事件就不经过内核，直接发往UI线程，于是js中就捕获不到touchmove事件。
+            解决方案：在事件响应的地方设置preventDefault，这样就可以源源不绝地接收到touch事件，比如在touchstart事件中执行e.preventDefault()，touchmove事件就会连续触发。但是这种做法会取消掉浏览器其他的默认行为，比如页面默认的滚动。。。
+            
+            2) 字号小于12px，或字号不是偶数，部分机型文字无法居中的问题
+            解决方案：使用transform: scale(0.5)进行缩放 or 字号大一点
+        </p>
+    </div>
+    <div>
+        <div>综合</div>
+        <div>
+            1) 禁止页面滑动
+
+            在iOS下，需要禁止页面中的touchmove事件，但由于禁掉了touchmove事件，导致iOS下你希望滚动的部分也无法滚动了，
+            因此对于希望滚动的部分，通过e.stopPropagation保留原有滚动效果，并针对回弹动画的交互，
+            建议使用如下代码声明一个可滚动区域：
+            /* 以下属性添加到滚动容器上 */
+            -webkit-overflow-scrolling: touch;
+            overflow: auto;
+            <img src="../assets/img/scrollBox.jpg" alt="">
+
+            在安卓下，需要给html, body元素加上如下CSS：height:100%;overflow:hidden;。
+            <img src="../assets/img/noTouchMove.jpg" alt="">
+        </div>
+    </div>
+    <div>
+        <div>click300m延迟</div>
+        <p>
+                移动端的 click 触发顺序是touchstart->touchmove->touchend->mousedown->mousemove->mouseenter->click。所以有300m延迟。
+                有遮罩层时会点透（遮罩层在touch阶段隐藏，触发后面的click事件）
+                解决办法： 1 统一touch事件
+                          2 阻止遮罩层的默认事件  e.preventDefault();
+                          3 使用click
+                          4 zepto新版 fastclick
+        </p>
+    </div>
+</body>
+</html>
+<script>
+    // 1 解决iOS10的Safari下Meta设置user-scalable=no无效的方法
+window.onload=function () {  
+        document.addEventListener('touchstart',function (event) {  
+            if(event.touches.length>1){  
+                event.preventDefault();  
+            }  
+        })  
+        var lastTouchEnd=0;  
+        document.addEventListener('touchend',function (event) {  
+            var now=(new Date()).getTime();  
+            if(now-lastTouchEnd<=300){  
+                event.preventDefault();  
+            }  
+            lastTouchEnd=now;  
+        },false)  
+    }
+</script>
