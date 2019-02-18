@@ -92,6 +92,9 @@
                           2 阻止遮罩层的默认事件  e.preventDefault();
                           3 使用click
                           4 zepto新版 fastclick
+
+                          fastclick原理：
+                          在检测到touchend事件的时候，会通过DOM自定义事件立即出发模拟一个click事件，并把浏览器在300ms之后真正的click事件阻止掉
         </p>
     </div>
 </body>
