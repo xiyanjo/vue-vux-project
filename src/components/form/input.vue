@@ -98,9 +98,12 @@
             </grid>
         </template>
 
-        <!-- 调用微信摄像头或照片 -->
-        <template v-if=false>
-            <input type="file" style="/* visibility: hidden */" capture="camera" accept="image/*,video/*" name="" value="" >
+        <!-- 调用微信摄像头或照片 上传多张图片-->
+        <template>
+            <div v-for="item in choosePics">
+                <img  :src="item" alt="" style="width:100px">
+            </div>
+            <input type="file"  multiple capture="camera" accept="image/*,video/*" name="" value=""  @change="fileChange">
         </template>
         <div>
             <div class="fra" @click=clickOn>
@@ -137,10 +140,22 @@
                 aa: false,
                 bb: true,
                 cc: true,
-                list:[{title:'一',day:''},{title:'二',day:''},{title:'三',day:''}]
+                list:[{title:'一',day:''},{title:'二',day:''},{title:'三',day:''}],
+                choosePics:[],
             }
         },
         methods: {
+            fileChange(e){
+                let file = e.target;
+                Object.keys(file.files).forEach((item,index)=>{
+                    let reader = new FileReader();
+                    reader.readAsDataURL(file.files[index]);
+                    reader.onload=(e)=>{
+                        console.log('选的图片',e.target.result)
+                        this.choosePics.push(e.target.result);
+                    }
+                })
+            },
             preventNaN(){
                 if(e.data.match(/[^\d]/g)) e.preventDefault();
             },
